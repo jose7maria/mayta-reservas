@@ -6,32 +6,36 @@ export const PanelNavbar = () => {
 
 
   const cerrarSesion = () => {
-
     navigate('/login');
-
   };
 
 
   return (
+    <header className="admin-navbar">
 
-    <header className="panel-navbar">
-
+      {/* PARTE IZQUIERDA */}
       <div>
 
-        <span className="panel-navbar-subtitulo">
+        <span className="admin-navbar-subtitulo">
           PANEL ADMINISTRATIVO
         </span>
+
+        <h2>
+          Gestión de Reservas
+        </h2>
 
       </div>
 
 
-      <div className="panel-usuario">
+      {/* PARTE DERECHA */}
+      <div className="admin-usuario">
 
-        <div className="panel-avatar">
+        <div className="admin-avatar">
           A
         </div>
 
-        <div>
+
+        <div className="admin-usuario-datos">
 
           <strong>
             Administrador
@@ -46,16 +50,15 @@ export const PanelNavbar = () => {
 
         <button
           type="button"
+          className="btn btn-outline-secondary btn-sm"
           onClick={cerrarSesion}
-          className="btn-cerrar-sesion"
         >
-          Salir
+          Cerrar sesión
         </button>
 
       </div>
 
     </header>
-
   );
 
 };

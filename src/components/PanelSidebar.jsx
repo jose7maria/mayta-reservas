@@ -3,22 +3,21 @@ import { NavLink } from 'react-router-dom';
 export const PanelSidebar = () => {
 
   return (
+    <aside className="admin-sidebar">
 
-    <aside className="panel-sidebar">
-
-      <div className="panel-logo">
+      {/* LOGO */}
+      <div className="admin-logo">
         MAYTA
       </div>
 
 
-      <nav className="panel-menu">
+      {/* MENÚ */}
+      <nav className="nav flex-column admin-menu">
 
         <NavLink
           to="/panel"
           end
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Dashboard
         </NavLink>
@@ -26,9 +25,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/calendario"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Calendario
         </NavLink>
@@ -36,9 +33,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/reservas"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Reservas
         </NavLink>
@@ -46,9 +41,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/mesas"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Mesas
         </NavLink>
@@ -56,9 +49,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/platos"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Platos
         </NavLink>
@@ -66,9 +57,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/horarios"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Horarios
         </NavLink>
@@ -76,9 +65,7 @@ export const PanelSidebar = () => {
 
         <NavLink
           to="/panel/reportes"
-          className={({ isActive }) =>
-            isActive ? 'panel-link activo' : 'panel-link'
-          }
+          className="nav-link"
         >
           Reportes
         </NavLink>
@@ -86,7 +73,6 @@ export const PanelSidebar = () => {
       </nav>
 
     </aside>
-
   );
 
 };

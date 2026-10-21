@@ -4930,3 +4930,2601 @@
 
   padding: 12px 30px !important;
 }
+
+
+/* =========================
+   ADMIN SIDEBAR
+========================= */
+
+.admin-sidebar {
+  width: 230px;
+  min-height: 100vh;
+
+  background-color: #0b1510;
+
+  padding: 25px 15px;
+}
+
+.admin-logo {
+  color: #b58a57;
+
+  font-size: 24px;
+  font-weight: 600;
+
+  letter-spacing: 4px;
+
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+.admin-menu {
+  gap: 8px;
+}
+
+.admin-menu .nav-link {
+  color: #c9c4ba;
+
+  padding: 12px 15px;
+
+  border-radius: 5px;
+}
+
+.admin-menu .nav-link:hover {
+  background-color: #19382b;
+
+  color: #ffffff;
+}
+
+.admin-menu .nav-link.active {
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-left: 3px solid #b58a57;
+}
+
+
+/* =========================
+   ADMIN NAVBAR
+========================= */
+
+.admin-navbar {
+  min-height: 78px;
+
+  background-color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 30px;
+
+  border-bottom: 1px solid #e3ded5;
+}
+
+
+.admin-navbar-subtitulo {
+  color: #b58a57;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+
+.admin-navbar h2 {
+  color: #19382b;
+
+  font-size: 20px;
+
+  margin: 3px 0 0;
+}
+
+
+.admin-usuario {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.admin-avatar {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+
+.admin-usuario-datos strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 13px;
+}
+
+
+.admin-usuario-datos span {
+  display: block;
+
+  color: #999;
+
+  font-size: 11px;
+}
+
+
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+.admin-layout {
+  min-height: 100vh;
+
+  display: flex;
+
+  background-color: #f3efe6;
+}
+
+
+.admin-principal {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.admin-contenido {
+  padding: 30px;
+}
+
+
+.admin-titulo {
+  color: #19382b;
+
+  font-size: 28px;
+
+  margin-bottom: 5px;
+}
+
+
+.admin-descripcion {
+  color: #777;
+
+  font-size: 14px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.admin-etiqueta {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+/* TARJETAS */
+
+.admin-card {
+  border: none !important;
+
+  border-top: 3px solid #b58a57 !important;
+
+  border-radius: 7px !important;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+.admin-card-titulo {
+  color: #777;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+
+.admin-card h2 {
+  color: #19382b;
+
+  font-size: 32px;
+
+  margin: 7px 0;
+}
+
+
+.admin-card p {
+  color: #999;
+
+  font-size: 12px;
+
+  margin: 0;
+}
+
+
+/* =========================
+   RESUMEN MESAS
+========================= */
+
+.admin-mesa-card {
+  min-height: 100px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22px 25px;
+
+  border-radius: 7px;
+}
+
+
+.admin-mesa-card span {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+
+.admin-mesa-card p {
+  font-size: 12px;
+
+  margin: 5px 0 0;
+}
+
+
+.admin-mesa-card strong {
+  font-size: 32px;
+}
+
+
+/* DISPONIBLES */
+
+.admin-mesa-card.disponible {
+  background-color: #e5efe9;
+
+  border: 1px solid #a8c2b2;
+
+  color: #19382b;
+}
+
+
+/* OCUPADAS */
+
+.admin-mesa-card.ocupada {
+  background-color: #f2e5e2;
+
+  border: 1px solid #d2aaa3;
+
+  color: #8b4840;
+}
+
+/* ==================================================
+   DASHBOARD SEGÚN FIGMA APROBADO
+================================================== */
+
+.admin-contenido {
+  padding: 18px 22px 35px;
+}
+
+
+.dashboard-titulo {
+  color: #19382b;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  margin-bottom: 12px;
+}
+
+
+/* CONTADORES */
+
+.dashboard-contadores {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin: 0 15px 10px;
+}
+
+
+.dashboard-contadores > div {
+  background-color: #ffffff;
+
+  border: 1px solid #ddd7cd;
+
+  border-radius: 5px;
+
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  box-shadow: none;
+}
+
+
+.dashboard-contadores strong {
+  color: #19382b;
+
+  font-size: 16px;
+}
+
+
+.dashboard-contadores span {
+  color: #5f5b55;
+
+  font-size: 12px;
+}
+
+
+/* MESAS CONTADORES */
+
+.dashboard-mesas-contadores {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 45px;
+
+  margin-bottom: 12px;
+}
+
+
+.dashboard-mesas-contadores > div {
+  min-width: 205px;
+
+  padding: 9px 20px;
+
+  border-radius: 5px;
+
+  text-align: center;
+}
+
+
+.dashboard-mesas-contadores strong {
+  margin-right: 5px;
+}
+
+
+.contador-disponible {
+  background-color: #e5efe9;
+
+  color: #19382b;
+}
+
+
+.contador-ocupado {
+  background-color: #f2e5e2;
+
+  color: #8b4840;
+}
+
+
+/* BLOQUES GENERALES */
+
+.dashboard-doble {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 25px;
+
+  margin-bottom: 15px;
+}
+
+
+.dashboard-bloque {
+  background-color: #ffffff;
+
+  border: 1px solid #ddd7cd;
+
+  border-radius: 5px;
+
+  padding: 14px;
+
+  box-shadow: none;
+}
+
+
+.dashboard-bloque h2 {
+  color: #19382b;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  margin-bottom: 12px;
+}
+
+
+/* CALENDARIO */
+
+.dashboard-mes {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 12px;
+}
+
+
+.dashboard-mes strong {
+  font-size: 12px;
+
+  color: #4e4a45;
+}
+
+
+.dashboard-mes button {
+  border: none;
+
+  background: none;
+
+  color: #19382b;
+}
+
+
+.dashboard-calendario {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 4px;
+
+  text-align: center;
+
+  max-width: 320px;
+
+  margin: auto;
+}
+
+
+.dashboard-calendario strong {
+  font-size: 11px;
+
+  color: #777;
+}
+
+
+.dashboard-calendario span {
+  padding: 4px;
+
+  font-size: 11px;
+
+  color: #3f3d39;
+
+  border-radius: 50%;
+}
+
+
+.dashboard-calendario .dia-activo {
+  background-color: #19382b;
+
+  color: #ffffff;
+}
+
+
+/* MESAS */
+
+.dashboard-lista-mesas {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.dashboard-mesa {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 20px;
+
+  align-items: center;
+
+  padding: 6px 10px;
+
+  background-color: #f8f5ef;
+
+  border-radius: 3px;
+}
+
+
+.dashboard-mesa strong {
+  color: #19382b;
+
+  font-size: 11px;
+}
+
+
+.dashboard-mesa span {
+  color: #555;
+
+  font-size: 11px;
+}
+
+
+.mesa-punto {
+  display: inline-block;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+}
+
+
+.mesa-punto.disponible {
+  background-color: #527b65;
+}
+
+
+.mesa-punto.ocupada {
+  background-color: #ba8178;
+}
+
+
+.dashboard-leyenda {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  margin-top: 13px;
+}
+
+
+.dashboard-leyenda span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+/* TABLA */
+
+.dashboard-reservas {
+  margin-bottom: 15px;
+}
+
+
+.dashboard-tabla {
+  margin: 0 !important;
+}
+
+
+.dashboard-tabla thead th {
+  background-color: #19382b !important;
+
+  color: #ffffff !important;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  padding: 8px 10px !important;
+}
+
+
+.dashboard-tabla td {
+  color: #4e4a45;
+
+  font-size: 11px;
+
+  padding: 8px 10px !important;
+
+  vertical-align: middle;
+}
+
+
+.reserva-estado {
+  display: inline-block;
+
+  min-width: 85px;
+
+  text-align: center;
+
+  padding: 3px 8px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+}
+
+
+.reserva-estado.confirmado {
+  background-color: #e5efe9;
+
+  color: #275d43;
+}
+
+
+.reserva-estado.pendiente {
+  background-color: #f5edd9;
+
+  color: #8b6b28;
+}
+
+
+.btn-accion-dashboard {
+  min-width: 70px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #ccc6bc;
+
+  border-radius: 4px;
+
+  color: #19382b;
+
+  font-size: 10px;
+
+  padding: 4px 8px;
+}
+
+
+/* REPORTES */
+
+.dashboard-reportes-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+
+.btn-generar-dashboard {
+  background-color: #19382b;
+
+  border: 1px solid #19382b;
+
+  color: #ffffff;
+
+  border-radius: 4px;
+
+  padding: 7px 14px;
+
+  font-size: 10px;
+}
+
+
+.dashboard-reportes-botones {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+
+.dashboard-reportes-botones button {
+  background-color: #f8f5ef;
+
+  border: 1px solid #ccc6bc;
+
+  border-radius: 4px;
+
+  color: #19382b;
+
+  padding: 10px;
+
+  font-size: 10px;
+}
+
+
+/* ==================================================
+   PÁGINAS ADMIN
+================================================== */
+
+.admin-pagina-header {
+  margin-bottom: 25px;
+}
+
+.admin-pagina-header span {
+  color: #b58a57;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+.admin-pagina-header h1 {
+  color: #19382b;
+
+  font-size: 25px;
+
+  margin: 4px 0;
+}
+
+.admin-pagina-header p {
+  color: #777;
+
+  font-size: 13px;
+
+  margin: 0;
+}
+
+
+/* MÓDULOS */
+
+.admin-modulo {
+  background-color: #ffffff;
+
+  border: 1px solid #ddd7cd;
+
+  border-radius: 6px;
+
+  padding: 22px;
+}
+
+
+/* CALENDARIO */
+
+.admin-modulo-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.admin-modulo-header h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin: 0;
+}
+
+.admin-modulo-header button {
+  border: none;
+
+  background: transparent;
+
+  color: #19382b;
+
+  font-size: 20px;
+}
+
+
+.calendario-admin {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 8px;
+
+  text-align: center;
+}
+
+.calendario-admin > strong {
+  color: #777;
+
+  font-size: 11px;
+
+  padding: 8px;
+}
+
+
+.calendario-dia {
+  position: relative;
+
+  min-height: 52px;
+
+  border: 1px solid #e5dfd5;
+
+  background-color: #f8f5ef;
+
+  color: #19382b;
+
+  border-radius: 4px;
+}
+
+
+.calendario-dia:hover {
+  border-color: #b58a57;
+}
+
+
+.calendario-dia.seleccionado {
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-color: #19382b;
+}
+
+
+.calendario-vacio {
+  min-height: 52px;
+}
+
+
+.indicador-reserva {
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  bottom: 6px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background-color: #b58a57;
+
+  border-radius: 50%;
+}
+
+
+/* RESERVAS DEL DÍA */
+
+.reservas-dia-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #e5dfd5;
+}
+
+
+.reservas-dia-header span {
+  color: #b58a57;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+.reservas-dia-header h2 {
+  color: #19382b;
+
+  font-size: 18px;
+
+  margin: 4px 0 0;
+}
+
+
+.reservas-dia-header > strong {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+}
+
+
+.reservas-dia-lista {
+  margin-top: 15px;
+}
+
+
+.reserva-dia-card {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px;
+
+  margin-bottom: 10px;
+
+  background-color: #f8f5ef;
+
+  border-left: 3px solid #b58a57;
+}
+
+
+.reserva-dia-card strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 13px;
+}
+
+
+.reserva-dia-card span {
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+.sin-reservas {
+  padding: 40px 15px;
+
+  text-align: center;
+
+  color: #999;
+
+  font-size: 13px;
+}
+
+/* =========================
+   RESERVAS ADMIN
+========================= */
+
+.reservas-toolbar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: end;
+
+  margin-bottom: 20px;
+}
+
+
+.reservas-toolbar > div {
+  width: 200px;
+}
+
+
+.reservas-toolbar label {
+  color: #19382b;
+
+  font-size: 11px;
+
+  margin-bottom: 5px;
+}
+
+
+.reservas-toolbar > span {
+  color: #777;
+
+  font-size: 12px;
+}
+
+
+/* TABLA */
+
+.admin-tabla {
+  margin: 0 !important;
+}
+
+
+.admin-tabla thead th {
+  background-color: #19382b !important;
+
+  color: #ffffff !important;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  padding: 10px !important;
+}
+
+
+.admin-tabla td {
+  vertical-align: middle;
+
+  color: #555;
+
+  font-size: 12px;
+
+  padding: 11px 10px !important;
+}
+
+
+/* ESTADOS */
+
+.admin-estado {
+  display: inline-block;
+
+  min-width: 85px;
+
+  text-align: center;
+
+  padding: 4px 8px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+}
+
+
+.admin-estado.confirmada {
+  background-color: #e5efe9;
+
+  color: #285e44;
+}
+
+
+.admin-estado.pendiente {
+  background-color: #f5edd9;
+
+  color: #8c6a25;
+}
+
+
+.admin-estado.en-espera {
+  background-color: #ece8e1;
+
+  color: #777;
+}
+
+
+/* BOTONES */
+
+.admin-btn-ver,
+.admin-btn-editar,
+.admin-btn-cancelar {
+  margin-right: 5px;
+
+  font-size: 10px !important;
+}
+
+
+.admin-btn-ver {
+  border: 1px solid #19382b !important;
+
+  color: #19382b !important;
+}
+
+
+.admin-btn-editar {
+  border: 1px solid #b58a57 !important;
+
+  color: #8a6539 !important;
+}
+
+
+.admin-btn-cancelar {
+  border: 1px solid #a45d55 !important;
+
+  color: #a45d55 !important;
+}
+
+/* =========================
+   MESAS ADMIN
+========================= */
+
+.mesas-resumen {
+  min-height: 90px;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 25px;
+
+  border-radius: 6px;
+}
+
+
+.mesas-resumen span {
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  font-weight: 600;
+}
+
+
+.mesas-resumen p {
+  margin: 5px 0 0;
+
+  font-size: 11px;
+}
+
+
+.mesas-resumen strong {
+  font-size: 30px;
+}
+
+
+.mesas-resumen.disponible {
+  background-color: #e5efe9;
+
+  border: 1px solid #a8c2b2;
+
+  color: #19382b;
+}
+
+
+.mesas-resumen.ocupada {
+  background-color: #f2e5e2;
+
+  border: 1px solid #d2aaa3;
+
+  color: #8b4840;
+}
+
+
+/* HEADER */
+
+.mesas-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+
+.mesas-header h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-bottom: 4px;
+}
+
+
+.mesas-header p {
+  color: #777;
+
+  font-size: 12px;
+
+  margin: 0;
+}
+
+
+/* LEYENDA */
+
+.mesas-leyenda {
+  display: flex;
+
+  gap: 18px;
+}
+
+
+.mesas-leyenda span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+.mesa-indicador {
+  width: 10px;
+
+  height: 10px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+
+.mesa-indicador.disponible {
+  background-color: #527b65;
+}
+
+
+.mesa-indicador.ocupada {
+  background-color: #ba8178;
+}
+
+
+/* GRID */
+
+.mesas-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+
+/* MESA */
+
+.mesa-card {
+  min-height: 150px;
+
+  border-radius: 8px;
+
+  padding: 20px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  text-align: center;
+}
+
+
+.mesa-card:hover {
+  transform: translateY(-3px);
+}
+
+
+.mesa-card.disponible {
+  background-color: #edf4ef;
+
+  border: 1px solid #a8c2b2;
+
+  color: #19382b;
+}
+
+
+.mesa-card.ocupada {
+  background-color: #f5eae7;
+
+  border: 1px solid #d2aaa3;
+
+  color: #8b4840;
+}
+
+
+.mesa-numero {
+  display: block;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+}
+
+
+.mesa-card > strong {
+  display: block;
+
+  font-size: 25px;
+}
+
+
+.mesa-card > small {
+  display: block;
+
+  font-size: 10px;
+
+  margin-bottom: 15px;
+}
+
+
+.mesa-estado {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 11px;
+}
+
+/* =========================
+   PLATOS ADMIN
+========================= */
+
+.platos-resumen {
+  min-height: 85px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #ffffff;
+
+  border: 1px solid #ddd7cd;
+
+  border-radius: 6px;
+
+  padding: 20px 25px;
+}
+
+
+.platos-resumen span {
+  color: #777;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+}
+
+
+.platos-resumen strong {
+  color: #19382b;
+
+  font-size: 28px;
+}
+
+
+.platos-resumen.activos {
+  background-color: #e5efe9;
+
+  border-color: #a8c2b2;
+}
+
+
+/* TOOLBAR */
+
+.platos-toolbar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+
+.platos-toolbar h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-bottom: 4px;
+}
+
+
+.platos-toolbar p {
+  color: #777;
+
+  font-size: 11px;
+
+  margin: 0;
+}
+
+
+.btn-plato-nuevo {
+  background-color: #19382b !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #19382b !important;
+
+  font-size: 10px !important;
+
+  padding: 7px 13px !important;
+}
+
+
+/* RESTRICCIÓN */
+
+.plato-restriccion {
+  background-color: #f3efe6;
+
+  color: #6d6255;
+
+  padding: 4px 9px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+}
+
+
+/* ESTADOS */
+
+.admin-estado.activa {
+  background-color: #e5efe9;
+
+  color: #285e44;
+}
+
+
+.admin-estado.inactiva {
+  background-color: #ece8e1;
+
+  color: #777;
+}
+
+
+/* BOTÓN ESTADO */
+
+.admin-btn-estado {
+  border: 1px solid #777 !important;
+
+  color: #555 !important;
+
+  font-size: 10px !important;
+
+  margin-left: 5px;
+}
+
+/* ==================================================
+   DETALLE RESERVA ADMIN
+================================================== */
+
+.reserva-admin-modal-fondo {
+  position: fixed;
+
+  inset: 0;
+
+  background-color: rgba(5, 12, 8, 0.75);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  z-index: 99999;
+}
+
+
+.reserva-admin-modal {
+  width: 100%;
+
+  max-width: 850px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background-color: #ffffff;
+
+  border-radius: 7px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.30);
+}
+
+
+/* CABECERA */
+
+.reserva-admin-modal-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #e5dfd5;
+}
+
+
+.reserva-admin-modal-header span {
+  color: #b58a57;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+
+.reserva-admin-modal-header h2 {
+  color: #19382b;
+
+  font-size: 24px;
+
+  margin: 4px 0 0;
+}
+
+
+.reserva-admin-modal-header button {
+  border: none;
+
+  background: none;
+
+  color: #777;
+
+  font-size: 27px;
+
+  line-height: 1;
+}
+
+
+/* CLIENTE */
+
+.reserva-admin-cliente {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #f8f5ef;
+
+  padding: 18px;
+
+  margin-top: 20px;
+
+  border-radius: 5px;
+}
+
+
+.reserva-admin-cliente > div > span {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.reserva-admin-cliente strong {
+  color: #19382b;
+}
+
+
+.reserva-admin-cliente p {
+  color: #777;
+
+  font-size: 11px;
+
+  margin: 3px 0;
+}
+
+
+/* RESUMEN */
+
+.reserva-admin-resumen {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 1px;
+
+  background-color: #ddd7cd;
+
+  margin-top: 20px;
+
+  border: 1px solid #ddd7cd;
+}
+
+
+.reserva-admin-resumen > div {
+  background-color: #ffffff;
+
+  text-align: center;
+
+  padding: 15px 8px;
+}
+
+
+.reserva-admin-resumen span {
+  display: block;
+
+  color: #999;
+
+  font-size: 9px;
+
+  margin-bottom: 5px;
+}
+
+
+.reserva-admin-resumen strong {
+  color: #19382b;
+
+  font-size: 11px;
+}
+
+
+/* COMENSALES */
+
+.reserva-admin-seccion {
+  margin-top: 25px;
+}
+
+
+.reserva-admin-seccion h3 {
+  color: #19382b;
+
+  font-size: 14px;
+
+  margin-bottom: 15px;
+}
+
+
+.reserva-admin-comensales {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+
+.reserva-admin-comensal {
+  border: 1px solid #ddd7cd;
+
+  border-radius: 5px;
+
+  padding: 15px;
+}
+
+
+.reserva-admin-comensal > div {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+
+.reserva-admin-comensal > div > strong {
+  color: #19382b;
+}
+
+
+.reserva-admin-comensal > div > span {
+  background-color: #f3efe6;
+
+  color: #8b6a42;
+
+  padding: 3px 8px;
+
+  border-radius: 8px;
+
+  font-size: 9px;
+}
+
+
+.reserva-admin-comensal p {
+  color: #666;
+
+  font-size: 11px;
+
+  margin-bottom: 5px;
+}
+
+
+.reserva-admin-comensal p strong {
+  color: #19382b;
+}
+
+
+/* OBSERVACIONES */
+
+.reserva-admin-observaciones {
+  background-color: #f3efe6;
+
+  padding: 15px;
+
+  border-radius: 5px;
+
+  margin-top: 20px;
+}
+
+
+.reserva-admin-observaciones span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.reserva-admin-observaciones p {
+  color: #555;
+
+  font-size: 11px;
+
+  margin: 5px 0 0;
+}
+
+
+/* ACCIONES */
+
+.reserva-admin-acciones {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 25px;
+}
+
+
+.btn-cancelar-reserva {
+  background-color: #a45d55 !important;
+
+  border-color: #a45d55 !important;
+
+  color: #ffffff !important;
+}
+
+
+/* CANCELADA */
+
+.admin-estado.cancelada {
+  background-color: #f2e5e2;
+
+  color: #9b4e47;
+}
+/* =========================
+   HORARIOS ADMIN
+========================= */
+
+.horario-resumen {
+  min-height: 90px;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 25px;
+
+  border-radius: 6px;
+}
+
+
+.horario-resumen span {
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+
+.horario-resumen p {
+  margin: 5px 0 0;
+
+  font-size: 11px;
+}
+
+
+.horario-resumen strong {
+  font-size: 30px;
+}
+
+
+.horario-resumen.disponible {
+  background-color: #e5efe9;
+
+  border: 1px solid #a8c2b2;
+
+  color: #19382b;
+}
+
+
+.horario-resumen.bloqueado {
+  background-color: #ece8e1;
+
+  border: 1px solid #cec7bc;
+
+  color: #69645d;
+}
+
+
+/* HEADER */
+
+.horarios-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+
+.horarios-header h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-bottom: 4px;
+}
+
+
+.horarios-header p {
+  color: #777;
+
+  font-size: 11px;
+
+  margin: 0;
+}
+
+
+.btn-nuevo-horario {
+  background-color: #19382b !important;
+
+  color: #ffffff !important;
+
+  border-color: #19382b !important;
+
+  font-size: 10px !important;
+}
+
+
+/* GRID */
+
+.horarios-grid-admin {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+
+.horario-admin-card {
+  padding: 20px;
+
+  border-radius: 6px;
+}
+
+
+.horario-admin-card.disponible {
+  background-color: #edf4ef;
+
+  border: 1px solid #a8c2b2;
+}
+
+
+.horario-admin-card.bloqueado {
+  background-color: #f2efea;
+
+  border: 1px solid #d3cdc3;
+}
+
+
+.horario-admin-card > div:first-child span {
+  display: block;
+
+  color: #999;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+
+.horario-admin-card > div:first-child strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 20px;
+
+  margin: 4px 0 12px;
+}
+
+
+.horario-admin-estado {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #666;
+
+  font-size: 11px;
+
+  margin-bottom: 15px;
+}
+
+
+.horario-punto {
+  width: 9px;
+  height: 9px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+
+.horario-punto.disponible {
+  background-color: #527b65;
+}
+
+
+.horario-punto.bloqueado {
+  background-color: #aaa49b;
+}
+
+
+.horario-admin-card button {
+  width: 100%;
+
+  background-color: #ffffff;
+
+  border: 1px solid #b8b1a7;
+
+  color: #19382b;
+
+  border-radius: 4px;
+
+  padding: 6px;
+
+  font-size: 10px;
+}
+
+
+/* =========================
+   REPORTES ADMIN
+========================= */
+
+.reportes-admin-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 15px;
+}
+
+
+.reporte-card {
+  min-height: 135px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #ddd7cd;
+
+  border-radius: 6px;
+
+  padding: 20px;
+
+  text-align: left;
+
+  transition: 0.2s;
+}
+
+
+.reporte-card:hover {
+  border-color: #b58a57;
+}
+
+
+.reporte-card.activo {
+  background-color: #19382b;
+
+  border-color: #19382b;
+}
+
+
+.reporte-card > span {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 10px;
+
+  margin-bottom: 15px;
+}
+
+
+.reporte-card strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 14px;
+
+  margin-bottom: 7px;
+}
+
+
+.reporte-card p {
+  color: #888;
+
+  font-size: 11px;
+
+  margin: 0;
+}
+
+
+.reporte-card.activo strong {
+  color: #ffffff;
+}
+
+
+.reporte-card.activo p {
+  color: #c4c9c6;
+}
+
+
+/* GENERAR */
+
+.reporte-generar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.reporte-generar span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.reporte-generar h2 {
+  color: #19382b;
+
+  font-size: 20px;
+
+  margin: 4px 0 0;
+}
+
+
+.btn-generar-reporte-final {
+  background-color: #19382b;
+
+  border: 1px solid #19382b;
+
+  border-radius: 4px;
+
+  color: #ffffff;
+
+  padding: 9px 17px;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+/* RESULTADO */
+
+.reporte-resultado-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+
+.reporte-resultado-header > div > span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.reporte-resultado-header h2 {
+  color: #19382b;
+
+  font-size: 20px;
+
+  margin: 4px 0 0;
+}
+
+
+.reporte-demo {
+  background-color: #f3efe6;
+
+  color: #8c6a43;
+
+  padding: 5px 10px;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+}
+
+
+/* ESTADÍSTICAS */
+
+.reporte-estadisticas {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+}
+
+
+.reporte-estadisticas > div {
+  background-color: #f8f5ef;
+
+  border: 1px solid #e2ddd4;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+
+.reporte-estadisticas span {
+  display: block;
+
+  color: #777;
+
+  font-size: 9px;
+
+  margin-bottom: 5px;
+}
+
+
+.reporte-estadisticas strong {
+  color: #19382b;
+
+  font-size: 25px;
+}
+
+
+/* LISTA */
+
+.reporte-lista {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.reporte-lista > div {
+  display: flex;
+
+  justify-content: space-between;
+
+  background-color: #f8f5ef;
+
+  padding: 12px 15px;
+
+  border-left: 3px solid #b58a57;
+}
+
+
+.reporte-lista span {
+  color: #555;
+
+  font-size: 12px;
+}
+
+
+.reporte-lista strong {
+  color: #19382b;
+
+  font-size: 12px;
+}
+
+/* =========================
+   MOSTRAR CONTRASEÑA
+========================= */
+
+.login-password {
+  position: relative;
+}
+
+.login-password .form-control {
+  padding-right: 50px;
+}
+
+.btn-ver-password {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  color: #777;
+
+  cursor: pointer;
+
+  padding: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-ver-password:hover {
+  color: #19382b;
+}
+
+
+/* ==================================================
+   RESPONSIVE GENERAL
+   TABLET
+================================================== */
+
+@media (max-width: 992px) {
+
+  /* =========================
+     NAVBAR
+  ========================= */
+
+  .navbar-mayta {
+    padding: 12px 18px;
+  }
+
+  .navbar-mayta .navbar-collapse {
+    background-color: #0b1510;
+
+    margin-top: 12px;
+
+    padding: 18px;
+
+    border-top: 1px solid rgba(181, 138, 87, 0.25);
+  }
+
+  .navbar-mayta .navbar-nav {
+    align-items: flex-start !important;
+  }
+
+  .navbar-mayta .nav-link {
+    width: 100%;
+
+    padding: 10px 5px;
+  }
+
+  .btn-reserva,
+  .btn-intranet {
+    width: 100%;
+
+    margin-top: 5px;
+
+    text-align: center;
+  }
+
+  .navbar-toggler {
+    border-color: #b58a57 !important;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+
+  /* =========================
+     HOME HERO
+  ========================= */
+
+  .hero-mayta {
+    min-height: 580px;
+
+    padding: 60px 25px;
+  }
+
+  .hero-contenido {
+    width: 100%;
+
+    padding: 0 20px;
+  }
+
+  .hero-contenido h1 {
+    font-size: 44px;
+  }
+
+
+  /* PREMIOS */
+
+  .premios-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+  }
+
+
+  /* AMAZONÍA */
+
+  .amazonia-mayta {
+    padding: 75px 20px;
+  }
+
+  .amazonia-img {
+    height: 430px;
+  }
+
+  .amazonia-texto {
+    padding-left: 0;
+
+    margin-top: 20px;
+  }
+
+  .amazonia-texto h2 {
+    font-size: 36px;
+  }
+
+
+  /* EXPERIENCIAS */
+
+  .experiencias-mayta {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  /* CTA */
+
+  .cta-mayta {
+    min-height: 420px;
+  }
+
+
+  /* =========================
+     CONTACTO
+  ========================= */
+
+  .contacto-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .contacto-hero {
+    padding: 70px 30px;
+  }
+
+  .contacto-presentacion {
+    max-width: 700px;
+  }
+
+  .contacto-presentacion h1 {
+    font-size: 55px;
+  }
+
+  .contacto-card {
+    max-width: 650px;
+
+    width: 100%;
+
+    margin: 0 auto;
+  }
+
+
+  /* =========================
+     CHEF
+  ========================= */
+
+  .chef-grid {
+    grid-template-columns: 1fr 1fr;
+
+    min-height: auto;
+  }
+
+  .chef-imagen img {
+    max-height: 560px;
+  }
+
+  .chef-contenido {
+    padding: 55px 45px;
+  }
+
+  .chef-contenido h1 {
+    font-size: 48px;
+  }
+
+  .chef-timeline {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 40px;
+  }
+
+  .chef-anio span::after {
+    display: none;
+  }
+
+
+  /* =========================
+     EXPERIENCIA
+  ========================= */
+
+  .exp-hero {
+    min-height: 520px;
+
+    padding: 60px 7%;
+  }
+
+  .exp-hero-contenido h1 {
+    font-size: 50px;
+  }
+
+  .exp-intro-grid {
+    gap: 50px;
+  }
+
+  .exp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  /* =========================
+     RESTAURANTE
+  ========================= */
+
+  .rest-hero {
+    min-height: 520px;
+  }
+
+  .rest-hero-contenido h1 {
+    font-size: 48px;
+  }
+
+  .rest-concepto-grid {
+    gap: 50px;
+  }
+
+  .rest-galeria-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  /* =========================
+     CARTA
+  ========================= */
+
+  .carta-visor {
+    height: 700px;
+  }
+
+
+  /* =========================
+     RESERVA
+  ========================= */
+
+  .reserva-box,
+  .disponibilidad-box,
+  .datos-box,
+  .confirmacion-box {
+    max-width: 95%;
+
+    padding: 45px 40px;
+  }
+
+
+  /* DISPONIBILIDAD */
+
+  .disponibilidad-resumen {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .horarios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  /* DATOS CLIENTE */
+
+  .datos-resumen {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .experiencias-reserva {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* CONFIRMACIÓN */
+
+  .confirmacion-datos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .confirmacion-comensales {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ==================================================
+   CELULARES PEQUEÑOS
+================================================== */
+
+@media (max-width: 480px) {
+
+  .hero-contenido h1 {
+    font-size: 29px;
+  }
+
+
+  .horarios-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .datos-resumen {
+    grid-template-columns: 1fr;
+  }
+
+
+  .confirmacion-datos-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .acciones-datos,
+  .acciones-disponibilidad,
+  .acciones-confirmacion {
+    flex-direction: column;
+  }
+
+
+  .acciones-datos .btn,
+  .acciones-disponibilidad .btn,
+  .acciones-confirmacion .btn {
+    width: 100%;
+  }
+
+
+  .contacto-presentacion h1 {
+    font-size: 35px;
+  }
+
+
+  .chef-contenido h1 {
+    font-size: 37px;
+  }
+
+
+  .exp-hero-contenido h1 {
+    font-size: 35px;
+  }
+
+
+  .rest-hero-contenido h1 {
+    font-size: 34px;
+  }
+
+}

@@ -26,6 +26,9 @@ import { Carta } from './pages/Carta';
 import { Restaurante } from './pages/Restaurante';
 import { Chef } from './pages/Chef';
 import { Contacto } from './pages/Contacto';
+import { Calendario } from './pages/Calendario';
+import { Reservas } from './pages/Reservas';
+import { Platos } from './pages/Platos';
 
 
 /* =========================================
@@ -120,6 +123,35 @@ const Contenido = () => {
           path="/contacto"
           element={<Contacto />}
         />
+<Route
+  path="/panel/calendario"
+  element={<Calendario />}
+/>
+
+<Route
+  path="/panel/reservas"
+  element={<Reservas />}
+/>
+
+<Route
+  path="/panel/mesas"
+  element={<Mesas />}
+/>
+
+<Route
+  path="/panel/platos"
+  element={<Platos />}
+/>
+
+<Route
+  path="/panel/horarios"
+  element={<Horarios />}
+/>
+
+<Route
+  path="/panel/reportes"
+  element={<Reportes />}
+/>
 
 
 

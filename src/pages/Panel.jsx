@@ -1,321 +1,201 @@
 import { PanelSidebar } from '../components/PanelSidebar';
 import { PanelNavbar } from '../components/PanelNavbar';
 
+
 export const Panel = () => {
 
   const reservasHoy = [
-
     {
       hora: '7:00 PM',
       cliente: 'Carlos Torres',
       personas: 2,
       mesa: 'M1',
-      estado: 'Confirmada'
+      estado: 'Confirmado',
+      accion: 'VER'
     },
-
     {
       hora: '7:30 PM',
-      cliente: 'Andrea López',
+      cliente: 'Andrea Chavez',
       personas: 4,
       mesa: 'M6',
-      estado: 'Pendiente'
+      estado: 'Pendiente',
+      accion: 'EDITAR'
     },
-
     {
       hora: '8:00 PM',
-      cliente: 'José Ramírez',
+      cliente: 'Jose Mejia',
       personas: 6,
       mesa: 'M4',
-      estado: 'Confirmada'
+      estado: 'Confirmado',
+      accion: 'CANCELAR'
     }
-
   ];
 
 
   const mesas = [
-
-    {
-      numero: 'M1',
-      estado: 'Disponible'
-    },
-
-    {
-      numero: 'M2',
-      estado: 'Ocupada'
-    },
-
-    {
-      numero: 'M3',
-      estado: 'Disponible'
-    },
-
-    {
-      numero: 'M4',
-      estado: 'Ocupada'
-    }
-
+    { mesa: 'MESA 1', estado: 'Disponible' },
+    { mesa: 'MESA 2', estado: 'Ocupada' },
+    { mesa: 'MESA 3', estado: 'Disponible' },
+    { mesa: 'MESA 4', estado: 'Ocupada' }
   ];
 
 
   return (
-
-    <div className="panel-layout">
-
-
-      {/* SIDEBAR */}
+    <div className="admin-layout">
 
       <PanelSidebar />
 
 
-
-      {/* CONTENIDO */}
-
-      <div className="panel-principal">
-
-
-        {/* NAVBAR */}
+      <div className="admin-principal">
 
         <PanelNavbar />
 
 
+        <main className="admin-contenido">
 
-        {/* DASHBOARD */}
+          {/* TÍTULO */}
 
-        <main className="panel-contenido">
+          <h1 className="dashboard-titulo">
+            PANEL DE RESERVAS
+          </h1>
 
 
-          <div className="panel-titulo">
+
+          {/* CONTADORES PRINCIPALES */}
+
+          <div className="dashboard-contadores">
 
             <div>
-
-              <span>
-                MAYTA
-              </span>
-
-              <h1>
-                PANEL DE RESERVAS
-              </h1>
-
+              <strong>12</strong>
+              <span>Reservas</span>
             </div>
 
-
-            <p>
-              Resumen general del restaurante.
-            </p>
-
-          </div>
-
-
-
-          {/* CONTADORES */}
-
-          <div className="panel-estadisticas">
-
-
-            <div className="estadistica-card">
-
-              <span>
-                RESERVAS
-              </span>
-
-              <strong>
-                12
-              </strong>
-
-              <p>
-                Reservas de hoy
-              </p>
-
+            <div>
+              <strong>8</strong>
+              <span>Confirmadas</span>
             </div>
 
-
-
-            <div className="estadistica-card">
-
-              <span>
-                CONFIRMADAS
-              </span>
-
-              <strong>
-                8
-              </strong>
-
-              <p>
-                Reservas confirmadas
-              </p>
-
+            <div>
+              <strong>2</strong>
+              <span>Pendientes</span>
             </div>
 
-
-
-            <div className="estadistica-card">
-
-              <span>
-                PENDIENTES
-              </span>
-
-              <strong>
-                2
-              </strong>
-
-              <p>
-                Por confirmar
-              </p>
-
-            </div>
-
-
-
-            <div className="estadistica-card">
-
-              <span>
-                EN ESPERA
-              </span>
-
-              <strong>
-                1
-              </strong>
-
-              <p>
-                Cliente en espera
-              </p>
-
-            </div>
-
-
-          </div>
-
-
-
-          {/* MESAS */}
-
-          <div className="panel-mesas-resumen">
-
-            <div className="mesa-resumen disponible">
-
-              <span>
-                MESAS DISPONIBLES
-              </span>
-
-              <strong>
-                5
-              </strong>
-
-            </div>
-
-
-            <div className="mesa-resumen ocupada">
-
-              <span>
-                MESAS OCUPADAS
-              </span>
-
-              <strong>
-                3
-              </strong>
-
+            <div>
+              <strong>1</strong>
+              <span>En espera</span>
             </div>
 
           </div>
 
 
 
-          {/* BLOQUE CENTRAL */}
+          {/* CONTADORES MESAS */}
 
-          <div className="panel-grid-principal">
+          <div className="dashboard-mesas-contadores">
+
+            <div className="contador-disponible">
+              <strong>5</strong>
+              <span>Mesas disponibles</span>
+            </div>
+
+            <div className="contador-ocupado">
+              <strong>3</strong>
+              <span>Mesas ocupadas</span>
+            </div>
+
+          </div>
+
+
+
+          {/* CALENDARIO + ESTADO MESAS */}
+
+          <div className="dashboard-doble">
 
 
             {/* CALENDARIO */}
 
-            <div className="panel-card">
+            <section className="dashboard-bloque">
 
-              <div className="panel-card-header">
+              <h2>CALENDARIO</h2>
 
-                <h2>
-                  CALENDARIO
-                </h2>
+              <div className="dashboard-mes">
+                <button>‹</button>
 
-                <span>
+                <strong>
                   OCTUBRE 2026
-                </span>
+                </strong>
 
+                <button>›</button>
               </div>
 
 
-              <div className="calendario-simple">
+              <div className="dashboard-calendario">
 
-                <div>L</div>
-                <div>M</div>
-                <div>M</div>
-                <div>J</div>
-                <div>V</div>
-                <div>S</div>
-                <div>D</div>
-
+                <strong>L</strong>
+                <strong>M</strong>
+                <strong>M</strong>
+                <strong>J</strong>
+                <strong>V</strong>
+                <strong>S</strong>
+                <strong>D</strong>
 
                 {Array.from(
                   { length: 31 },
                   (_, index) => (
 
-                    <div
+                    <span
                       key={index}
                       className={
                         index + 1 === 21
-                          ? 'dia-calendario hoy'
-                          : 'dia-calendario'
+                          ? 'dia-activo'
+                          : ''
                       }
                     >
                       {index + 1}
-                    </div>
+                    </span>
 
                   )
                 )}
 
               </div>
 
-            </div>
+            </section>
 
 
 
-            {/* ESTADO DE MESAS */}
+            {/* ESTADO MESAS */}
 
-            <div className="panel-card">
+            <section className="dashboard-bloque">
 
-              <div className="panel-card-header">
-
-                <h2>
-                  ESTADO DE MESAS
-                </h2>
-
-              </div>
+              <h2>
+                ESTADO DE MESAS
+              </h2>
 
 
-              <div className="estado-mesas-lista">
+              <div className="dashboard-lista-mesas">
 
-                {mesas.map((mesa) => (
+                {mesas.map((item) => (
 
                   <div
-                    className="estado-mesa-item"
-                    key={mesa.numero}
+                    className="dashboard-mesa"
+                    key={item.mesa}
                   >
 
                     <strong>
-                      {mesa.numero}
+                      {item.mesa}
                     </strong>
 
-
-                    <span
-                      className={
-                        mesa.estado === 'Disponible'
-                          ? 'estado-punto verde'
-                          : 'estado-punto rojo'
-                      }
-                    ></span>
-
-
                     <span>
-                      {mesa.estado}
+                      {item.estado}
                     </span>
+
+                    <i
+                      className={
+                        item.estado === 'Disponible'
+                          ? 'mesa-punto disponible'
+                          : 'mesa-punto ocupada'
+                      }
+                    ></i>
 
                   </div>
 
@@ -323,152 +203,143 @@ export const Panel = () => {
 
               </div>
 
-            </div>
+
+              <div className="dashboard-leyenda">
+
+                <span>
+                  <i className="mesa-punto disponible"></i>
+                  Disponible
+                </span>
+
+                <span>
+                  <i className="mesa-punto ocupada"></i>
+                  Ocupada
+                </span>
+
+              </div>
+
+            </section>
 
 
           </div>
 
 
 
-          {/* RESERVAS DE HOY */}
+          {/* RESERVAS */}
 
-          <div className="panel-card panel-reservas">
+          <section className="dashboard-bloque dashboard-reservas">
 
-            <div className="panel-card-header">
-
-              <h2>
-                RESERVAS DE HOY
-              </h2>
-
-              <button type="button">
-                VER TODAS
-              </button>
-
-            </div>
+            <h2>
+              RESERVAS DE HOY
+            </h2>
 
 
-            <table className="tabla-reservas">
+            <div className="table-responsive">
 
-              <thead>
+              <table className="table dashboard-tabla">
 
-                <tr>
+                <thead>
 
-                  <th>Hora</th>
-                  <th>Cliente</th>
-                  <th>Personas</th>
-                  <th>Mesa</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-
-                </tr>
-
-              </thead>
-
-
-              <tbody>
-
-                {reservasHoy.map((reserva, index) => (
-
-                  <tr key={index}>
-
-                    <td>
-                      {reserva.hora}
-                    </td>
-
-                    <td>
-                      {reserva.cliente}
-                    </td>
-
-                    <td>
-                      {reserva.personas}
-                    </td>
-
-                    <td>
-                      {reserva.mesa}
-                    </td>
-
-
-                    <td>
-
-                      <span
-                        className={
-                          reserva.estado === 'Confirmada'
-                            ? 'estado-reserva confirmada'
-                            : 'estado-reserva pendiente'
-                        }
-                      >
-                        {reserva.estado}
-                      </span>
-
-                    </td>
-
-
-                    <td className="acciones-tabla">
-
-                      <button>
-                        Ver
-                      </button>
-
-                      <button>
-                        Editar
-                      </button>
-
-                      <button>
-                        Cancelar
-                      </button>
-
-                    </td>
-
+                  <tr>
+                    <th>Hora</th>
+                    <th>Cliente</th>
+                    <th>Pers.</th>
+                    <th>Mesa</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
                   </tr>
 
-                ))}
+                </thead>
 
-              </tbody>
 
-            </table>
+                <tbody>
 
-          </div>
+                  {reservasHoy.map((reserva, index) => (
+
+                    <tr key={index}>
+
+                      <td>{reserva.hora}</td>
+
+                      <td>{reserva.cliente}</td>
+
+                      <td>{reserva.personas}</td>
+
+                      <td>{reserva.mesa}</td>
+
+                      <td>
+
+                        <span
+                          className={
+                            reserva.estado === 'Confirmado'
+                              ? 'reserva-estado confirmado'
+                              : 'reserva-estado pendiente'
+                          }
+                        >
+                          {reserva.estado}
+                        </span>
+
+                      </td>
+
+                      <td>
+
+                        <button className="btn-accion-dashboard">
+                          {reserva.accion}
+                        </button>
+
+                      </td>
+
+                    </tr>
+
+                  ))}
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </section>
 
 
 
           {/* REPORTES */}
 
-          <div className="panel-card reportes-resumen">
+          <section className="dashboard-bloque dashboard-reportes">
 
-            <div className="panel-card-header">
+            <div className="dashboard-reportes-header">
 
               <h2>
                 REPORTES
               </h2>
 
-              <button className="btn-generar-reporte">
+              <button className="btn-generar-dashboard">
                 GENERAR REPORTE
               </button>
 
             </div>
 
 
-            <div className="reportes-opciones">
+            <div className="dashboard-reportes-botones">
 
               <button>
-                Reservas
+                RESERVAS
               </button>
 
               <button>
-                Ocupación de mesas
+                OCUPACIÓN
               </button>
 
               <button>
-                Horarios
+                HORARIOS
               </button>
 
               <button>
-                Experiencias / Platos
+                EXPERIENCIAS
               </button>
 
             </div>
 
-          </div>
+          </section>
 
 
         </main>
@@ -476,7 +347,6 @@ export const Panel = () => {
       </div>
 
     </div>
-
   );
 
 };
