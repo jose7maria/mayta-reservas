@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mayta-reservas/static/css/main.df5f6c1b.css",
-    "main.js": "/mayta-reservas/static/js/main.61cc3e41.js",
+    "main.css": "/mayta-reservas/static/css/main.ddd8c9a9.css",
+    "main.js": "/mayta-reservas/static/js/main.5322d928.js",
     "static/js/453.853f9dba.chunk.js": "/mayta-reservas/static/js/453.853f9dba.chunk.js",
     "static/media/hero-mayta.jpg": "/mayta-reservas/static/media/hero-mayta.1ac57c2d72d632ee7683.jpg",
     "static/media/ChefMayta.png": "/mayta-reservas/static/media/ChefMayta.7317bfce8dfa3c0cecf6.png",
@@ -17,12 +17,12 @@
     "static/media/premio1.png": "/mayta-reservas/static/media/premio1.991fc5649981c6f8ef23.png",
     "static/media/logo-mayta.png": "/mayta-reservas/static/media/logo-mayta.576ab7a03cda3f019347.png",
     "index.html": "/mayta-reservas/index.html",
-    "main.df5f6c1b.css.map": "/mayta-reservas/static/css/main.df5f6c1b.css.map",
-    "main.61cc3e41.js.map": "/mayta-reservas/static/js/main.61cc3e41.js.map",
+    "main.ddd8c9a9.css.map": "/mayta-reservas/static/css/main.ddd8c9a9.css.map",
+    "main.5322d928.js.map": "/mayta-reservas/static/js/main.5322d928.js.map",
     "453.853f9dba.chunk.js.map": "/mayta-reservas/static/js/453.853f9dba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df5f6c1b.css",
-    "static/js/main.61cc3e41.js"
+    "static/css/main.ddd8c9a9.css",
+    "static/js/main.5322d928.js"
   ]
 }
