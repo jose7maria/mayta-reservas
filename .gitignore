@@ -21,3 +21,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#-------------------
+# Variables de entorno y datos privados
+.env
+.env.*
+!.env.example
+
+# Archivos generados
+/dist
+
+# Configuración local del editor
+.vscode/
+
+# Video original pesado de MAYTA
+/src/assets/video/ctafinal.mp4
