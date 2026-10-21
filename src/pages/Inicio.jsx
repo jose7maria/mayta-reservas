@@ -12,8 +12,7 @@ import experiencia2 from '../assets/img/experiencia-2.jpg';
 import experiencia3 from '../assets/img/experiencia-3.jpg';
 
 
-import videoCTA from '../assets/video/ctafinal.mp4';
-
+import videoCTA from '../assets/video/ctafinal-comprimido.mp4';
 
 export const Inicio = () => {
 

@@ -1,9 +1,10 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   useLocation
 } from 'react-router-dom';
+
 
 import { Navegacion } from './components/Navegacion';
 import { Footer } from './components/Footer';
@@ -42,6 +43,8 @@ const Contenido = () => {
         <Route path="/carta" element={<Carta />} />
 
         <Route path="/reserva" element={<Reserva />} />
+
+        
 
         <Route
           path="/disponibilidad"
@@ -85,14 +88,10 @@ const Contenido = () => {
   );
 };
 
-
 function App() {
-
   return (
     <Router>
-
       <Contenido />
-
     </Router>
   );
 }
