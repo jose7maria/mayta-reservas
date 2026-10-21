@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/mayta-reservas/static/css/main.0c612408.css",
+    "main.js": "/mayta-reservas/static/js/main.995f0104.js",
+    "static/js/453.853f9dba.chunk.js": "/mayta-reservas/static/js/453.853f9dba.chunk.js",
+    "static/media/hero-mayta.jpg": "/mayta-reservas/static/media/hero-mayta.1ac57c2d72d632ee7683.jpg",
+    "static/media/amazonia.jpg": "/mayta-reservas/static/media/amazonia.f02c3177814c46bf9f99.jpg",
+    "static/media/ctafinal-comprimido.mp4": "/mayta-reservas/static/media/ctafinal-comprimido.f1d68e21ff8640b04fff.mp4",
+    "static/media/experiencia-3.jpg": "/mayta-reservas/static/media/experiencia-3.f3c6d602a4dbad3f10dd.jpg",
+    "static/media/experiencia-2.jpg": "/mayta-reservas/static/media/experiencia-2.0debaa58dc04dfb332bb.jpg",
+    "static/media/experiencia-1.jpg": "/mayta-reservas/static/media/experiencia-1.0c03f1f983f8bbfccb4e.jpg",
+    "static/media/premio3.png": "/mayta-reservas/static/media/premio3.420ddfc8d86f87fface0.png",
+    "static/media/premio4.png": "/mayta-reservas/static/media/premio4.d086972cde5eb54fa55f.png",
+    "static/media/premio2.png": "/mayta-reservas/static/media/premio2.a308e44836d652030a49.png",
+    "static/media/premio1.png": "/mayta-reservas/static/media/premio1.991fc5649981c6f8ef23.png",
+    "static/media/logo-mayta.png": "/mayta-reservas/static/media/logo-mayta.576ab7a03cda3f019347.png",
+    "index.html": "/mayta-reservas/index.html",
+    "main.0c612408.css.map": "/mayta-reservas/static/css/main.0c612408.css.map",
+    "main.995f0104.js.map": "/mayta-reservas/static/js/main.995f0104.js.map",
+    "453.853f9dba.chunk.js.map": "/mayta-reservas/static/js/453.853f9dba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c612408.css",
+    "static/js/main.995f0104.js"
+  ]
+}
