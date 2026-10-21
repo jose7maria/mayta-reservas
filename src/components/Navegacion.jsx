@@ -10,15 +10,20 @@ export const Navegacion = () => {
           MAYTA
         </Link>
 
+
         {/* BOTÓN MOBILE */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#menuMayta"
+          aria-controls="menuMayta"
+          aria-expanded="false"
+          aria-label="Abrir menú"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
 
         {/* MENÚ */}
         <div
@@ -27,35 +32,74 @@ export const Navegacion = () => {
         >
           <div className="navbar-nav ms-auto align-items-lg-center gap-2">
 
-            <Link className="nav-link" to="/">
+            {/* INICIO */}
+            <Link
+              className="nav-link"
+              to="/"
+            >
               INICIO
             </Link>
 
-            <a className="nav-link" href="/#experiencia">
-              EXPERIENCIA
-            </a>
 
-            <Link className="nav-link" to="/carta">
+            {/* EXPERIENCIA */}
+            <Link
+              className="nav-link"
+              to="/experiencia"
+            >
+              EXPERIENCIA
+            </Link>
+
+
+            {/* CARTA */}
+            <Link
+              className="nav-link"
+              to="/carta"
+            >
               CARTA
             </Link>
 
-            <a className="nav-link" href="/#restaurante">
+
+            {/* RESTAURANTE */}
+            <Link
+              className="nav-link"
+              to="/restaurante"
+            >
               RESTAURANTE
-            </a>
+            </Link>
 
-            <a className="nav-link" href="/#chef">
+
+            {/* CHEF */}
+            <Link
+              className="nav-link"
+              to="/chef"
+            >
               CHEF
-            </a>
+            </Link>
 
-            <a className="nav-link" href="/#contacto">
+
+            {/* CONTACTO */}
+            <Link
+              className="nav-link"
+              to="/contacto"
+            >
               CONTACTO
-            </a>
+            </Link>
 
-            <Link className="btn btn-reserva" to="/reserva">
+
+            {/* RESERVA */}
+            <Link
+              className="btn btn-reserva"
+              to="/reserva"
+            >
               RESERVA
             </Link>
 
-            <Link className="btn btn-intranet" to="/login">
+
+            {/* INTRANET */}
+            <Link
+              className="btn btn-intranet"
+              to="/login"
+            >
               INTRANET
             </Link>
 

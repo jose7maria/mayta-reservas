@@ -39,8 +39,9 @@
 
 
 .navbar-mayta {
-  background-color: #101713;
-  padding: 18px 0;
+   position: relative;
+  z-index: 9999;
+  background-color: #0b1510;
 }
 
 .navbar-mayta .navbar-brand {
@@ -3194,4 +3195,1738 @@
   border-color: #19382b;
 
   color: #ffffff;
+}
+
+
+/* ==================================================
+   CONTACTO MAYTA
+================================================== */
+
+.contacto-hero {
+  position: relative;
+
+  min-height: 760px;
+
+  background-image:
+    url('./assets/img/hero-mayta.jpg');
+
+  background-size: cover;
+
+  background-position: center;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 90px 20px;
+}
+
+
+.contacto-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 14, 9, 0.92) 0%,
+      rgba(8, 20, 13, 0.78) 45%,
+      rgba(8, 18, 12, 0.52) 100%
+    );
+}
+
+
+.contacto-contenedor {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+.contacto-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 520px;
+
+  gap: 90px;
+
+  align-items: center;
+}
+
+
+/* ==================================
+   PRESENTACIÓN
+================================== */
+
+.contacto-presentacion {
+  color: #ffffff;
+
+  max-width: 600px;
+}
+
+
+.contacto-etiqueta {
+  color: #b58a57;
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+}
+
+
+.contacto-presentacion h1 {
+  font-size: 72px;
+
+  font-weight: 400;
+
+  letter-spacing: 3px;
+
+  margin: 15px 0 15px;
+}
+
+
+.contacto-frase {
+  color: #d5d0c5;
+
+  font-size: 21px;
+
+  line-height: 1.6;
+
+  max-width: 480px;
+}
+
+
+.contacto-linea {
+  width: 75px;
+
+  height: 1px;
+
+  background-color: #b58a57;
+
+  margin: 35px 0;
+}
+
+
+/* DATOS */
+
+.contacto-dato {
+  margin-bottom: 22px;
+}
+
+
+.contacto-dato span {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 4px;
+}
+
+
+.contacto-dato strong {
+  color: #eeeeea;
+
+  font-size: 14px;
+
+  font-weight: 400;
+}
+
+
+/* RESERVAR */
+
+.contacto-btn-reserva {
+  margin-top: 20px;
+
+  border: 1px solid #b58a57 !important;
+
+  color: #d8b37e !important;
+
+  background-color: transparent !important;
+
+  padding: 12px 28px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.contacto-btn-reserva:hover {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+}
+
+
+/* ==================================
+   CARD FORMULARIO
+================================== */
+
+.contacto-card {
+  background-color: #f6f2e9;
+
+  padding: 45px;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.35);
+
+  border-top: 3px solid #b58a57;
+}
+
+
+.contacto-card-etiqueta {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.contacto-card h2 {
+  color: #19382b;
+
+  font-size: 32px;
+
+  margin: 7px 0;
+}
+
+
+.contacto-card > p {
+  color: #77736c;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  margin-bottom: 30px;
+}
+
+
+/* FORM */
+
+.contacto-grupo {
+  margin-bottom: 19px;
+}
+
+
+.contacto-grupo label {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  margin-bottom: 7px;
+}
+
+
+.contacto-grupo input,
+.contacto-grupo select,
+.contacto-grupo textarea {
+  width: 100%;
+
+  border: 1px solid #d5cec1;
+
+  background-color: #ffffff;
+
+  padding: 12px 14px;
+
+  border-radius: 3px;
+
+  color: #333;
+
+  outline: none;
+}
+
+
+.contacto-grupo input:focus,
+.contacto-grupo select:focus,
+.contacto-grupo textarea:focus {
+  border-color: #b58a57;
+
+  box-shadow:
+    0 0 0 3px rgba(181, 138, 87, 0.12);
+}
+
+
+.contacto-doble {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+
+/* BOTÓN */
+
+.contacto-btn-enviar {
+  width: 100%;
+
+  background-color: #19382b !important;
+
+  border: 1px solid #19382b !important;
+
+  color: #ffffff !important;
+
+  padding: 14px !important;
+
+  letter-spacing: 2px;
+
+  margin-top: 5px;
+}
+
+
+.contacto-btn-enviar:hover {
+  background-color: #355c4a !important;
+}
+
+
+/* ÉXITO */
+
+.contacto-exito {
+  background-color: #e5efe9;
+
+  border-left: 4px solid #19382b;
+
+  padding: 13px 15px;
+
+  margin-bottom: 20px;
+}
+
+
+.contacto-exito strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 12px;
+}
+
+
+.contacto-exito span {
+  color: #577064;
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   INFORMACIÓN INFERIOR
+================================================== */
+
+.contacto-info {
+  background-color: #f3efe6;
+
+  padding: 70px 20px;
+}
+
+
+.contacto-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 0;
+}
+
+
+.contacto-info-grid > div {
+  padding: 10px 45px;
+
+  border-right: 1px solid #cfc7b9;
+}
+
+
+.contacto-info-grid > div:last-child {
+  border-right: none;
+}
+
+
+.contacto-info-grid span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+
+.contacto-info-grid h3 {
+  color: #19382b;
+
+  font-size: 17px;
+
+  margin: 8px 0;
+}
+
+
+.contacto-info-grid p {
+  color: #77736c;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin: 0;
+}
+
+
+/* ==================================================
+   CTA CONTACTO
+================================================== */
+
+.contacto-final {
+  background-color: #0b1510;
+
+  padding: 60px 8%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.contacto-final span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.contacto-final h2 {
+  color: #ffffff;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  margin: 8px 0 0;
+}
+
+
+.contacto-final-btn {
+  border: 1px solid #b58a57 !important;
+
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+
+  padding: 13px 30px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.contacto-final-btn:hover {
+  background-color: transparent !important;
+
+  color: #d7ad72 !important;
+}
+
+/* ==================================================
+   CHEF MAYTA
+================================================== */
+
+.chef-hero {
+  background-color: #0b1510;
+  min-height: 620px;
+}
+
+
+.chef-grid {
+  display: grid;
+
+  grid-template-columns: 45% 55%;
+
+  min-height: 620px;
+}
+
+
+/* =========================
+   IMAGEN
+========================= */
+
+.chef-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #0b1510;
+
+  overflow: hidden;
+}
+
+.chef-imagen img {
+  max-width: 100%;
+  max-height: 620px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+
+.chef-imagen::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(11, 21, 16, 0.35)
+    );
+}
+
+
+.chef-imagen-etiqueta {
+  position: absolute;
+
+  left: 45px;
+  bottom: 40px;
+
+  z-index: 2;
+
+  color: #d5ad75;
+
+  border-left: 2px solid #b58a57;
+
+  padding-left: 14px;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.chef-contenido {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 80px 90px;
+
+  color: #ffffff;
+}
+
+
+.chef-subtitulo {
+  color: #b58a57;
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+}
+
+
+.chef-contenido h1 {
+  font-size: 68px;
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing: 2px;
+
+  margin: 18px 0 25px;
+}
+
+
+.chef-linea {
+  width: 70px;
+  height: 1px;
+
+  background-color: #b58a57;
+
+  margin-bottom: 30px;
+}
+
+
+.chef-contenido h2 {
+  color: #d4aa70;
+
+  font-size: 18px;
+
+  letter-spacing: 2px;
+
+  line-height: 1.5;
+
+  margin-bottom: 20px;
+}
+
+
+.chef-contenido p {
+  color: #d0cbc1;
+
+  max-width: 470px;
+
+  line-height: 1.8;
+
+  font-size: 15px;
+}
+
+
+.chef-texto-secundario {
+  color: #949088 !important;
+
+  font-size: 14px !important;
+}
+
+
+.btn-chef {
+  width: fit-content;
+
+  margin-top: 20px;
+
+  border: 1px solid #b58a57 !important;
+
+  background-color: transparent !important;
+
+  color: #d6b07a !important;
+
+  padding: 12px 28px !important;
+
+  border-radius: 3px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.btn-chef:hover {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+}
+
+
+/* ==================================================
+   HISTORIA
+================================================== */
+
+.chef-historia {
+  background-color: #f3efe6;
+
+  padding: 90px 20px;
+}
+
+
+.chef-historia-header {
+  text-align: center;
+
+  margin-bottom: 60px;
+}
+
+
+.chef-historia-header span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.chef-historia-header h2 {
+  color: #19382b;
+
+  font-size: 30px;
+
+  margin-top: 10px;
+}
+
+
+.chef-timeline {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+
+.chef-anio {
+  position: relative;
+
+  text-align: center;
+
+  padding: 0 28px;
+}
+
+
+.chef-anio strong {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 28px;
+
+  margin-bottom: 20px;
+}
+
+
+.chef-anio span {
+  display: block;
+
+  width: 10px;
+  height: 10px;
+
+  margin: 0 auto 25px;
+
+  background-color: #19382b;
+
+  border-radius: 50%;
+
+  position: relative;
+}
+
+
+.chef-anio span::after {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+  left: 10px;
+
+  width: 250px;
+  height: 1px;
+
+  background-color: #c9bba6;
+}
+
+
+.chef-anio:last-child span::after {
+  display: none;
+}
+
+
+.chef-anio h3 {
+  color: #19382b;
+
+  font-size: 14px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 10px;
+}
+
+
+.chef-anio p {
+  color: #77736c;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* ==================================================
+   FINAL
+================================================== */
+
+.chef-final {
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  padding: 80px 20px;
+}
+
+
+.chef-final span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+
+.chef-final h2 {
+  font-size: 36px;
+
+  font-weight: 400;
+
+  line-height: 1.25;
+
+  margin: 15px 0;
+}
+
+
+.chef-final p {
+  color: #c8c3b9;
+
+  margin-bottom: 30px;
+}
+
+
+.btn-chef-final {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #b58a57 !important;
+
+  padding: 12px 30px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.btn-chef-final:hover {
+  background-color: transparent !important;
+
+  color: #d6b07a !important;
+}
+
+
+
+/* ==================================================
+   EXPERIENCIA MAYTA
+================================================== */
+
+
+/* HERO */
+
+.exp-hero {
+  position: relative;
+
+  min-height: 620px;
+
+  background-image:
+    url('./assets/img/experiencia-1.jpg');
+
+  background-size: cover;
+
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+
+  padding: 80px 10%;
+}
+
+
+.exp-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 15, 10, 0.90) 0%,
+      rgba(6, 15, 10, 0.65) 45%,
+      rgba(6, 15, 10, 0.20) 100%
+    );
+}
+
+
+.exp-hero-contenido {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 650px;
+
+  color: #ffffff;
+}
+
+
+.exp-hero-contenido > span {
+  color: #b58a57;
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+}
+
+
+.exp-hero-contenido h1 {
+  font-size: 68px;
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing: 2px;
+
+  margin: 18px 0 25px;
+}
+
+
+.exp-hero-contenido p {
+  max-width: 480px;
+
+  color: #d7d2c8;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+
+  margin-bottom: 30px;
+}
+
+
+.btn-exp-hero {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #b58a57 !important;
+
+  padding: 12px 28px !important;
+
+  letter-spacing: 1px;
+}
+
+
+/* ==================================================
+   INTRO
+================================================== */
+
+.exp-intro {
+  background-color: #f3efe6;
+
+  padding: 90px 20px;
+}
+
+
+.exp-intro-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 100px;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  align-items: center;
+}
+
+
+.exp-etiqueta {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.exp-intro h2 {
+  color: #19382b;
+
+  font-size: 42px;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  margin-top: 12px;
+}
+
+
+.exp-intro-texto {
+  border-left: 1px solid #b58a57;
+
+  padding-left: 40px;
+}
+
+
+.exp-intro-texto p {
+  color: #68645d;
+
+  line-height: 1.8;
+
+  font-size: 15px;
+}
+
+
+/* ==================================================
+   OPCIONES
+================================================== */
+
+.exp-opciones {
+  background-color: #0b1510;
+
+  padding: 100px 20px;
+}
+
+
+.exp-titulo {
+  text-align: center;
+
+  margin-bottom: 55px;
+}
+
+
+.exp-titulo span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.exp-titulo h2 {
+  color: #ffffff;
+
+  font-size: 36px;
+
+  font-weight: 400;
+
+  margin-top: 10px;
+}
+
+
+.exp-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+}
+
+
+.exp-card {
+  background-color: #101c16;
+
+  border-bottom: 1px solid #b58a57;
+}
+
+
+.exp-card-imagen {
+  position: relative;
+
+  height: 300px;
+
+  overflow: hidden;
+}
+
+
+.exp-card-imagen img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.5s;
+}
+
+
+.exp-card:hover img {
+  transform: scale(1.04);
+}
+
+
+.exp-card-imagen span {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #19382b;
+
+  color: #d5ad75;
+
+  font-size: 12px;
+}
+
+
+.exp-card-contenido {
+  padding: 28px;
+}
+
+
+.exp-card-contenido h3 {
+  color: #ffffff;
+
+  font-size: 20px;
+
+  margin-bottom: 8px;
+}
+
+
+.exp-card-contenido h4 {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 15px;
+}
+
+
+.exp-card-contenido p {
+  color: #aaa69f;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* ==================================================
+   FINAL
+================================================== */
+
+.exp-final {
+  min-height: 400px;
+
+  background-color: #19382b;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 70px 20px;
+}
+
+
+.exp-final-contenido span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+
+.exp-final-contenido h2 {
+  color: #ffffff;
+
+  font-size: 38px;
+
+  font-weight: 400;
+
+  line-height: 1.2;
+
+  margin: 15px 0 30px;
+}
+
+
+.btn-exp-final {
+  border: 1px solid #b58a57 !important;
+
+  background-color: transparent !important;
+
+  color: #d5ad75 !important;
+
+  padding: 12px 30px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.btn-exp-final:hover {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+}
+
+/* ==================================================
+   RESTAURANTE MAYTA
+================================================== */
+
+
+/* HERO */
+
+.rest-hero {
+  position: relative;
+
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+
+.rest-hero-imagen {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.rest-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 14, 9, 0.90),
+      rgba(5, 14, 9, 0.55),
+      rgba(5, 14, 9, 0.20)
+    );
+}
+
+
+.rest-hero-contenido {
+  position: relative;
+
+  z-index: 2;
+
+  margin-left: 10%;
+
+  max-width: 650px;
+
+  color: #ffffff;
+}
+
+
+.rest-hero-contenido span {
+  color: #b58a57;
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+}
+
+
+.rest-hero-contenido h1 {
+  font-size: 62px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  margin: 17px 0 20px;
+}
+
+
+.rest-hero-contenido p {
+  color: #d7d2c8;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+
+  max-width: 470px;
+
+  margin-bottom: 30px;
+}
+
+
+.btn-rest-hero {
+  background-color: #b58a57 !important;
+
+  border: 1px solid #b58a57 !important;
+
+  color: #ffffff !important;
+
+  padding: 12px 30px !important;
+}
+
+
+/* ==================================================
+   CONCEPTO
+================================================== */
+
+.rest-concepto {
+  background-color: #f3efe6;
+
+  padding: 90px 20px;
+}
+
+
+.rest-concepto-grid {
+  max-width: 1100px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 90px;
+
+  align-items: center;
+}
+
+
+.rest-etiqueta {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.rest-concepto h2 {
+  color: #19382b;
+
+  font-size: 42px;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  margin-top: 10px;
+}
+
+
+.rest-concepto-texto {
+  border-left: 1px solid #b58a57;
+
+  padding-left: 40px;
+}
+
+
+.rest-concepto-texto p {
+  color: #6b675f;
+
+  line-height: 1.8;
+
+  font-size: 15px;
+}
+
+
+/* ==================================================
+   GALERÍA
+================================================== */
+
+.rest-galeria {
+  background-color: #0b1510;
+
+  padding: 90px 20px;
+}
+
+
+.rest-galeria-titulo {
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+
+
+.rest-galeria-titulo span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.rest-galeria-titulo h2 {
+  color: #ffffff;
+
+  font-size: 35px;
+
+  font-weight: 400;
+
+  margin-top: 10px;
+}
+
+
+.rest-galeria-grid {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: 1.5fr 1fr;
+
+  grid-template-rows: repeat(2, 260px);
+
+  gap: 18px;
+}
+
+
+.rest-foto {
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.rest-foto-grande {
+  grid-row: 1 / 3;
+}
+
+
+.rest-foto img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.5s;
+}
+
+
+.rest-foto:hover img {
+  transform: scale(1.04);
+}
+
+
+.rest-foto::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(5, 14, 9, 0.75)
+    );
+}
+
+
+.rest-foto-texto {
+  position: absolute;
+
+  left: 25px;
+  bottom: 22px;
+
+  z-index: 2;
+
+  color: #d7b279;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+/* ==================================================
+   DATOS
+================================================== */
+
+.rest-datos {
+  background-color: #f3efe6;
+
+  padding: 65px 20px;
+}
+
+
+.rest-datos-grid {
+  max-width: 1050px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.rest-datos-grid > div {
+  padding: 10px 45px;
+
+  border-right: 1px solid #ccc2b2;
+}
+
+
+.rest-datos-grid > div:last-child {
+  border-right: none;
+}
+
+
+.rest-datos-grid span {
+  color: #b58a57;
+
+  font-size: 11px;
+}
+
+
+.rest-datos-grid h3 {
+  color: #19382b;
+
+  font-size: 16px;
+
+  margin: 8px 0;
+}
+
+
+.rest-datos-grid p {
+  color: #706b63;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* ==================================================
+   FINAL
+================================================== */
+
+.rest-final {
+  background-color: #19382b;
+
+  padding: 65px 8%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+
+.rest-final span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.rest-final h2 {
+  color: #ffffff;
+
+  font-size: 34px;
+
+  font-weight: 400;
+
+  margin: 8px 0;
+}
+
+
+.rest-final p {
+  color: #bcb7ae;
+
+  margin: 0;
+}
+
+
+.btn-rest-final {
+  background-color: #b58a57 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #b58a57 !important;
+
+  padding: 13px 30px !important;
+
+  letter-spacing: 1px;
+}
+
+
+.btn-rest-final:hover {
+  background-color: transparent !important;
+
+  color: #d7b279 !important;
+}
+
+
+/* ==================================================
+   CARTA MAYTA
+================================================== */
+
+.carta-hero {
+  background-color: #0b1510;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  padding: 85px 20px 65px;
+}
+
+
+.carta-hero span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+
+.carta-hero h1 {
+  font-size: 48px;
+
+  font-weight: 400;
+
+  margin: 12px 0;
+}
+
+
+.carta-hero p {
+  color: #bbb6ad;
+
+  max-width: 600px;
+
+  margin: auto;
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.carta-contenido {
+  background-color: #f3efe6;
+
+  padding: 60px 20px 90px;
+}
+
+
+.carta-acciones {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+
+.btn-carta-abrir {
+  background-color: #19382b !important;
+
+  border: 1px solid #19382b !important;
+
+  color: #ffffff !important;
+
+  padding: 11px 25px !important;
+}
+
+
+.btn-carta-descargar {
+  background-color: transparent !important;
+
+  border: 1px solid #b58a57 !important;
+
+  color: #8e6a3f !important;
+
+  padding: 11px 25px !important;
+}
+
+
+/* VISOR PDF */
+
+.carta-visor {
+  max-width: 1000px;
+
+  height: 850px;
+
+  margin: auto;
+
+  background-color: #ffffff;
+
+  padding: 12px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+.carta-visor iframe {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.carta-final {
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  padding: 70px 20px;
+}
+
+
+.carta-final span {
+  color: #b58a57;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+
+.carta-final h2 {
+  font-size: 32px;
+
+  font-weight: 400;
+
+  margin: 12px 0 25px;
+}
+
+
+.btn-carta-reservar {
+  background-color: #b58a57 !important;
+
+  border: 1px solid #b58a57 !important;
+
+  color: #ffffff !important;
+
+  padding: 12px 30px !important;
 }
