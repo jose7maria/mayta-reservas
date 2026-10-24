@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 
+/* =========================
+   IMÁGENES
+========================= */
+
 import heroMayta from '../assets/img/hero-mayta.jpg';
 import experiencia1 from '../assets/img/experiencia-1.jpg';
 import experiencia2 from '../assets/img/experiencia-2.jpg';
@@ -192,7 +196,6 @@ export const Restaurante = () => {
 
           <div className="rest-datos-grid">
 
-
             <div>
 
               <span>
@@ -245,7 +248,6 @@ export const Restaurante = () => {
               </p>
 
             </div>
-
 
           </div>
 

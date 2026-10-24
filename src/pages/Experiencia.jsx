@@ -1,5 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+/* =========================
+   IMÁGENES
+========================= */
+
+
+import { ExperienciaModal } from '../components/ExperienciaModal';
 import experiencia1 from '../assets/img/experiencia-1.jpg';
 import experiencia2 from '../assets/img/experiencia-2.jpg';
 import experiencia3 from '../assets/img/experiencia-3.jpg';
@@ -7,14 +14,104 @@ import experiencia3 from '../assets/img/experiencia-3.jpg';
 
 export const Experiencia = () => {
 
+  /* =========================
+     ESTADO DEL MODAL
+  ========================= */
+
+  const [experienciaSeleccionada, setExperienciaSeleccionada] =
+    useState(null);
+
+
+  /* =========================
+     INFORMACIÓN DE EXPERIENCIAS
+  ========================= */
+
+  const experiencias = [
+
+    {
+      id: 1,
+
+      numero: '01',
+
+      nombre: 'BITÁCORA AMAZÓNICA',
+
+      subtitulo: 'Menú degustación · 10 tiempos',
+
+      descripcion:
+        'Un recorrido gastronómico inspirado en el territorio, el ingrediente y la memoria.',
+
+      imagen: experiencia1,
+
+      detalle:
+        'Bitácora Amazónica es la experiencia principal de MAYTA. Propone un recorrido de diez tiempos que permite descubrir diferentes momentos, sabores y técnicas dentro de una misma experiencia gastronómica.',
+
+      tipo: 'bitacora'
+    },
+
+
+    {
+      id: 2,
+
+      numero: '02',
+
+      nombre: 'MARIDAJE',
+
+      subtitulo: 'Selección de vinos y bebidas',
+
+      descripcion:
+        'Una propuesta creada para acompañar cada momento del menú degustación.',
+
+      imagen: experiencia2,
+
+      detalle:
+        'El maridaje acompaña los diferentes momentos de la experiencia mediante una selección de bebidas pensadas para complementar sabores, aromas y texturas del menú degustación.',
+
+      tipo: 'maridaje'
+    },
+
+
+    {
+      id: 3,
+
+      numero: '03',
+
+      nombre: 'SIN ALCOHOL',
+
+      subtitulo: 'Bebidas y fermentos',
+
+      descripcion:
+        'Una alternativa diseñada para acompañar la experiencia sin bebidas alcohólicas.',
+
+      imagen: experiencia3,
+
+      detalle:
+        'Esta opción ofrece acompañamientos sin alcohol para quienes desean vivir la experiencia completa mediante bebidas, preparaciones y combinaciones alternativas.',
+
+      tipo: 'sin-alcohol'
+    }
+
+  ];
+
+
+  /* =========================
+     RECORRIDO DE 10 TIEMPOS
+     Contenido demostrativo
+  ========================= */
+
+  
+
+
   return (
     <>
 
-      {/* HERO */}
+      {/* ==================================================
+          HERO
+      ================================================== */}
 
       <section className="exp-hero">
 
         <div className="exp-hero-overlay"></div>
+
 
         <div className="exp-hero-contenido">
 
@@ -33,6 +130,7 @@ export const Experiencia = () => {
             en lo vasto y profundo de la Amazonía peruana.
           </p>
 
+
           <Link
             to="/reserva"
             className="btn btn-exp-hero"
@@ -46,7 +144,9 @@ export const Experiencia = () => {
 
 
 
-      {/* INTRO */}
+      {/* ==================================================
+          INTRODUCCIÓN
+      ================================================== */}
 
       <section className="exp-intro">
 
@@ -54,10 +154,11 @@ export const Experiencia = () => {
 
           <div className="exp-intro-grid">
 
+
             <div>
 
               <span className="exp-etiqueta">
-                EL RECORRIDO
+                LA EXPERIENCIA
               </span>
 
               <h2>
@@ -72,16 +173,15 @@ export const Experiencia = () => {
             <div className="exp-intro-texto">
 
               <p>
-                Cada momento de Bitácora Amazónica
-                nace de la exploración del territorio,
-                sus ingredientes y sus historias.
+                MAYTA propone un recorrido gastronómico
+                donde cada momento forma parte de una
+                experiencia completa.
               </p>
 
               <p>
-                La experiencia propone descubrir la
-                Amazonía desde una mirada contemporánea,
-                donde cada ingrediente es comprendido
-                antes de ser transformado.
+                El visitante puede complementar el menú
+                con maridaje o elegir una alternativa
+                sin alcohol.
               </p>
 
             </div>
@@ -94,145 +194,125 @@ export const Experiencia = () => {
 
 
 
-      {/* EXPERIENCIA PRINCIPAL */}
+      {/* ==================================================
+          EXPERIENCIAS
+      ================================================== */}
 
       <section className="exp-opciones">
 
         <div className="container">
 
+
+          {/* ENCABEZADO */}
+
           <div className="exp-titulo">
 
             <span>
-              ELIGE CÓMO VIVIRLA
+              DESCUBRE MAYTA
             </span>
 
             <h2>
-              UNA EXPERIENCIA,
-              <br />
-              DIFERENTES RECORRIDOS
+              NUESTRA EXPERIENCIA
             </h2>
+
+            <p>
+              Diferentes formas de recorrer
+              nuestra propuesta gastronómica.
+            </p>
 
           </div>
 
 
+
+          {/* TARJETAS */}
+
           <div className="exp-grid">
 
+            {experiencias.map((experiencia) => (
 
-            {/* OPCIÓN 1 */}
+              <button
+                type="button"
 
-            <div className="exp-card">
+                className="exp-card exp-card-interactiva"
 
-              <div className="exp-card-imagen">
+                key={experiencia.id}
 
-                <img
-                  src={experiencia1}
-                  alt="Bitácora Amazónica"
-                />
-
-                <span>
-                  01
-                </span>
-
-              </div>
+                onClick={() =>
+                  setExperienciaSeleccionada(experiencia)
+                }
+              >
 
 
-              <div className="exp-card-contenido">
+                {/* IMAGEN */}
 
-                <h3>
-                  BITÁCORA AMAZÓNICA
-                </h3>
+                <div className="exp-card-imagen">
 
-                <h4>
-                  MENÚ · 10 TIEMPOS
-                </h4>
+                  <img
+                    src={experiencia.imagen}
+                    alt={experiencia.nombre}
+                  />
 
-                <p>
-                  El recorrido gastronómico principal
-                  de MAYTA inspirado en la Amazonía peruana.
-                </p>
 
-              </div>
+                  <div className="exp-card-overlay">
 
-            </div>
+                    <span>
+                      VER DETALLE
+                    </span>
+
+                  </div>
+
+                </div>
 
 
 
-            {/* OPCIÓN 2 */}
+                {/* INFORMACIÓN */}
 
-            <div className="exp-card">
+                <div className="exp-card-contenido">
 
-              <div className="exp-card-imagen">
-
-                <img
-                  src={experiencia2}
-                  alt="Maridaje MAYTA"
-                />
-
-                <span>
-                  02
-                </span>
-
-              </div>
+                  <span className="exp-numero">
+                    {experiencia.numero}
+                  </span>
 
 
-              <div className="exp-card-contenido">
-
-                <h3>
-                  MARIDAJE
-                </h3>
-
-                <h4>
-                  VINOS · TERRITORIO · ARMONÍA
-                </h4>
-
-                <p>
-                  Una selección pensada para acompañar
-                  cada etapa del menú degustación.
-                </p>
-
-              </div>
-
-            </div>
+                  <h3>
+                    {experiencia.nombre}
+                  </h3>
 
 
-
-            {/* OPCIÓN 3 */}
-
-            <div className="exp-card">
-
-              <div className="exp-card-imagen">
-
-                <img
-                  src={experiencia3}
-                  alt="Maridaje sin alcohol"
-                />
-
-                <span>
-                  03
-                </span>
-
-              </div>
+                  <span className="exp-subtitulo">
+                    {experiencia.subtitulo}
+                  </span>
 
 
-              <div className="exp-card-contenido">
+                  <p>
+                    {experiencia.descripcion}
+                  </p>
 
-                <h3>
-                  SIN ALCOHOL
-                </h3>
 
-                <h4>
-                  BEBIDAS · FERMENTOS · BOTÁNICOS
-                </h4>
+                  <span className="exp-ver-mas">
+                    DESCUBRIR +
+                  </span>
 
-                <p>
-                  Una alternativa sin alcohol creada
-                  para acompañar la experiencia completa.
-                </p>
+                </div>
 
-              </div>
+              </button>
 
-            </div>
+            ))}
 
+          </div>
+
+
+
+          {/* CARTA COMPLETA */}
+
+          <div className="exp-carta-boton">
+
+            <Link
+              to="/carta"
+              className="btn btn-carta-mayta"
+            >
+              VER CARTA COMPLETA
+            </Link>
 
           </div>
 
@@ -242,7 +322,9 @@ export const Experiencia = () => {
 
 
 
-      {/* CIERRE */}
+      {/* ==================================================
+          CIERRE
+      ================================================== */}
 
       <section className="exp-final">
 
@@ -253,23 +335,39 @@ export const Experiencia = () => {
           </span>
 
           <h2>
-            LA EXPERIENCIA
-            <br />
-            EMPIEZA MUCHO ANTES
-            <br />
-            DEL PRIMER PLATO
+            DESCUBRE EL RECORRIDO
           </h2>
+
+          <p>
+            Diez momentos para vivir
+            una misma experiencia.
+          </p>
+
 
           <Link
             to="/reserva"
             className="btn btn-exp-final"
           >
-            RESERVAR MESA
+            RESERVAR
           </Link>
 
         </div>
 
       </section>
+
+
+
+{/* =========================
+    MODAL REUTILIZABLE
+========================= */}
+
+<ExperienciaModal
+  experiencia={experienciaSeleccionada}
+  onCerrar={() =>
+    setExperienciaSeleccionada(null)
+  }
+/>
+      
 
     </>
   );

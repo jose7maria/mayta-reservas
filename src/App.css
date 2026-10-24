@@ -7528,3 +7528,1980 @@
   }
 
 }
+
+/* =========================
+   HERO MAYTA
+========================= */
+
+.hero-mayta {
+  position: relative;
+
+  min-height: 650px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background-color: #0b1510;
+}
+
+
+/* VIDEO */
+
+.hero-video {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: 0;
+}
+
+
+/* OSCURECER VIDEO */
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(5, 15, 10, 0.48);
+
+  z-index: 1;
+}
+
+
+/* CONTENIDO */
+
+.hero-contenido {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1000px;
+
+  text-align: center;
+
+  padding: 55px 20px;
+
+  color: #ffffff;
+}
+
+
+/* LOGO PRINCIPAL */
+
+.hero-logo {
+  width: 560px;
+
+  max-width: 82%;
+
+  height: auto;
+
+  display: block;
+
+  margin: 0 auto 30px;
+
+  filter:
+    drop-shadow(0 4px 15px rgba(0, 0, 0, 0.45));
+}
+
+
+/* BITÁCORA AMAZÓNICA */
+
+.hero-contenido h1 {
+  margin: 0 0 22px;
+
+  font-size: 48px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+
+/* DESCRIPCIÓN */
+
+.hero-contenido > p {
+  font-size: 17px;
+
+  margin-bottom: 20px;
+}
+
+
+/* 10 TIEMPOS */
+
+.hero-contenido .hero-detalle {
+  font-size: 18px;
+
+  margin-bottom: 30px;
+}
+
+
+/* BOTONES */
+
+.hero-botones {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+
+  .hero-mayta {
+    min-height: 580px;
+  }
+
+  .hero-logo {
+    width: 420px;
+    max-width: 90%;
+  }
+
+  .hero-contenido h1 {
+    font-size: 34px;
+  }
+
+}
+
+/* ==================================================
+   ZONAS VISUALES DE RESERVA
+================================================== */
+
+.reserva-ayuda {
+  color: #777;
+
+  font-size: 12px;
+
+  margin: 5px 0 18px;
+}
+
+
+/* =========================
+   SIN PREFERENCIA
+========================= */
+
+.zona-sin-preferencia {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d9d2c7;
+
+  border-radius: 5px;
+
+  padding: 15px 18px;
+
+  margin-bottom: 15px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.zona-sin-preferencia:hover {
+  border-color: #b58a57;
+}
+
+
+.zona-sin-preferencia.seleccionada {
+  background-color: #eef3ef;
+
+  border: 2px solid #19382b;
+}
+
+
+.zona-sin-preferencia strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 12px;
+
+  margin-bottom: 3px;
+}
+
+
+.zona-sin-preferencia div span {
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+.zona-radio {
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #b8b1a7;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+}
+
+
+.zona-sin-preferencia.seleccionada
+.zona-radio {
+  background-color: #19382b;
+
+  border-color: #19382b;
+}
+
+
+/* =========================
+   GRID DE ZONAS
+========================= */
+
+.zonas-reserva-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+}
+
+
+/* TARJETA */
+
+.zona-reserva-card {
+  padding: 0;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d7d0c5;
+
+  border-radius: 6px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+
+.zona-reserva-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #b58a57;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.zona-reserva-card.seleccionada {
+  border: 2px solid #19382b;
+
+  background-color: #f4f7f4;
+}
+
+
+/* =========================
+   IMAGEN
+========================= */
+
+.zona-reserva-imagen {
+  position: relative;
+
+  height: 170px;
+
+  overflow: hidden;
+}
+
+
+.zona-reserva-imagen img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.3s;
+}
+
+
+.zona-reserva-card:hover
+.zona-reserva-imagen img {
+  transform: scale(1.04);
+}
+
+
+/* CHECK */
+
+.zona-check {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+.zona-reserva-info {
+  padding: 15px;
+}
+
+
+.zona-reserva-info strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 14px;
+
+  margin-bottom: 7px;
+}
+
+
+.zona-reserva-info p {
+  min-height: 50px;
+
+  color: #777;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  margin-bottom: 10px;
+}
+
+
+.zona-reserva-info > span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+
+.zona-reserva-card.seleccionada
+.zona-reserva-info > span {
+  color: #19382b;
+}
+
+
+/* ==================================================
+   RESPONSIVE ZONAS
+================================================== */
+
+@media (max-width: 768px) {
+
+  .zonas-reserva-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zona-reserva-imagen {
+    height: 220px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .zona-reserva-imagen {
+    height: 190px;
+  }
+
+}
+
+/* ==================================================
+   TARJETAS INTERACTIVAS DE EXPERIENCIA
+================================================== */
+
+.exp-card-interactiva {
+  width: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+
+.exp-card-interactiva:hover {
+  transform: translateY(-5px);
+}
+
+
+.exp-card-imagen {
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.exp-card-imagen img {
+  transition: 0.35s;
+}
+
+
+.exp-card-interactiva:hover
+.exp-card-imagen img {
+  transform: scale(1.04);
+}
+
+
+/* OVERLAY */
+
+.exp-card-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(5, 15, 10, 0.60);
+
+  opacity: 0;
+
+  transition: 0.25s;
+}
+
+
+.exp-card-overlay span {
+  color: #ffffff;
+
+  border: 1px solid #b58a57;
+
+  padding: 9px 15px;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+
+.exp-card-interactiva:hover
+.exp-card-overlay {
+  opacity: 1;
+}
+
+
+.exp-ver-mas {
+  display: block;
+
+  margin-top: 18px;
+
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  font-weight: 600;
+}
+
+
+
+/* ==================================================
+   MODAL EXPERIENCIA
+================================================== */
+
+.experiencia-modal-fondo {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background-color: rgba(0, 0, 0, 0.82);
+}
+
+
+.experiencia-modal {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 42% 58%;
+
+  width: 100%;
+
+  max-width: 1050px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background-color: #f3efe6;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.40);
+}
+
+
+/* CERRAR */
+
+.experiencia-modal-cerrar {
+  position: absolute;
+
+  top: 15px;
+  right: 18px;
+
+  z-index: 3;
+
+  width: 35px;
+  height: 35px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background-color: rgba(11, 21, 16, 0.88);
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+/* IMAGEN */
+
+.experiencia-modal-imagen {
+  min-height: 100%;
+
+  background-color: #0b1510;
+}
+
+
+.experiencia-modal-imagen img {
+  width: 100%;
+  height: 100%;
+
+  min-height: 600px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* CONTENIDO */
+
+.experiencia-modal-contenido {
+  padding: 50px 45px;
+}
+
+
+.experiencia-modal-etiqueta {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+
+.experiencia-modal-contenido > h2 {
+  color: #19382b;
+
+  font-size: 31px;
+
+  margin: 10px 0 5px;
+}
+
+
+.experiencia-modal-contenido > h3 {
+  color: #b58a57;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  margin-bottom: 20px;
+}
+
+
+.experiencia-modal-contenido > p {
+  color: #5d5a54;
+
+  font-size: 13px;
+
+  line-height: 1.8;
+}
+
+
+/* ==================================================
+   LOS 10 TIEMPOS
+================================================== */
+
+.modal-tiempos {
+  margin-top: 28px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #d2c8b9;
+}
+
+
+.modal-tiempos-header > span {
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+
+.modal-tiempos-header h3 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin: 6px 0;
+}
+
+
+.modal-tiempos-header p {
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+.modal-tiempos-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 8px;
+
+  margin-top: 17px;
+}
+
+
+.modal-tiempo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background-color: #ffffff;
+
+  border-left: 2px solid #b58a57;
+
+  padding: 10px 12px;
+}
+
+
+.modal-tiempo span {
+  color: #b58a57;
+
+  font-size: 9px;
+}
+
+
+.modal-tiempo strong {
+  color: #19382b;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+
+.modal-nota {
+  color: #888;
+
+  font-size: 9px;
+
+  font-style: italic;
+
+  margin: 15px 0 0;
+}
+
+
+
+/* ==================================================
+   MARIDAJE / SIN ALCOHOL
+================================================== */
+
+.experiencia-modal-destacado {
+  margin-top: 25px;
+
+  padding: 17px;
+
+  background-color: #e9e3d8;
+
+  border-left: 3px solid #b58a57;
+}
+
+
+.experiencia-modal-destacado span {
+  color: #19382b;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+
+.experiencia-modal-destacado p {
+  color: #666;
+
+  font-size: 11px;
+
+  margin: 6px 0 0;
+}
+
+
+
+/* ==================================================
+   BOTÓN MODAL
+================================================== */
+
+.btn-modal-experiencia {
+  display: inline-block;
+
+  margin-top: 28px;
+
+  background-color: #19382b !important;
+
+  border: 1px solid #19382b !important;
+
+  color: #ffffff !important;
+
+  padding: 11px 20px !important;
+
+  font-size: 10px !important;
+
+  letter-spacing: 1px;
+}
+
+
+
+/* ==================================================
+   RESPONSIVE MODAL
+================================================== */
+
+@media (max-width: 768px) {
+
+  .experiencia-modal-fondo {
+    padding: 12px;
+  }
+
+
+  .experiencia-modal {
+    display: block;
+
+    max-height: 94vh;
+  }
+
+
+  .experiencia-modal-imagen {
+    height: 250px;
+
+    min-height: auto;
+  }
+
+
+  .experiencia-modal-imagen img {
+    height: 250px;
+
+    min-height: auto;
+  }
+
+
+  .experiencia-modal-contenido {
+    padding: 30px 22px;
+  }
+
+
+  .experiencia-modal-contenido > h2 {
+    font-size: 25px;
+  }
+
+
+  .modal-tiempos-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ==================================================
+   EXPERIENCIAS INTERACTIVAS - HOME
+================================================== */
+
+.experiencia-card-boton {
+  width: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  background-color: transparent;
+
+  text-align: left;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  display: block;
+
+  transition: 0.3s;
+}
+
+
+/* Pequeño movimiento al pasar el mouse */
+
+.experiencia-card-boton:hover {
+  transform: translateY(-5px);
+}
+
+
+/* =========================
+   CONTENEDOR DE IMAGEN
+========================= */
+
+.experiencia-card-imagen {
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.experiencia-card-imagen img {
+  width: 100%;
+
+  display: block;
+
+  transition: 0.35s;
+}
+
+
+.experiencia-card-boton:hover
+.experiencia-card-imagen img {
+  transform: scale(1.04);
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.experiencia-card-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(5, 15, 10, 0.60);
+
+  opacity: 0;
+
+  transition: 0.3s;
+}
+
+
+.experiencia-card-overlay span {
+  color: #ffffff;
+
+  border: 1px solid #b58a57;
+
+  padding: 9px 15px;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+
+.experiencia-card-boton:hover
+.experiencia-card-overlay {
+  opacity: 1;
+}
+
+
+/* =========================
+   DESCUBRIR
+========================= */
+
+.experiencia-descubrir {
+  display: block;
+
+  margin-top: 18px;
+
+  color: #b58a57;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+/* ==================================================
+   CORRECCIÓN FINAL MOBILE
+================================================== */
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+
+  /* =========================
+     HERO
+  ========================= */
+
+  .hero-mayta {
+    width: 100%;
+    min-height: 610px;
+  }
+
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+  .hero-contenido {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 40px 20px;
+  }
+
+
+  .hero-logo {
+    width: 330px;
+    max-width: 90%;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+  }
+
+
+  .hero-contenido h1 {
+    font-size: 33px;
+
+    line-height: 1.15;
+
+    letter-spacing: 1px;
+  }
+
+
+  .hero-contenido > p {
+    font-size: 16px;
+
+    line-height: 1.5;
+  }
+
+
+  .hero-botones {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+  }
+
+
+
+  /* =========================
+     PREMIOS
+  ========================= */
+
+  .premios-mayta {
+    width: 100%;
+
+    padding: 45px 18px;
+  }
+
+
+  .premios-mayta .container {
+    width: 100%;
+    max-width: 100%;
+
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  .premios-mayta h2 {
+    font-size: 24px;
+
+    text-align: center;
+
+    margin-bottom: 35px;
+  }
+
+
+  .premios-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+    justify-items: center;
+  }
+
+
+  .premio-item {
+    width: 100%;
+    max-width: 360px;
+
+    margin: 0 auto;
+  }
+
+
+  .premio-item img {
+    width: 100%;
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+  }
+
+}
+
+/* ==================================================
+   RESPONSIVE LOGIN
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* CONTENEDOR PRINCIPAL */
+
+  .login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f3efe6;
+
+    padding: 25px 18px;
+  }
+
+
+  /* OCULTAMOS LA IMAGEN LATERAL */
+
+  .login-imagen,
+  .login-image,
+  .login-left,
+  .login-lado-imagen {
+    display: none !important;
+  }
+
+
+  /* COLUMNA DEL FORMULARIO */
+
+  .login-contenido,
+  .login-content,
+  .login-right,
+  .login-lado-form {
+    width: 100% !important;
+
+    max-width: 500px;
+
+    min-height: auto !important;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 !important;
+
+    margin: 0 auto;
+  }
+
+
+  /* FORMULARIO */
+
+  .login-form,
+  .login-formulario {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 35px 25px;
+
+    background-color: #f3efe6;
+  }
+
+
+  /* TEXTO SUPERIOR */
+
+  .login-form span,
+  .login-formulario span {
+    font-size: 10px;
+
+    letter-spacing: 3px;
+  }
+
+
+  .login-form h1,
+  .login-formulario h1 {
+    font-size: 32px;
+
+    line-height: 1.1;
+
+    margin-top: 10px;
+  }
+
+
+  .login-form > p,
+  .login-formulario > p {
+    font-size: 13px;
+
+    line-height: 1.6;
+  }
+
+
+  /* CAMPOS */
+
+  .login-form .form-control,
+  .login-formulario .form-control {
+    min-height: 52px;
+
+    font-size: 14px;
+  }
+
+
+  /* BOTÓN INGRESAR */
+
+  .login-form .btn,
+  .login-formulario .btn {
+    width: 100%;
+
+    min-height: 52px;
+  }
+
+
+  /* ACCESO DEMOSTRATIVO */
+
+  .login-demo {
+    width: 100%;
+
+    margin-top: 20px;
+  }
+
+
+  /* VOLVER */
+
+  .login-volver {
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 25px;
+  }
+
+
+  /* OJO CONTRASEÑA */
+
+  .btn-ver-password {
+    right: 12px;
+  }
+
+}
+
+/* ==================================================
+   RESPONSIVE PANEL ADMINISTRATIVO
+   TABLET
+================================================== */
+
+@media (max-width: 992px) {
+
+  /* =========================
+     ESTRUCTURA GENERAL
+  ========================= */
+
+  .admin-layout {
+    display: block;
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow-x: hidden;
+  }
+
+
+  .admin-principal {
+    width: 100%;
+  }
+
+
+  .admin-contenido {
+    width: 100%;
+
+    padding: 22px;
+  }
+
+
+
+  /* =========================
+     SIDEBAR
+     En tablet pasa arriba
+  ========================= */
+
+  .admin-sidebar {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    background-color: #0b1510;
+  }
+
+
+  .admin-logo {
+    flex-shrink: 0;
+
+    margin: 0;
+
+    font-size: 20px;
+
+    text-align: left;
+  }
+
+
+  .admin-menu {
+    width: 100%;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    gap: 5px;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+
+    padding-bottom: 4px;
+  }
+
+
+  .admin-menu .nav-link {
+    flex-shrink: 0;
+
+    padding: 9px 13px;
+
+    font-size: 11px;
+  }
+
+
+  .admin-menu .nav-link.active {
+    border-left: none;
+
+    border-bottom: 2px solid #b58a57;
+  }
+
+
+
+  /* =========================
+     NAVBAR ADMIN
+  ========================= */
+
+  .admin-navbar {
+    padding: 15px 22px;
+  }
+
+
+  .admin-navbar h2 {
+    font-size: 18px;
+  }
+
+
+
+  /* =========================
+     DASHBOARD
+  ========================= */
+
+  .dashboard-contadores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .dashboard-mesas-contadores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .dashboard-doble {
+    grid-template-columns: 1fr;
+  }
+
+
+  .dashboard-reportes-botones {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  /* =========================
+     CALENDARIO
+  ========================= */
+
+  .calendario-admin {
+    grid-template-columns: 1fr;
+  }
+
+
+
+  /* =========================
+     MESAS
+  ========================= */
+
+  .mesas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  /* =========================
+     HORARIOS
+  ========================= */
+
+  .horarios-grid-admin {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  /* =========================
+     REPORTES
+  ========================= */
+
+  .reportes-admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .reporte-estadisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  /* =========================
+     MODAL RESERVAS
+  ========================= */
+
+  .reserva-admin-modal {
+    max-width: 95%;
+
+    padding: 25px;
+  }
+
+
+  .reserva-admin-resumen {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* ==================================================
+   PANEL ADMIN - CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* =========================
+     GENERAL
+  ========================= */
+
+  html,
+  body {
+    max-width: 100%;
+
+    overflow-x: hidden;
+  }
+
+
+  .admin-contenido {
+    padding: 18px 12px 35px;
+  }
+
+
+
+  /* =========================
+     SIDEBAR SUPERIOR
+  ========================= */
+
+  .admin-sidebar {
+    display: block;
+
+    padding: 15px 12px 10px;
+  }
+
+
+  .admin-logo {
+    text-align: center;
+
+    font-size: 21px;
+
+    margin-bottom: 13px;
+  }
+
+
+  .admin-menu {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    overflow-x: auto;
+
+    gap: 5px;
+
+    padding-bottom: 8px;
+
+    scrollbar-width: thin;
+  }
+
+
+  .admin-menu .nav-link {
+    padding: 8px 12px;
+
+    font-size: 10px;
+
+    border-radius: 4px;
+  }
+
+
+
+  /* =========================
+     NAVBAR ADMIN
+  ========================= */
+
+  .admin-navbar {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 15px;
+  }
+
+
+  .admin-navbar-subtitulo {
+    font-size: 8px;
+  }
+
+
+  .admin-navbar h2 {
+    font-size: 17px;
+
+    margin-bottom: 0;
+  }
+
+
+  .admin-usuario {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+  }
+
+
+  .admin-usuario-datos {
+    flex: 1;
+  }
+
+
+  .admin-usuario .btn {
+    flex-shrink: 0;
+  }
+
+
+
+  /* =========================
+     ENCABEZADOS
+  ========================= */
+
+  .admin-pagina-header {
+    margin-bottom: 20px;
+  }
+
+
+  .admin-pagina-header h1 {
+    font-size: 25px;
+  }
+
+
+  .admin-pagina-header p {
+    font-size: 11px;
+
+    line-height: 1.6;
+  }
+
+
+
+  /* =========================
+     DASHBOARD
+  ========================= */
+
+  .dashboard-titulo {
+    font-size: 24px;
+  }
+
+
+  .dashboard-contadores {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+  }
+
+
+  .dashboard-mesas-contadores {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+  }
+
+
+  .dashboard-doble {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+
+  .dashboard-bloque {
+    width: 100%;
+
+    overflow: hidden;
+  }
+
+
+
+  /* =========================
+     TABLAS
+  ========================= */
+
+  .table-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  .admin-tabla,
+  .dashboard-tabla {
+    min-width: 720px;
+
+    font-size: 10px;
+  }
+
+
+  .admin-tabla th,
+  .admin-tabla td,
+  .dashboard-tabla th,
+  .dashboard-tabla td {
+    white-space: nowrap;
+
+    padding: 10px 8px;
+  }
+
+
+
+  /* =========================
+     CALENDARIO
+  ========================= */
+
+  .calendario-admin {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+
+  .calendario-dia {
+    min-height: 48px;
+
+    font-size: 11px;
+  }
+
+
+  .reservas-dia-lista {
+    width: 100%;
+  }
+
+
+
+  /* =========================
+     RESERVAS
+  ========================= */
+
+  .reservas-toolbar {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+  }
+
+
+  .reservas-toolbar > div {
+    width: 100%;
+  }
+
+
+  .reservas-toolbar select {
+    width: 100%;
+  }
+
+
+
+  /* =========================
+     MESAS
+  ========================= */
+
+  .mesas-resumen {
+    grid-template-columns: 1fr;
+  }
+
+
+  .mesas-header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+
+  .mesas-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+  }
+
+
+
+  /* =========================
+     PLATOS
+  ========================= */
+
+  .platos-toolbar {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+
+  .btn-plato-nuevo {
+    width: 100%;
+  }
+
+
+
+  /* =========================
+     HORARIOS
+  ========================= */
+
+  .horarios-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+
+  .btn-nuevo-horario {
+    width: 100%;
+  }
+
+
+  .horarios-grid-admin {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+
+
+  /* =========================
+     REPORTES
+  ========================= */
+
+  .reportes-admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+  }
+
+
+  .reporte-card {
+    min-height: 135px;
+
+    padding: 15px;
+  }
+
+
+  .reporte-generar {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+
+  .btn-generar-reporte-final {
+    width: 100%;
+  }
+
+
+  .reporte-estadisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  /* ==================================================
+     MODAL DETALLE DE RESERVA
+  ================================================== */
+
+  .reserva-admin-modal-fondo {
+    padding: 10px;
+  }
+
+
+  .reserva-admin-modal {
+    width: 100%;
+
+    max-width: 100%;
+
+    max-height: 95vh;
+
+    padding: 20px 15px;
+  }
+
+
+  .reserva-admin-modal-header h2 {
+    font-size: 20px;
+  }
+
+
+  .reserva-admin-cliente {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+
+  .reserva-admin-resumen {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .reserva-admin-comensales {
+    grid-template-columns: 1fr;
+  }
+
+
+  .reserva-admin-acciones {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+
+  .reserva-admin-acciones button {
+    width: 100%;
+  }
+
+}
+
+/* ==================================================
+   PANEL ADMIN - CELULARES PEQUEÑOS
+================================================== */
+
+@media (max-width: 480px) {
+
+  /* DASHBOARD */
+
+  .dashboard-contadores {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  .dashboard-mesas-contadores {
+    grid-template-columns: 1fr;
+  }
+
+
+
+  /* MESAS */
+
+  .mesas-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+
+  /* HORARIOS */
+
+  .horarios-grid-admin {
+    grid-template-columns: 1fr;
+  }
+
+
+
+  /* REPORTES */
+
+  .reportes-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .reporte-estadisticas {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+
+  /* RESERVA DETALLE */
+
+  .reserva-admin-resumen {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+
+  /* USUARIO ADMIN */
+
+  .admin-usuario {
+    flex-wrap: wrap;
+
+    gap: 10px;
+  }
+
+
+  .admin-usuario .btn {
+    width: 100%;
+  }
+
+}
