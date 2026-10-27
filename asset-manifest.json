@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mayta-reservas/static/css/main.602cd0e7.css",
-    "main.js": "/mayta-reservas/static/js/main.0f1a0219.js",
+    "main.css": "/mayta-reservas/static/css/main.4826d120.css",
+    "main.js": "/mayta-reservas/static/js/main.373def58.js",
     "static/js/453.853f9dba.chunk.js": "/mayta-reservas/static/js/453.853f9dba.chunk.js",
     "static/media/hero-mayta.jpg": "/mayta-reservas/static/media/hero-mayta.1ac57c2d72d632ee7683.jpg",
     "static/media/ChefMayta.png": "/mayta-reservas/static/media/ChefMayta.7317bfce8dfa3c0cecf6.png",
@@ -15,14 +15,18 @@
     "static/media/premio4.png": "/mayta-reservas/static/media/premio4.d086972cde5eb54fa55f.png",
     "static/media/premio2.png": "/mayta-reservas/static/media/premio2.a308e44836d652030a49.png",
     "static/media/premio1.png": "/mayta-reservas/static/media/premio1.991fc5649981c6f8ef23.png",
+    "static/media/terrazaext.jpg": "/mayta-reservas/static/media/terrazaext.b1d51256f5efc58b3cda.jpg",
+    "static/media/barra.jpg": "/mayta-reservas/static/media/barra.f8e714fedfeb2ae37d10.jpg",
+    "static/media/salonjpg.jpg": "/mayta-reservas/static/media/salonjpg.a958905d1fa1e1caa827.jpg",
+    "static/media/privado.jpg": "/mayta-reservas/static/media/privado.14431d914465a269b429.jpg",
     "static/media/logo-mayta.png": "/mayta-reservas/static/media/logo-mayta.576ab7a03cda3f019347.png",
     "index.html": "/mayta-reservas/index.html",
-    "main.602cd0e7.css.map": "/mayta-reservas/static/css/main.602cd0e7.css.map",
-    "main.0f1a0219.js.map": "/mayta-reservas/static/js/main.0f1a0219.js.map",
+    "main.4826d120.css.map": "/mayta-reservas/static/css/main.4826d120.css.map",
+    "main.373def58.js.map": "/mayta-reservas/static/js/main.373def58.js.map",
     "453.853f9dba.chunk.js.map": "/mayta-reservas/static/js/453.853f9dba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.602cd0e7.css",
-    "static/js/main.0f1a0219.js"
+    "static/css/main.4826d120.css",
+    "static/js/main.373def58.js"
   ]
 }
