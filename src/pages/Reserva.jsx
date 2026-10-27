@@ -89,49 +89,55 @@ export const Reserva = () => {
 
   const mesas = [
 
-    {
-      id: 1,
-      nombre: 'M1',
-      capacidad: 2,
-      descripcion: 'Mesa íntima para una experiencia en pareja.'
-    },
+  {
+    id: 1,
+    nombre: 'M1',
+    capacidad: 2,
+    disponible: true,
+    descripcion: 'Mesa íntima para una experiencia en pareja.'
+  },
 
-    {
-      id: 2,
-      nombre: 'M2',
-      capacidad: 2,
-      descripcion: 'Mesa tranquila ubicada en un sector lateral.'
-    },
+  {
+    id: 2,
+    nombre: 'M2',
+    capacidad: 2,
+    disponible: false,
+    descripcion: 'Mesa tranquila ubicada en un sector lateral.'
+  },
 
-    {
-      id: 3,
-      nombre: 'M3',
-      capacidad: 4,
-      descripcion: 'Mesa cómoda para grupos pequeños.'
-    },
+  {
+    id: 3,
+    nombre: 'M3',
+    capacidad: 4,
+    disponible: true,
+    descripcion: 'Mesa cómoda para grupos pequeños.'
+  },
 
-    {
-      id: 4,
-      nombre: 'M4',
-      capacidad: 4,
-      descripcion: 'Ubicación central con fácil acceso al servicio.'
-    },
+  {
+    id: 4,
+    nombre: 'M4',
+    capacidad: 4,
+    disponible: false,
+    descripcion: 'Ubicación central con fácil acceso al servicio.'
+  },
 
-    {
-      id: 5,
-      nombre: 'M5',
-      capacidad: 6,
-      descripcion: 'Mesa amplia para familias o grupos.'
-    },
+  {
+    id: 5,
+    nombre: 'M5',
+    capacidad: 6,
+    disponible: true,
+    descripcion: 'Mesa amplia para familias o grupos.'
+  },
 
-    {
-      id: 6,
-      nombre: 'M6',
-      capacidad: 10,
-      descripcion: 'Mesa amplia para grupos y celebraciones.'
-    }
+  {
+    id: 6,
+    nombre: 'M6',
+    capacidad: 10,
+    disponible: true,
+    descripcion: 'Mesa amplia para grupos y celebraciones.'
+  }
 
-  ];
+];
 
 
 
@@ -594,7 +600,9 @@ export const Reserva = () => {
 
                     const capacidadInsuficiente =
                       personas > mesa.capacidad;
-
+                    
+                    const noDisponible =
+                    !mesa.disponible || capacidadInsuficiente;
 
                     const seleccionada =
                       mesaSeleccionada?.id === mesa.id;
@@ -607,7 +615,7 @@ export const Reserva = () => {
 
                         key={mesa.id}
 
-                        disabled={capacidadInsuficiente}
+                        disabled={noDisponible}
 
                         onClick={() =>
                           setMesaSeleccionada(mesa)
@@ -616,7 +624,7 @@ export const Reserva = () => {
                         className={`
                           mesa-cliente-card
                           ${seleccionada ? 'seleccionada' : ''}
-                          ${capacidadInsuficiente ? 'bloqueada' : ''}
+                          ${noDisponible ? 'bloqueada' : ''}
                         `}
                       >
 

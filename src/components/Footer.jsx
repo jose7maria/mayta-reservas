@@ -42,21 +42,15 @@ export const Footer = () => {
 
             <h4>SÍGUENOS</h4>
 
-            <div className="footer-redes">
+            <div className="footer-social">
 
-              <a href="#instagram">
-                Instagram
-              </a>
+  <span>Instagram</span>
 
-              <a href="#facebook">
-                Facebook
-              </a>
+  <span>Facebook</span>
 
-              <a href="#tiktok">
-                TikTok
-              </a>
+  <span>TikTok</span>
 
-            </div>
+</div>
 
           </div>
 

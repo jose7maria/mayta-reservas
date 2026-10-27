@@ -10442,3 +10442,16 @@
   }
 
 }
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-social span {
+  color: #ffffff;
+  font-size: 13px;
+  opacity: 0.8;
+  cursor: default;
+}
