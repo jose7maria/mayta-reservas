@@ -1,136 +1,263 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate
+} from 'react-router-dom';
+
 
 export const DatosCliente = () => {
 
-  const location = useLocation();
+  /* =========================
+     NAVEGACIÓN
+  ========================= */
+
   const navigate = useNavigate();
 
-  const datosReserva = location.state;
-
-  const cantidadPersonas = Number(datosReserva?.personas || 1);
+  const location = useLocation();
 
 
   /* =========================
+     DATOS RECIBIDOS
+     DESDE DISPONIBILIDAD
+  ========================= */
+
+  const datosReserva = location.state || {};
+
+
+  const {
+    fecha = '',
+    hora = '',
+    personas = 2,
+    zona = 'Sin preferencia',
+    mesa = 'Asignación automática',
+    capacidadMesa = null,
+    accesible = false,
+    sillaNino = false
+  } = datosReserva;
+
+
+
+  /* ==================================================
      DATOS DEL RESPONSABLE
-  ========================= */
 
-  const [nombre, setNombre] = useState('');
-  const [celular, setCelular] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [observaciones, setObservaciones] = useState('');
+     Si el usuario vuelve desde Confirmación,
+     conservamos la información anterior.
+  ================================================== */
+
+  const [nombre, setNombre] =
+    useState(datosReserva.nombre || '');
+
+  const [celular, setCelular] =
+    useState(datosReserva.celular || '');
+
+  const [correo, setCorreo] =
+    useState(datosReserva.correo || '');
+
+  const [observaciones, setObservaciones] =
+    useState(datosReserva.observaciones || '');
 
 
-  /* =========================
-     COMENSALES
-  ========================= */
+
+  /* ==================================================
+     PREFERENCIAS OPCIONALES
+
+     false = no desea registrar preferencias
+     true  = desea registrar preferencias
+  ================================================== */
+
+  const [
+    registrarPreferencias,
+    setRegistrarPreferencias
+  ] = useState(
+    datosReserva.preferenciasRegistradas || false
+  );
+
+
+
+  /* ==================================================
+     GENERAR COMENSALES
+
+     Creamos automáticamente tantos comensales
+     como personas tenga la reserva.
+  ================================================== */
 
   const [comensales, setComensales] = useState(() => {
 
+    /*
+      Si venimos de Confirmación y ya existen
+      comensales, conservamos esos datos.
+    */
+
+    if (
+      datosReserva.comensales &&
+      datosReserva.comensales.length > 0
+    ) {
+
+      return datosReserva.comensales;
+
+    }
+
+
+    /* Crear comensales nuevos */
+
     return Array.from(
-      { length: cantidadPersonas },
+      { length: personas },
       (_, index) => ({
+
         id: index + 1,
+
         tipo: 'Adulto',
+
         acompanamiento: 'Sin maridaje',
+
         restricciones: []
+
       })
     );
 
   });
 
 
-  /* =========================
-     CAMBIAR DATOS COMENSAL
-  ========================= */
 
-  const actualizarComensal = (id, campo, valor) => {
+  /* ==================================================
+     CAMBIAR TIPO
+     Adulto / Menor
+  ================================================== */
 
-    setComensales(
+  const cambiarTipo = (id, nuevoTipo) => {
 
+    const nuevosComensales =
       comensales.map((comensal) => {
 
-        if (comensal.id !== id) {
-          return comensal;
-        }
+        if (comensal.id === id) {
 
-
-        /* Si cambia a menor y tenía maridaje,
-           automáticamente lo quitamos */
-
-        if (
-          campo === 'tipo' &&
-          valor === 'Menor' &&
-          comensal.acompanamiento === 'Maridaje'
-        ) {
+          /*
+            Si cambia a Menor y tenía Maridaje,
+            cambiamos automáticamente a Sin alcohol.
+          */
 
           return {
+
             ...comensal,
-            tipo: valor,
-            acompanamiento: 'Sin maridaje'
+
+            tipo: nuevoTipo,
+
+            acompanamiento:
+              nuevoTipo === 'Menor' &&
+              comensal.acompanamiento === 'Maridaje'
+                ? 'Sin alcohol'
+                : comensal.acompanamiento
+
           };
 
         }
 
+        return comensal;
 
-        return {
-          ...comensal,
-          [campo]: valor
-        };
+      });
 
-      })
 
-    );
+    setComensales(nuevosComensales);
 
   };
 
 
-  /* =========================
-     RESTRICCIONES
-  ========================= */
 
-  const cambiarRestriccion = (id, restriccion) => {
+  /* ==================================================
+     CAMBIAR ACOMPAÑAMIENTO
+  ================================================== */
 
-    setComensales(
+  const cambiarAcompanamiento = (
+    id,
+    nuevoAcompanamiento
+  ) => {
 
+    const nuevosComensales =
       comensales.map((comensal) => {
 
-        if (comensal.id !== id) {
-          return comensal;
+        if (comensal.id === id) {
+
+          return {
+
+            ...comensal,
+
+            acompanamiento:
+              nuevoAcompanamiento
+
+          };
+
         }
 
+        return comensal;
 
-        const existe =
-          comensal.restricciones.includes(restriccion);
+      });
 
 
-        return {
-          ...comensal,
-
-          restricciones: existe
-
-            ? comensal.restricciones.filter(
-                item => item !== restriccion
-              )
-
-            : [
-                ...comensal.restricciones,
-                restriccion
-              ]
-        };
-
-      })
-
-    );
+    setComensales(nuevosComensales);
 
   };
 
 
-  /* =========================
-     CONTINUAR
-  ========================= */
+
+  /* ==================================================
+     CAMBIAR RESTRICCIONES
+  ================================================== */
+
+  const cambiarRestriccion = (
+    id,
+    restriccion
+  ) => {
+
+    const nuevosComensales =
+      comensales.map((comensal) => {
+
+        if (comensal.id === id) {
+
+          const existe =
+            comensal.restricciones.includes(
+              restriccion
+            );
+
+
+          return {
+
+            ...comensal,
+
+            restricciones: existe
+
+              ? comensal.restricciones.filter(
+                  item =>
+                    item !== restriccion
+                )
+
+              : [
+                  ...comensal.restricciones,
+                  restriccion
+                ]
+
+          };
+
+        }
+
+        return comensal;
+
+      });
+
+
+    setComensales(nuevosComensales);
+
+  };
+
+
+
+  /* ==================================================
+     VALIDAR Y CONTINUAR
+  ================================================== */
 
   const continuar = () => {
+
+
+    /* Campos obligatorios */
 
     if (
       nombre.trim() === '' ||
@@ -138,24 +265,73 @@ export const DatosCliente = () => {
       correo.trim() === ''
     ) {
 
-      alert('Completa los datos de contacto');
+      alert(
+        'Completa los datos de contacto'
+      );
+
       return;
 
     }
 
 
+    /* Validación básica de correo */
+
+    if (!correo.includes('@')) {
+
+      alert(
+        'Ingresa un correo electrónico válido'
+      );
+
+      return;
+
+    }
+
+
+
+    /* =========================================
+       PASAR A CONFIRMACIÓN
+    ========================================= */
+
     navigate('/confirmacion', {
 
       state: {
 
-        ...datosReserva,
+        fecha: fecha,
 
-        nombre,
-        celular,
-        correo,
-        observaciones,
+        hora: hora,
 
-        comensales
+        personas: personas,
+
+        zona: zona,
+
+        mesa: mesa,
+
+        capacidadMesa: capacidadMesa,
+
+        accesible: accesible,
+
+        sillaNino: sillaNino,
+
+        nombre: nombre,
+
+        celular: celular,
+
+        correo: correo,
+
+        preferenciasRegistradas:
+          registrarPreferencias,
+
+        /*
+          Solo enviamos los comensales
+          si el cliente decidió registrarlos.
+        */
+
+        comensales:
+          registrarPreferencias
+            ? comensales
+            : [],
+
+        observaciones: observaciones
 
       }
 
@@ -163,41 +339,6 @@ export const DatosCliente = () => {
 
   };
 
-
-  /* =========================
-     SI ENTRAN DIRECTO
-  ========================= */
-
-  if (!datosReserva) {
-
-    return (
-
-      <section className="datos-page">
-
-        <div className="container">
-
-          <div className="datos-box text-center">
-
-            <h2>
-              Primero debes realizar una reserva.
-            </h2>
-
-            <button
-              className="btn btn-continuar mt-4"
-              onClick={() => navigate('/reserva')}
-            >
-              IR A RESERVAR
-            </button>
-
-          </div>
-
-        </div>
-
-      </section>
-
-    );
-
-  }
 
 
   return (
@@ -209,7 +350,9 @@ export const DatosCliente = () => {
         <div className="datos-box">
 
 
-          {/* ENCABEZADO */}
+          {/* ==================================================
+              CABECERA
+          ================================================== */}
 
           <div className="datos-header">
 
@@ -222,14 +365,18 @@ export const DatosCliente = () => {
             </h1>
 
             <p>
-              Completa tus datos y las preferencias de los comensales.
+              Completa tus datos y,
+              si lo deseas, las preferencias
+              de los comensales.
             </p>
 
           </div>
 
 
 
-          {/* PASOS */}
+          {/* ==================================================
+              PROGRESO
+          ================================================== */}
 
           <div className="reserva-pasos">
 
@@ -259,56 +406,103 @@ export const DatosCliente = () => {
 
 
 
-          {/* RESUMEN */}
+          {/* ==================================================
+              RESUMEN
+          ================================================== */}
 
-          <div className="datos-resumen">
+          <div className="datos-resumen datos-resumen-cinco">
 
-            <div>
-              <span>FECHA</span>
-              <strong>
-                {datosReserva.fecha}
-              </strong>
-            </div>
 
             <div>
-              <span>HORA</span>
+
+              <span>
+                FECHA
+              </span>
+
               <strong>
-                {datosReserva.horario}
+                {fecha}
               </strong>
+
             </div>
 
-            <div>
-              <span>PERSONAS</span>
-              <strong>
-                {datosReserva.personas}
-              </strong>
-            </div>
 
             <div>
-              <span>UBICACIÓN</span>
+
+              <span>
+                HORA
+              </span>
+
               <strong>
-                {datosReserva.zona}
+                {hora}
               </strong>
+
             </div>
+
+
+            <div>
+
+              <span>
+                PERSONAS
+              </span>
+
+              <strong>
+                {personas}
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                UBICACIÓN
+              </span>
+
+              <strong>
+                {zona}
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                MESA
+              </span>
+
+              <strong>
+                {mesa}
+              </strong>
+
+            </div>
+
 
           </div>
 
 
 
-          {/* DATOS DEL RESPONSABLE */}
+          {/* ==================================================
+              DATOS DE CONTACTO
+          ================================================== */}
 
           <div className="datos-seccion">
 
-            <h3>
+            <h2>
               DATOS DE CONTACTO
-            </h3>
+            </h2>
 
-            <p className="texto-ayuda">
-              Información de la persona responsable de la reserva.
+            <p>
+              Información de la persona
+              responsable de la reserva.
             </p>
 
 
+
             <div className="datos-grid">
+
+
+              {/* NOMBRE */}
 
               <div>
 
@@ -328,6 +522,9 @@ export const DatosCliente = () => {
               </div>
 
 
+
+              {/* CELULAR */}
+
               <div>
 
                 <label>
@@ -346,6 +543,9 @@ export const DatosCliente = () => {
               </div>
 
 
+
+              {/* CORREO */}
+
               <div className="campo-completo">
 
                 <label>
@@ -363,294 +563,434 @@ export const DatosCliente = () => {
 
               </div>
 
+
             </div>
 
           </div>
 
 
 
-          {/* COMENSALES */}
+          {/* ==================================================
+              PREFERENCIAS OPCIONALES
+          ================================================== */}
 
-          <div className="datos-seccion">
-
-            <h3>
-              INFORMACIÓN DE LOS COMENSALES
-            </h3>
-
-            <p className="texto-ayuda">
-              Indica el tipo de comensal, acompañamiento y
-              restricciones alimentarias.
-            </p>
+          <div className="datos-seccion preferencias-opcionales">
 
 
-            <div className="lista-comensales">
+            <div className="preferencias-titulo">
 
-              {comensales.map((comensal) => (
+              <span>
+                OPCIONAL
+              </span>
 
-                <div
-                  className="comensal-card"
-                  key={comensal.id}
+              <h2>
+                PREFERENCIAS DE LOS COMENSALES
+              </h2>
+
+              <p>
+                Si conoces las preferencias o
+                restricciones de tus acompañantes,
+                puedes registrarlas ahora.
+              </p>
+
+            </div>
+
+
+
+            {/* PREGUNTA */}
+
+            <div className="preferencias-pregunta">
+
+              <strong>
+                ¿Deseas registrar información
+                adicional de los comensales?
+              </strong>
+
+
+              <p>
+                Esto nos ayudará a preparar mejor
+                la experiencia, pero no es obligatorio.
+              </p>
+
+
+
+              <div className="preferencias-botones">
+
+
+                {/* SÍ */}
+
+                <button
+                  type="button"
+
+                  className={
+                    registrarPreferencias
+                      ? 'preferencia-opcion activa'
+                      : 'preferencia-opcion'
+                  }
+
+                  onClick={() =>
+                    setRegistrarPreferencias(true)
+                  }
                 >
+                  SÍ, AGREGAR PREFERENCIAS
+                </button>
 
 
-                  {/* CABECERA */}
 
-                  <div className="comensal-header">
+                {/* NO */}
 
-                    <h4>
-                      COMENSAL {comensal.id}
-                    </h4>
+                <button
+                  type="button"
+
+                  className={
+                    !registrarPreferencias
+                      ? 'preferencia-opcion activa'
+                      : 'preferencia-opcion'
+                  }
+
+                  onClick={() =>
+                    setRegistrarPreferencias(false)
+                  }
+                >
+                  NO, CONTINUAR SIN PREFERENCIAS
+                </button>
 
 
-                    <select
-                      value={comensal.tipo}
-                      onChange={(e) =>
-                        actualizarComensal(
-                          comensal.id,
-                          'tipo',
-                          e.target.value
-                        )
-                      }
+              </div>
+
+            </div>
+
+
+
+            {/* ==================================================
+                COMENSALES
+
+                Solo aparece cuando el usuario
+                selecciona "Sí".
+            ================================================== */}
+
+            {
+              registrarPreferencias && (
+
+                <div className="comensales-opcionales">
+
+
+                  <div className="comensales-opcionales-header">
+
+                    <h3>
+                      INFORMACIÓN DE LOS COMENSALES
+                    </h3>
+
+                    <p>
+                      Puedes indicar el tipo de
+                      comensal, acompañamiento y
+                      restricciones alimentarias.
+                    </p>
+
+                  </div>
+
+
+
+                  {comensales.map((comensal) => (
+
+                    <div
+                      className="comensal-card"
+                      key={comensal.id}
                     >
 
-                      <option value="Adulto">
-                        Adulto
-                      </option>
 
-                      <option value="Menor">
-                        Menor
-                      </option>
+                      {/* CABECERA */}
 
-                    </select>
+                      <div className="comensal-header">
 
-                  </div>
+                        <strong>
+                          COMENSAL {comensal.id}
+                        </strong>
 
 
 
-                  {/* MENÚ */}
-
-                  <div className="menu-comensal">
-
-                    <span>
-                      MENÚ
-                    </span>
-
-                    <strong>
-                      Bitácora Amazónica · 10 tiempos
-                    </strong>
-
-                  </div>
-
-
-
-                  {/* ACOMPAÑAMIENTO */}
-
-                  <div className="acompanamiento-comensal">
-
-                    <p>
-                      Acompañamiento
-                    </p>
-
-
-                    <div className="opciones-acompanamiento">
-
-
-                      <label>
-
-                        <input
-                          type="radio"
-                          name={`acompanamiento-${comensal.id}`}
-                          value="Sin maridaje"
-
-                          checked={
-                            comensal.acompanamiento ===
-                            'Sin maridaje'
-                          }
+                        <select
+                          value={comensal.tipo}
 
                           onChange={(e) =>
-                            actualizarComensal(
+                            cambiarTipo(
                               comensal.id,
-                              'acompanamiento',
                               e.target.value
                             )
                           }
-                        />
+                        >
 
-                        Sin maridaje
+                          <option>
+                            Adulto
+                          </option>
 
-                      </label>
+                          <option>
+                            Menor
+                          </option>
 
+                        </select>
 
-
-                      {/* SOLO ADULTOS */}
-
-                      {comensal.tipo === 'Adulto' && (
-
-                        <label>
-
-                          <input
-                            type="radio"
-                            name={`acompanamiento-${comensal.id}`}
-                            value="Maridaje"
-
-                            checked={
-                              comensal.acompanamiento ===
-                              'Maridaje'
-                            }
-
-                            onChange={(e) =>
-                              actualizarComensal(
-                                comensal.id,
-                                'acompanamiento',
-                                e.target.value
-                              )
-                            }
-                          />
-
-                          Maridaje
-
-                        </label>
-
-                      )}
+                      </div>
 
 
 
-                      <label>
+                      {/* MENÚ */}
 
-                        <input
-                          type="radio"
-                          name={`acompanamiento-${comensal.id}`}
-                          value="Sin alcohol"
+                      <div className="comensal-menu">
 
-                          checked={
-                            comensal.acompanamiento ===
-                            'Sin alcohol'
-                          }
+                        <span>
+                          MENÚ
+                        </span>
 
-                          onChange={(e) =>
-                            actualizarComensal(
-                              comensal.id,
-                              'acompanamiento',
-                              e.target.value
+                        <strong>
+                          Bitácora Amazónica · 10 tiempos
+                        </strong>
+
+                      </div>
+
+
+
+                      {/* ACOMPAÑAMIENTO */}
+
+                      <div className="comensal-bloque">
+
+                        <strong>
+                          Acompañamiento
+                        </strong>
+
+
+                        <div className="opciones-acompanamiento">
+
+
+                          <label>
+
+                            <input
+                              type="radio"
+
+                              name={`acompanamiento-${comensal.id}`}
+
+                              checked={
+                                comensal.acompanamiento ===
+                                'Sin maridaje'
+                              }
+
+                              onChange={() =>
+                                cambiarAcompanamiento(
+                                  comensal.id,
+                                  'Sin maridaje'
+                                )
+                              }
+                            />
+
+                            Sin maridaje
+
+                          </label>
+
+
+
+                          {/* MARIDAJE SOLO PARA ADULTOS */}
+
+                          {
+                            comensal.tipo === 'Adulto' && (
+
+                              <label>
+
+                                <input
+                                  type="radio"
+
+                                  name={`acompanamiento-${comensal.id}`}
+
+                                  checked={
+                                    comensal.acompanamiento ===
+                                    'Maridaje'
+                                  }
+
+                                  onChange={() =>
+                                    cambiarAcompanamiento(
+                                      comensal.id,
+                                      'Maridaje'
+                                    )
+                                  }
+                                />
+
+                                Maridaje
+
+                              </label>
+
                             )
                           }
-                        />
 
-                        Sin alcohol
 
-                      </label>
+
+                          <label>
+
+                            <input
+                              type="radio"
+
+                              name={`acompanamiento-${comensal.id}`}
+
+                              checked={
+                                comensal.acompanamiento ===
+                                'Sin alcohol'
+                              }
+
+                              onChange={() =>
+                                cambiarAcompanamiento(
+                                  comensal.id,
+                                  'Sin alcohol'
+                                )
+                              }
+                            />
+
+                            Sin alcohol
+
+                          </label>
+
+
+                        </div>
+
+                      </div>
+
+
+
+                      {/* RESTRICCIONES */}
+
+                      <div className="comensal-bloque">
+
+                        <strong>
+                          Restricciones alimentarias
+                        </strong>
+
+
+                        <div className="restricciones-grid">
+
+
+                          {[
+                            'Alergia a mariscos',
+                            'Lactosa',
+                            'Sin gluten',
+                            'Vegetariano'
+                          ].map((restriccion) => (
+
+                            <label key={restriccion}>
+
+                              <input
+                                type="checkbox"
+
+                                checked={
+                                  comensal.restricciones.includes(
+                                    restriccion
+                                  )
+                                }
+
+                                onChange={() =>
+                                  cambiarRestriccion(
+                                    comensal.id,
+                                    restriccion
+                                  )
+                                }
+                              />
+
+                              {restriccion}
+
+                            </label>
+
+                          ))}
+
+
+                        </div>
+
+                      </div>
+
 
                     </div>
 
-                  </div>
-
-
-
-                  {/* RESTRICCIONES */}
-
-                  <div className="restricciones-comensal">
-
-                    <p>
-                      Restricciones alimentarias
-                    </p>
-
-
-                    <div className="restricciones-grid">
-
-                      {[
-                        'Alergia a mariscos',
-                        'Lactosa',
-                        'Sin gluten',
-                        'Vegetariano'
-                      ].map((restriccion) => (
-
-                        <label key={restriccion}>
-
-                          <input
-                            type="checkbox"
-
-                            checked={
-                              comensal.restricciones.includes(
-                                restriccion
-                              )
-                            }
-
-                            onChange={() =>
-                              cambiarRestriccion(
-                                comensal.id,
-                                restriccion
-                              )
-                            }
-                          />
-
-                          {restriccion}
-
-                        </label>
-
-                      ))}
-
-                    </div>
-
-                  </div>
+                  ))}
 
 
                 </div>
 
-              ))}
+              )
+            }
 
-            </div>
 
           </div>
 
 
 
-          {/* OBSERVACIONES */}
+          {/* ==================================================
+              OBSERVACIONES GENERALES
 
-          <div className="datos-seccion">
+              SIEMPRE VISIBLE
+          ================================================== */}
 
-            <label>
-              Observaciones generales
-            </label>
+          <div className="datos-seccion observaciones-reserva">
+
+            <h2>
+              OBSERVACIONES GENERALES
+            </h2>
+
+            <p>
+              Puedes indicarnos una celebración,
+              alergia conocida, requerimiento especial
+              u otra información importante.
+            </p>
+
 
             <textarea
               className="form-control"
+
               rows="4"
-              placeholder="Celebración especial, alergia específica u otra indicación..."
+
               value={observaciones}
+
               onChange={(e) =>
                 setObservaciones(e.target.value)
               }
+
+              placeholder="Ejemplo: celebración especial, alergia conocida o alguna indicación..."
             />
 
           </div>
 
 
 
-          {/* BOTONES */}
+          {/* ==================================================
+              ACCIONES
+          ================================================== */}
 
           <div className="acciones-datos">
 
+
             <button
               type="button"
+
               className="btn btn-volver"
 
               onClick={() =>
-                navigate('/disponibilidad', {
-                  state: datosReserva
-                })
+                navigate(
+                  '/disponibilidad',
+                  {
+                    state: datosReserva
+                  }
+                )
               }
             >
               VOLVER
             </button>
 
 
+
             <button
               type="button"
+
               className="btn btn-continuar"
+
               onClick={continuar}
             >
               CONTINUAR
             </button>
+
 
           </div>
 

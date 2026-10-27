@@ -9505,3 +9505,940 @@
   }
 
 }
+
+/* ==================================================
+   MESAS PARA EL CLIENTE
+================================================== */
+
+.mesas-cliente-seccion {
+  margin-top: 35px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid #ddd5c8;
+}
+
+
+/* CABECERA */
+
+.mesas-cliente-header {
+  margin-bottom: 18px;
+}
+
+
+.mesas-cliente-header > span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.mesas-cliente-header h2 {
+  color: #19382b;
+
+  font-size: 21px;
+
+  margin: 5px 0;
+}
+
+
+.mesas-cliente-header p {
+  color: #777;
+
+  font-size: 11px;
+
+  margin: 0;
+}
+
+
+
+/* =========================
+   LISTA
+========================= */
+
+.mesas-cliente-lista {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+
+/* =========================
+   TARJETA HORIZONTAL
+========================= */
+
+.mesa-cliente-card {
+  width: 100%;
+
+  min-height: 115px;
+
+  display: grid;
+
+  grid-template-columns: 150px 1fr 120px;
+
+  align-items: stretch;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d7d0c5;
+
+  border-radius: 5px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.mesa-cliente-card:hover:not(:disabled) {
+  border-color: #b58a57;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+
+.mesa-cliente-card.seleccionada {
+  border: 2px solid #19382b;
+
+  background-color: #f4f7f4;
+}
+
+
+
+/* =========================
+   IMAGEN
+========================= */
+
+.mesa-cliente-imagen {
+  min-height: 115px;
+
+  overflow: hidden;
+}
+
+
+.mesa-cliente-imagen img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+.mesa-cliente-info {
+  padding: 15px 18px;
+}
+
+
+.mesa-cliente-info > span {
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+
+.mesa-cliente-info h3 {
+  color: #19382b;
+
+  font-size: 17px;
+
+  margin: 3px 0 5px;
+}
+
+
+.mesa-cliente-info p {
+  color: #666;
+
+  font-size: 10px;
+
+  margin: 0 0 7px;
+
+  line-height: 1.5;
+}
+
+
+.mesa-cliente-info small {
+  color: #8c8479;
+
+  font-size: 9px;
+}
+
+
+
+/* =========================
+   ACCIÓN
+========================= */
+
+.mesa-cliente-accion {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 10px;
+
+  border-left: 1px solid #e3ddd4;
+
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+
+.mesa-cliente-card.seleccionada
+.mesa-cliente-accion {
+  color: #19382b;
+}
+
+
+.mesa-check-simple {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 12px;
+}
+
+
+
+/* =========================
+   CAPACIDAD INSUFICIENTE
+========================= */
+
+.mesa-cliente-card.bloqueada {
+  opacity: 0.42;
+
+  cursor: not-allowed;
+}
+
+
+.mesa-cliente-card.bloqueada img {
+  filter: grayscale(0.7);
+}
+
+
+.mesa-capacidad-error {
+  color: #9f5c54;
+
+  font-size: 7px;
+
+  font-weight: 600;
+}
+
+
+
+/* =========================
+   CONFIRMACIÓN
+========================= */
+
+.mesa-cliente-confirmacion {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 15px;
+
+  padding: 14px 16px;
+
+  background-color: #e8f0ea;
+
+  border: 1px solid #9bb7a4;
+
+  border-radius: 5px;
+}
+
+
+.mesa-cliente-confirmacion > span {
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-radius: 50%;
+}
+
+
+.mesa-cliente-confirmacion strong {
+  color: #19382b;
+
+  font-size: 11px;
+}
+
+
+.mesa-cliente-confirmacion p {
+  color: #68756d;
+
+  font-size: 10px;
+
+  margin: 2px 0 0;
+}
+
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 768px) {
+
+  .mesa-cliente-card {
+    grid-template-columns: 120px 1fr 95px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .mesa-cliente-card {
+    display: block;
+  }
+
+
+  .mesa-cliente-imagen {
+    height: 170px;
+  }
+
+
+  .mesa-cliente-accion {
+    border-left: none;
+
+    border-top: 1px solid #e3ddd4;
+
+    padding: 12px;
+
+    flex-direction: row;
+  }
+
+}
+
+/* ==================================================
+   DISPONIBILIDAD - 4 DATOS
+================================================== */
+
+.disponibilidad-resumen-cuatro {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+@media (max-width: 768px) {
+
+  .disponibilidad-resumen-cuatro {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .disponibilidad-resumen-cuatro {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ==================================================
+   DATOS RESERVA - 5 DATOS
+================================================== */
+
+.datos-resumen-cinco {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+
+/* ==================================================
+   PREFERENCIAS OPCIONALES
+================================================== */
+
+.preferencias-opcionales {
+  margin-top: 35px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid #ddd5c8;
+}
+
+
+.preferencias-titulo > span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+
+.preferencias-titulo h2 {
+  color: #19382b;
+
+  font-size: 16px;
+
+  margin: 5px 0;
+}
+
+
+.preferencias-titulo p {
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+
+/* =========================
+   PREGUNTA
+========================= */
+
+.preferencias-pregunta {
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background-color: #f3efe6;
+
+  border: 1px solid #ded6c9;
+
+  border-radius: 5px;
+}
+
+
+.preferencias-pregunta > strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 13px;
+
+  margin-bottom: 6px;
+}
+
+
+.preferencias-pregunta > p {
+  color: #777;
+
+  font-size: 10px;
+
+  margin-bottom: 15px;
+}
+
+
+
+/* =========================
+   BOTONES SÍ / NO
+========================= */
+
+.preferencias-botones {
+  display: flex;
+
+  gap: 10px;
+}
+
+
+.preferencia-opcion {
+  flex: 1;
+
+  min-height: 42px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #bdb5a8;
+
+  border-radius: 4px;
+
+  color: #5e5a54;
+
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+}
+
+
+.preferencia-opcion:hover {
+  border-color: #b58a57;
+}
+
+
+.preferencia-opcion.activa {
+  background-color: #19382b;
+
+  border-color: #19382b;
+
+  color: #ffffff;
+}
+
+
+
+/* =========================
+   COMENSALES
+========================= */
+
+.comensales-opcionales {
+  margin-top: 30px;
+}
+
+
+.comensales-opcionales-header {
+  margin-bottom: 15px;
+}
+
+
+.comensales-opcionales-header h3 {
+  color: #19382b;
+
+  font-size: 14px;
+
+  margin-bottom: 4px;
+}
+
+
+.comensales-opcionales-header p {
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+
+/* ==================================================
+   OBSERVACIONES
+================================================== */
+
+.observaciones-reserva {
+  margin-top: 35px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid #ddd5c8;
+}
+
+
+.observaciones-reserva h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-bottom: 5px;
+}
+
+
+.observaciones-reserva > p {
+  color: #777;
+
+  font-size: 10px;
+
+  margin-bottom: 12px;
+}
+
+
+.observaciones-reserva textarea {
+  resize: vertical;
+
+  min-height: 100px;
+}
+
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 992px) {
+
+  .datos-resumen-cinco {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .datos-resumen-cinco {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .preferencias-botones {
+    flex-direction: column;
+  }
+
+
+  .preferencia-opcion {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .datos-resumen-cinco {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ==================================================
+   CONFIRMACIÓN - 5 DATOS
+================================================== */
+
+.confirmacion-datos-cinco {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+
+/* ==================================================
+   SECCIONES
+================================================== */
+
+.confirmacion-seccion {
+  margin-top: 30px;
+}
+
+
+.confirmacion-seccion > h2 {
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-bottom: 15px;
+}
+
+
+
+/* ==================================================
+   PREFERENCIAS NO REGISTRADAS
+================================================== */
+
+.preferencias-no-registradas {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  background-color: #f3efe6;
+
+  border: 1px solid #ddd5c8;
+
+  border-radius: 5px;
+}
+
+
+.preferencias-no-icono {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  font-family: serif;
+
+  font-size: 16px;
+}
+
+
+.preferencias-no-registradas strong {
+  color: #19382b;
+
+  font-size: 12px;
+}
+
+
+.preferencias-no-registradas p {
+  color: #777;
+
+  font-size: 10px;
+
+  margin: 4px 0 0;
+}
+
+
+
+/* ==================================================
+   OBSERVACIONES
+================================================== */
+
+.confirmacion-observaciones {
+  padding: 16px;
+
+  background-color: #f3efe6;
+
+  border-left: 3px solid #b58a57;
+
+  border-radius: 4px;
+}
+
+
+.confirmacion-observaciones p {
+  color: #555;
+
+  font-size: 11px;
+
+  margin: 0;
+
+  line-height: 1.6;
+}
+
+
+.confirmacion-observaciones.sin-observaciones {
+  border-left-color: #c3bdb4;
+}
+
+
+.confirmacion-observaciones.sin-observaciones p {
+  color: #888;
+
+  font-style: italic;
+}
+
+
+
+/* ==================================================
+   NECESIDADES ESPECIALES
+================================================== */
+
+.confirmacion-necesidades {
+  margin-top: 20px;
+
+  padding: 15px 17px;
+
+  background-color: #edf3ef;
+
+  border: 1px solid #b3c8ba;
+
+  border-radius: 5px;
+}
+
+
+.confirmacion-necesidades > span {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 8px;
+}
+
+
+.confirmacion-necesidades p {
+  color: #50685a;
+
+  font-size: 10px;
+
+  margin: 4px 0;
+}
+
+
+
+/* ==================================================
+   MODAL - TICKET
+================================================== */
+
+.modal-reserva-datos {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  margin-top: 22px;
+
+  border-top: 1px solid #ddd5c8;
+
+  border-bottom: 1px solid #ddd5c8;
+}
+
+
+.modal-reserva-datos > div {
+  padding: 14px 8px;
+
+  text-align: center;
+
+  border-right: 1px solid #ddd5c8;
+}
+
+
+.modal-reserva-datos > div:last-child {
+  border-right: none;
+}
+
+
+.modal-reserva-datos span {
+  display: block;
+
+  color: #999;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 5px;
+}
+
+
+.modal-reserva-datos strong {
+  color: #19382b;
+
+  font-size: 10px;
+}
+
+
+.modal-reserva-cliente {
+  margin-top: 20px;
+}
+
+
+.modal-reserva-cliente span {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+
+.modal-reserva-cliente strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 15px;
+
+  margin-top: 5px;
+}
+
+
+.modal-reserva-info {
+  color: #777;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+
+  margin-top: 18px;
+}
+
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 992px) {
+
+  .confirmacion-datos-cinco {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
+  .modal-reserva-datos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .confirmacion-datos-cinco {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .modal-reserva-datos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .modal-reserva-datos > div {
+    border-bottom: 1px solid #ddd5c8;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .confirmacion-datos-cinco {
+    grid-template-columns: 1fr;
+  }
+
+
+  .modal-reserva-datos {
+    grid-template-columns: 1fr;
+  }
+
+
+  .modal-reserva-datos > div {
+    border-right: none;
+  }
+
+}

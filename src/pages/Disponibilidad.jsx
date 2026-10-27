@@ -1,45 +1,135 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import {
+  useLocation,
+  useNavigate
+} from 'react-router-dom';
+
 
 export const Disponibilidad = () => {
 
-  const location = useLocation();
+  /* =========================
+     NAVEGACIÓN
+  ========================= */
+
   const navigate = useNavigate();
 
-  const datosReserva = location.state;
+  const location = useLocation();
+
+
+  /* =========================
+     DATOS RECIBIDOS
+     DESDE RESERVA
+  ========================= */
+
+  const datosReserva = location.state || {};
+
+
+  const {
+    fecha = '',
+    personas = 2,
+    zona = 'Sin preferencia',
+    mesa = 'Asignación automática',
+    capacidadMesa = null,
+    accesible = false,
+    sillaNino = false
+  } = datosReserva;
+
+
+
+  /* =========================
+     HORARIO SELECCIONADO
+  ========================= */
+
+  const [horaSeleccionada, setHoraSeleccionada] =
+    useState(null);
+
+
+
+  /* =========================
+     HORARIOS SIMULADOS
+  ========================= */
 
   const [horarios, setHorarios] = useState([]);
-  const [horarioSeleccionado, setHorarioSeleccionado] = useState('');
 
+
+
+  /* ==================================================
+     CARGAR HORARIOS
+
+     Simulamos disponibilidad.
+     Más adelante esto vendría del backend.
+  ================================================== */
 
   useEffect(() => {
 
-    // Datos simulados para el parcial
-    const horariosSimulados = [
-      { hora: '7:00 PM', disponible: true },
-      { hora: '7:30 PM', disponible: false },
-      { hora: '8:00 PM', disponible: true },
-      { hora: '8:30 PM', disponible: true },
-      { hora: '9:00 PM', disponible: false },
-      { hora: '9:30 PM', disponible: true }
-    ];
+    setHorarios([
 
-    setHorarios(horariosSimulados);
+      {
+        hora: '7:00 PM',
+        disponible: true
+      },
 
-  }, [datosReserva?.fecha]);
+      {
+        hora: '7:30 PM',
+        disponible: false
+      },
+
+      {
+        hora: '8:00 PM',
+        disponible: true
+      },
+
+      {
+        hora: '8:30 PM',
+        disponible: true
+      },
+
+      {
+        hora: '9:00 PM',
+        disponible: false
+      },
+
+      {
+        hora: '9:30 PM',
+        disponible: true
+      }
+
+    ]);
+
+  }, []);
 
 
-  // FORMATEAR LA FECHA
-  const formatearFecha = (fecha) => {
 
-    if (!fecha) return '';
+  /* =========================
+     CONTAR DISPONIBLES
+  ========================= */
 
-    const fechaLocal = new Date(`${fecha}T00:00:00`);
+  const cantidadDisponibles =
+    horarios.filter(
+      horario => horario.disponible
+    ).length;
 
-    return fechaLocal.toLocaleDateString(
+
+
+  /* ==================================================
+     FORMATEAR FECHA
+  ================================================== */
+
+  const formatearFecha = (fechaOriginal) => {
+
+    if (!fechaOriginal) {
+      return 'No seleccionada';
+    }
+
+
+    const fechaObjeto =
+      new Date(`${fechaOriginal}T00:00:00`);
+
+
+    return fechaObjeto.toLocaleDateString(
       'es-PE',
       {
-        day: '2-digit',
+        day: 'numeric',
         month: 'long',
         year: 'numeric'
       }
@@ -48,57 +138,48 @@ export const Disponibilidad = () => {
   };
 
 
-  // CUÁNTOS HORARIOS ESTÁN DISPONIBLES
-  const cantidadDisponibles =
-    horarios.filter(horario => horario.disponible).length;
 
+  /* ==================================================
+     CONTINUAR AL PASO 3
+  ================================================== */
 
   const continuar = () => {
 
-    if (!horarioSeleccionado) {
-      alert('Selecciona un horario disponible');
+    if (!horaSeleccionada) {
+
+      alert('Selecciona un horario');
+
       return;
+
     }
 
+
     navigate('/datos-cliente', {
+
       state: {
-        ...datosReserva,
-        horario: horarioSeleccionado
+
+        fecha: fecha,
+
+        personas: personas,
+
+        zona: zona,
+
+        mesa: mesa,
+
+        capacidadMesa: capacidadMesa,
+
+        hora: horaSeleccionada,
+
+        accesible: accesible,
+
+        sillaNino: sillaNino
+
       }
+
     });
 
   };
 
-
-  // SI ENTRAN DIRECTAMENTE A LA URL
-  if (!datosReserva) {
-
-    return (
-      <section className="disponibilidad-page">
-
-        <div className="container">
-
-          <div className="disponibilidad-box text-center">
-
-            <h2>
-              Primero debes realizar una reserva.
-            </h2>
-
-            <button
-              className="btn btn-continuar mt-4"
-              onClick={() => navigate('/reserva')}
-            >
-              IR A RESERVAR
-            </button>
-
-          </div>
-
-        </div>
-
-      </section>
-    );
-
-  }
 
 
   return (
@@ -110,7 +191,9 @@ export const Disponibilidad = () => {
         <div className="disponibilidad-box">
 
 
-          {/* ENCABEZADO */}
+          {/* ==================================================
+              CABECERA
+          ================================================== */}
 
           <div className="disponibilidad-header">
 
@@ -123,14 +206,17 @@ export const Disponibilidad = () => {
             </h1>
 
             <p>
-              Revisa los horarios disponibles para tu reserva.
+              Revisa los horarios disponibles
+              para tu reserva.
             </p>
 
           </div>
 
 
 
-          {/* PASOS */}
+          {/* ==================================================
+              PROGRESO
+          ================================================== */}
 
           <div className="reserva-pasos">
 
@@ -160,48 +246,11 @@ export const Disponibilidad = () => {
 
 
 
-          {/* RESUMEN */}
+          {/* ==================================================
+              MODIFICAR RESERVA
+          ================================================== */}
 
-          <div className="disponibilidad-resumen">
-
-            <div>
-
-              <span>
-                FECHA
-              </span>
-
-              <strong>
-                {formatearFecha(datosReserva.fecha)}
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                PERSONAS
-              </span>
-
-              <strong>
-                {datosReserva.personas} personas
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                UBICACIÓN
-              </span>
-
-              <strong>
-                {datosReserva.zona}
-              </strong>
-
-            </div>
-
+          <div className="disponibilidad-modificar">
 
             <button
               type="button"
@@ -215,147 +264,207 @@ export const Disponibilidad = () => {
 
 
 
-          {/* MENSAJE DE DISPONIBILIDAD */}
+          {/* ==================================================
+              RESUMEN DE LA RESERVA
+          ================================================== */}
 
-          {
-            cantidadDisponibles > 0
-              ? (
+          <div className="disponibilidad-resumen disponibilidad-resumen-cuatro">
 
-                <div className="estado-disponibilidad disponible">
 
-                  <div className="estado-icono">
-                    ✓
-                  </div>
+            {/* FECHA */}
 
-                  <div>
+            <div>
 
-                    <h3>
-                      HAY DISPONIBILIDAD
-                    </h3>
+              <span>
+                FECHA
+              </span>
 
-                    <p>
-                      Tenemos {cantidadDisponibles} horarios disponibles
-                      para la fecha seleccionada.
-                    </p>
+              <strong>
+                {formatearFecha(fecha)}
+              </strong>
 
-                  </div>
-
-                </div>
-
-              )
-              : (
-
-                <div className="estado-disponibilidad sin-disponibilidad">
-
-                  <div className="estado-icono">
-                    ×
-                  </div>
-
-                  <div>
-
-                    <h3>
-                      NO HAY DISPONIBILIDAD
-                    </h3>
-
-                    <p>
-                      Prueba seleccionando otra fecha.
-                    </p>
-
-                  </div>
-
-                </div>
-
-              )
-          }
+            </div>
 
 
 
-          {/* HORARIOS */}
+            {/* PERSONAS */}
 
-          {
-            cantidadDisponibles > 0 && (
+            <div>
 
-              <>
+              <span>
+                PERSONAS
+              </span>
 
-                <h3 className="titulo-horarios">
-                  ELIGE UN HORARIO
-                </h3>
+              <strong>
+                {personas} personas
+              </strong>
 
-
-                <div className="horarios-grid">
-
-                  {
-                    horarios.map((horario) => (
-
-                      <button
-                        key={horario.hora}
-                        type="button"
-
-                        disabled={!horario.disponible}
-
-                        onClick={() =>
-                          setHorarioSeleccionado(horario.hora)
-                        }
-
-                        className={`
-                          horario-btn
-
-                          ${
-                            !horario.disponible
-                              ? 'ocupado'
-                              : ''
-                          }
-
-                          ${
-                            horarioSeleccionado === horario.hora
-                              ? 'seleccionado'
-                              : ''
-                          }
-                        `}
-                      >
-
-                        <strong>
-                          {horario.hora}
-                        </strong>
-
-
-                        <span>
-
-                          {
-                            !horario.disponible
-                              ? 'No disponible'
-                              : horarioSeleccionado === horario.hora
-                                ? '✓ Seleccionado'
-                                : 'Disponible'
-                          }
-
-                        </span>
-
-                      </button>
-
-                    ))
-                  }
-
-                </div>
-
-              </>
-
-            )
-          }
+            </div>
 
 
 
-          {/* LEYENDA */}
+            {/* UBICACIÓN */}
+
+            <div>
+
+              <span>
+                UBICACIÓN
+              </span>
+
+              <strong>
+                {zona}
+              </strong>
+
+            </div>
+
+
+
+            {/* MESA */}
+
+            <div>
+
+              <span>
+                MESA
+              </span>
+
+              <strong>
+                {mesa}
+              </strong>
+
+            </div>
+
+
+          </div>
+
+
+
+          {/* ==================================================
+              DISPONIBILIDAD
+          ================================================== */}
+
+          <div className="estado-disponibilidad">
+
+
+            <div className="estado-icono">
+              ✓
+            </div>
+
+
+            <div>
+
+              <h2>
+                HAY DISPONIBILIDAD
+              </h2>
+
+              <p>
+                Tenemos {cantidadDisponibles}{' '}
+                horarios disponibles para
+                la fecha seleccionada.
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+
+          {/* ==================================================
+              ELEGIR HORARIO
+          ================================================== */}
+
+          <div className="seleccion-horarios">
+
+            <h2>
+              ELIGE UN HORARIO
+            </h2>
+
+
+
+            <div className="horarios-grid">
+
+              {horarios.map((horario) => {
+
+                const seleccionado =
+                  horaSeleccionada === horario.hora;
+
+
+                return (
+
+                  <button
+                    type="button"
+
+                    key={horario.hora}
+
+                    disabled={!horario.disponible}
+
+                    className={`
+                      horario-btn
+
+                      ${
+                        horario.disponible
+                          ? 'disponible'
+                          : 'no-disponible'
+                      }
+
+                      ${
+                        seleccionado
+                          ? 'seleccionado'
+                          : ''
+                      }
+                    `}
+
+                    onClick={() =>
+                      setHoraSeleccionada(
+                        horario.hora
+                      )
+                    }
+                  >
+
+                    <strong>
+                      {horario.hora}
+                    </strong>
+
+
+                    <span>
+
+                      {
+                        horario.disponible
+                          ? seleccionado
+                            ? 'Seleccionado'
+                            : 'Disponible'
+                          : 'No disponible'
+                      }
+
+                    </span>
+
+
+                  </button>
+
+                );
+
+              })}
+
+            </div>
+
+          </div>
+
+
+
+          {/* ==================================================
+              LEYENDA
+          ================================================== */}
 
           <div className="leyenda-horarios">
 
             <span>
-              <i className="leyenda-verde"></i>
+              <i className="leyenda-punto disponible"></i>
               Disponible
             </span>
 
+
             <span>
-              <i className="leyenda-gris"></i>
+              <i className="leyenda-punto no-disponible"></i>
               No disponible
             </span>
 
@@ -363,27 +472,37 @@ export const Disponibilidad = () => {
 
 
 
-          {/* BOTONES */}
+          {/* ==================================================
+              ACCIONES
+          ================================================== */}
 
           <div className="acciones-disponibilidad">
+
 
             <button
               type="button"
               className="btn btn-volver"
-              onClick={() => navigate(-1)}
+              onClick={() =>
+                navigate('/reserva')
+              }
             >
               VOLVER
             </button>
 
 
+
             <button
               type="button"
+
               className="btn btn-continuar"
-              disabled={!horarioSeleccionado}
+
+              disabled={!horaSeleccionada}
+
               onClick={continuar}
             >
               CONTINUAR
             </button>
+
 
           </div>
 
