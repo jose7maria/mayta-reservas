@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
 /* =========================
-   IMÁGENES DE LOS AMBIENTES
+   IMÁGENES DE AMBIENTES
 ========================= */
 
 import zonaSalon from '../assets/img/salonjpg.jpg';
@@ -13,66 +11,292 @@ import zonaBarra from '../assets/img/barra.jpg';
 import zonaPrivada from '../assets/img/privado.jpg';
 
 
-
 export const Reserva = () => {
-
-  /* =========================
-     NAVEGACIÓN
-  ========================= */
 
   const navigate = useNavigate();
 
 
-  /* =========================
-     DATOS DE LA RESERVA
-  ========================= */
+  /* ==================================================
+     DATOS PRINCIPALES
+  ================================================== */
 
-  const [fecha, setFecha] = useState('');
+  const [fecha, setFecha] =
+    useState('');
 
-  const [personas, setPersonas] = useState(2);
+  const [personas, setPersonas] =
+    useState(2);
 
-  const [zona, setZona] = useState('Sin preferencia');
+  const [zona, setZona] =
+    useState('Sin preferencia');
 
-  const [mesaSeleccionada, setMesaSeleccionada] =
-    useState(null);
+  const [
+    mesaSeleccionada,
+    setMesaSeleccionada
+  ] = useState(null);
 
-  const [accesible, setAccesible] = useState(false);
+  const [accesible, setAccesible] =
+    useState(false);
 
-  const [sillaNino, setSillaNino] = useState(false);
+  const [sillaNino, setSillaNino] =
+    useState(false);
 
 
 
   /* ==================================================
-     AMBIENTES DEL RESTAURANTE
+     OPCIONES DE CONSUMO
+
+     Estos precios corresponden al precio
+     completo por persona.
+  ================================================== */
+
+  const opcionesConsumo = [
+
+    {
+      id: 'sin-maridaje',
+      nombre:
+        'Bitácora Amazónica sin maridaje',
+      detalle:
+        'Experiencia Bitácora Amazónica · 10 tiempos',
+      precio: 998
+    },
+
+    {
+      id: 'parajes',
+      nombre:
+        'Bitácora Amazónica + Maridaje Parajes',
+      detalle:
+        'Experiencia con maridaje Parajes',
+      precio: 1738
+    },
+
+    {
+      id: 'artesanos',
+      nombre:
+        'Bitácora Amazónica + Maridaje Artesanos',
+      detalle:
+        'Experiencia con maridaje Artesanos',
+      precio: 1683
+    },
+
+    {
+      id: 'sin-alcohol',
+      nombre:
+        'Bitácora Amazónica + Maridaje sin alcohol',
+      detalle:
+        'Experiencia con bebidas sin alcohol',
+      precio: 1343
+    }
+
+  ];
+
+
+
+  /* ==================================================
+     CANTIDADES SELECCIONADAS
+
+     Ejemplo:
+     sin-maridaje = 3
+     parajes       = 2
+  ================================================== */
+
+  const [
+    cantidadesConsumo,
+    setCantidadesConsumo
+  ] = useState({
+
+    'sin-maridaje': 0,
+
+    'parajes': 0,
+
+    'artesanos': 0,
+
+    'sin-alcohol': 0
+
+  });
+
+
+
+  /* ==================================================
+     TOTAL DE PERSONAS ASIGNADAS
+  ================================================== */
+
+  const totalAsignados =
+    Object
+      .values(cantidadesConsumo)
+      .reduce(
+        (total, cantidad) =>
+          total + cantidad,
+        0
+      );
+
+
+
+  /* ==================================================
+     TOTAL ECONÓMICO
+  ================================================== */
+
+  const totalConsumos =
+    opcionesConsumo.reduce(
+      (total, opcion) => {
+
+        const cantidad =
+          cantidadesConsumo[opcion.id];
+
+        return (
+          total +
+          cantidad * opcion.precio
+        );
+
+      },
+      0
+    );
+
+
+
+  /* ==================================================
+     DETALLE QUE ENVIAREMOS
+     AL RESTO DEL SISTEMA
+  ================================================== */
+
+  const consumosSeleccionados =
+    opcionesConsumo
+
+      .filter(
+        opcion =>
+          cantidadesConsumo[opcion.id] > 0
+      )
+
+      .map(
+        opcion => {
+
+          const cantidad =
+            cantidadesConsumo[opcion.id];
+
+          return {
+
+            id: opcion.id,
+
+            nombre: opcion.nombre,
+
+            cantidad: cantidad,
+
+            precioUnitario:
+              opcion.precio,
+
+            subtotal:
+              cantidad *
+              opcion.precio
+
+          };
+
+        }
+      );
+
+
+
+  /* ==================================================
+     CAMBIAR CANTIDAD DE CONSUMO
+  ================================================== */
+
+  const cambiarCantidadConsumo = (
+    id,
+    cambio
+  ) => {
+
+    const cantidadActual =
+      cantidadesConsumo[id];
+
+
+    /* ------------------------------------------
+       AUMENTAR
+       No podemos superar personas.
+    ------------------------------------------ */
+
+    if (cambio === 1) {
+
+      if (totalAsignados >= personas) {
+        return;
+      }
+
+
+      setCantidadesConsumo({
+
+        ...cantidadesConsumo,
+
+        [id]:
+          cantidadActual + 1
+
+      });
+
+    }
+
+
+
+    /* ------------------------------------------
+       DISMINUIR
+    ------------------------------------------ */
+
+    if (cambio === -1) {
+
+      if (cantidadActual <= 0) {
+        return;
+      }
+
+
+      setCantidadesConsumo({
+
+        ...cantidadesConsumo,
+
+        [id]:
+          cantidadActual - 1
+
+      });
+
+    }
+
+  };
+
+
+
+  /* ==================================================
+     AMBIENTES
   ================================================== */
 
   const zonas = [
 
     {
       nombre: 'Salón principal',
+
       descripcion:
         'Ambiente central y elegante para disfrutar la experiencia MAYTA.',
+
       imagen: zonaSalon
     },
 
     {
       nombre: 'Terraza / exterior',
+
       descripcion:
         'Espacio abierto y rodeado de naturaleza para una experiencia más relajada.',
+
       imagen: zonaTerraza
     },
 
     {
       nombre: 'Barra',
+
       descripcion:
         'Una experiencia cercana al servicio, los vinos y las bebidas.',
+
       imagen: zonaBarra
     },
 
     {
       nombre: 'Salón privado',
+
       descripcion:
         'Ambiente reservado, ideal para grupos o celebraciones especiales.',
+
       imagen: zonaPrivada
     }
 
@@ -82,100 +306,91 @@ export const Reserva = () => {
 
   /* ==================================================
      MESAS SIMULADAS
-
-     Cada ambiente mostrará estas mismas 6 mesas.
-     Para el parcial no necesitamos una base de datos.
   ================================================== */
 
   const mesas = [
 
-  {
-    id: 1,
-    nombre: 'M1',
-    capacidad: 2,
-    disponible: true,
-    descripcion: 'Mesa íntima para una experiencia en pareja.'
-  },
+    {
+      id: 1,
+      nombre: 'M1',
+      capacidad: 2,
+      disponible: true,
+      descripcion:
+        'Mesa íntima para una experiencia en pareja.'
+    },
 
-  {
-    id: 2,
-    nombre: 'M2',
-    capacidad: 2,
-    disponible: false,
-    descripcion: 'Mesa tranquila ubicada en un sector lateral.'
-  },
+    {
+      id: 2,
+      nombre: 'M2',
+      capacidad: 2,
+      disponible: false,
+      descripcion:
+        'Mesa tranquila ubicada en un sector lateral.'
+    },
 
-  {
-    id: 3,
-    nombre: 'M3',
-    capacidad: 4,
-    disponible: true,
-    descripcion: 'Mesa cómoda para grupos pequeños.'
-  },
+    {
+      id: 3,
+      nombre: 'M3',
+      capacidad: 4,
+      disponible: true,
+      descripcion:
+        'Mesa cómoda para grupos pequeños.'
+    },
 
-  {
-    id: 4,
-    nombre: 'M4',
-    capacidad: 4,
-    disponible: false,
-    descripcion: 'Ubicación central con fácil acceso al servicio.'
-  },
+    {
+      id: 4,
+      nombre: 'M4',
+      capacidad: 4,
+      disponible: false,
+      descripcion:
+        'Ubicación central con fácil acceso al servicio.'
+    },
 
-  {
-    id: 5,
-    nombre: 'M5',
-    capacidad: 6,
-    disponible: true,
-    descripcion: 'Mesa amplia para familias o grupos.'
-  },
+    {
+      id: 5,
+      nombre: 'M5',
+      capacidad: 6,
+      disponible: true,
+      descripcion:
+        'Mesa amplia para familias o grupos.'
+    },
 
-  {
-    id: 6,
-    nombre: 'M6',
-    capacidad: 10,
-    disponible: true,
-    descripcion: 'Mesa amplia para grupos y celebraciones.'
-  }
+    {
+      id: 6,
+      nombre: 'M6',
+      capacidad: 10,
+      disponible: true,
+      descripcion:
+        'Mesa amplia para grupos y celebraciones.'
+    }
 
-];
+  ];
 
 
 
   /* ==================================================
-     OBTENER LOS DATOS DEL AMBIENTE SELECCIONADO
+     AMBIENTE SELECCIONADO
   ================================================== */
 
-  const zonaSeleccionada = zonas.find(
-    (item) => item.nombre === zona
-  );
+  const zonaSeleccionada =
+    zonas.find(
+      item =>
+        item.nombre === zona
+    );
 
 
 
-  /* =========================
-     CAMBIAR CANTIDAD
-  ========================= */
+  /* ==================================================
+     CAMBIAR NÚMERO DE PERSONAS
+  ================================================== */
 
   const aumentarPersonas = () => {
 
     if (personas < 10) {
 
-      const nuevaCantidad = personas + 1;
-
-      setPersonas(nuevaCantidad);
-
-
-      /*
-        Si ya había una mesa elegida y deja
-        de tener capacidad suficiente,
-        quitamos automáticamente la selección.
-      */
-
-      if (
-        mesaSeleccionada &&
-        mesaSeleccionada.capacidad < nuevaCantidad
-      ) {
-        setMesaSeleccionada(null);
-      }
+      setPersonas(
+        personas + 1
+      );
 
     }
 
@@ -185,7 +400,63 @@ export const Reserva = () => {
   const disminuirPersonas = () => {
 
     if (personas > 1) {
-      setPersonas(personas - 1);
+
+      const nuevaCantidad =
+        personas - 1;
+
+
+      setPersonas(
+        nuevaCantidad
+      );
+
+
+      /*
+        Si ya habíamos asignado más
+        experiencias que personas,
+        reiniciamos esa selección.
+      */
+
+      if (
+        totalAsignados >
+        nuevaCantidad
+      ) {
+
+        setCantidadesConsumo({
+
+          'sin-maridaje': 0,
+
+          'parajes': 0,
+
+          'artesanos': 0,
+
+          'sin-alcohol': 0
+
+        });
+
+      }
+
+
+
+      /*
+        Si la mesa deja de tener
+        capacidad suficiente,
+        también se elimina.
+      */
+
+      if (
+        mesaSeleccionada &&
+        mesaSeleccionada.capacidad >
+        0 &&
+        nuevaCantidad >
+        mesaSeleccionada.capacidad
+      ) {
+
+        setMesaSeleccionada(
+          null
+        );
+
+      }
+
     }
 
   };
@@ -193,19 +464,25 @@ export const Reserva = () => {
 
 
   /* ==================================================
-     SELECCIONAR AMBIENTE
+     SELECCIONAR ZONA
   ================================================== */
 
-  const seleccionarZona = (nombreZona) => {
+  const seleccionarZona = (
+    nombreZona
+  ) => {
 
-    setZona(nombreZona);
+    setZona(
+      nombreZona
+    );
 
     /*
-      Al cambiar de ambiente,
-      eliminamos cualquier mesa anterior.
+      Cambiar de ambiente elimina
+      la mesa anterior.
     */
 
-    setMesaSeleccionada(null);
+    setMesaSeleccionada(
+      null
+    );
 
   };
 
@@ -218,31 +495,46 @@ export const Reserva = () => {
   const buscarDisponibilidad = () => {
 
 
-    /* FECHA OBLIGATORIA */
+    /* FECHA */
 
     if (fecha === '') {
 
-      alert('Selecciona una fecha');
+      alert(
+        'Selecciona una fecha'
+      );
 
       return;
 
     }
 
 
-    /*
-      Si eligió un ambiente específico,
-      debe seleccionar una mesa.
 
-      Si eligió "Sin preferencia",
-      MAYTA asignará una automáticamente.
-    */
+    /* EXPERIENCIAS */
+
+    if (
+      totalAsignados !== personas
+    ) {
+
+      alert(
+        `Debes asignar una experiencia a las ${personas} personas`
+      );
+
+      return;
+
+    }
+
+
+
+    /* MESA */
 
     if (
       zona !== 'Sin preferencia' &&
       !mesaSeleccionada
     ) {
 
-      alert('Selecciona una mesa');
+      alert(
+        'Selecciona una mesa'
+      );
 
       return;
 
@@ -250,37 +542,55 @@ export const Reserva = () => {
 
 
 
-    /* =========================
-       PASAR AL PASO 2
-    ========================= */
+    /* ==================================================
+       PASAR A DISPONIBILIDAD
 
-    navigate('/disponibilidad', {
+       Aquí empieza a viajar también
+       el detalle económico.
+    ================================================== */
 
-      state: {
+    navigate(
+      '/disponibilidad',
+      {
 
-        fecha: fecha,
+        state: {
 
-        personas: personas,
+          fecha: fecha,
 
-        zona: zona,
+          personas: personas,
 
-        mesa:
-          zona === 'Sin preferencia'
-            ? 'Asignación automática'
-            : mesaSeleccionada.nombre,
+          zona: zona,
 
-        capacidadMesa:
-          mesaSeleccionada
-            ? mesaSeleccionada.capacidad
-            : null,
+          mesa:
+            zona === 'Sin preferencia'
 
-        accesible: accesible,
+              ? 'Asignación automática'
 
-        sillaNino: sillaNino
+              : mesaSeleccionada.nombre,
+
+          capacidadMesa:
+            mesaSeleccionada
+
+              ? mesaSeleccionada.capacidad
+
+              : null,
+
+          accesible:
+            accesible,
+
+          sillaNino:
+            sillaNino,
+
+          consumos:
+            consumosSeleccionados,
+
+          totalConsumos:
+            totalConsumos
+
+        }
 
       }
-
-    });
+    );
 
   };
 
@@ -310,7 +620,7 @@ export const Reserva = () => {
             </h1>
 
             <p>
-              Selecciona cuándo y dónde deseas
+              Selecciona cuándo y cómo deseas
               vivir la experiencia.
             </p>
 
@@ -346,6 +656,12 @@ export const Reserva = () => {
               4
             </span>
 
+            <span className="linea"></span>
+
+            <span className="paso">
+              5
+            </span>
+
           </div>
 
 
@@ -362,10 +678,15 @@ export const Reserva = () => {
 
             <input
               type="date"
+
               className="form-control"
+
               value={fecha}
+
               onChange={(e) =>
-                setFecha(e.target.value)
+                setFecha(
+                  e.target.value
+                )
               }
             />
 
@@ -374,7 +695,7 @@ export const Reserva = () => {
 
 
           {/* ==================================================
-              NÚMERO DE PERSONAS
+              PERSONAS
           ================================================== */}
 
           <div className="reserva-grupo">
@@ -395,7 +716,13 @@ export const Reserva = () => {
 
 
               <span>
-                {personas} personas
+                {personas}
+                {' '}
+                {
+                  personas === 1
+                    ? 'persona'
+                    : 'personas'
+                }
               </span>
 
 
@@ -413,6 +740,211 @@ export const Reserva = () => {
 
 
           {/* ==================================================
+              TIPO DE CONSUMO
+          ================================================== */}
+
+          <div className="reserva-grupo consumo-reserva-seccion">
+
+
+            <div className="consumo-reserva-header">
+
+              <div>
+
+                <span>
+                  EXPERIENCIA MAYTA
+                </span>
+
+                <h2>
+                  Selecciona el tipo de consumo
+                </h2>
+
+                <p>
+                  Asigna una experiencia
+                  por cada persona de la reserva.
+                </p>
+
+              </div>
+
+
+
+              <div
+                className={
+                  totalAsignados === personas
+
+                    ? 'consumo-asignados completo'
+
+                    : 'consumo-asignados'
+                }
+              >
+
+                {
+                  totalAsignados === personas
+                    ? '✓ '
+                    : ''
+                }
+
+                {totalAsignados}
+                {' '}
+                DE
+                {' '}
+                {personas}
+                {' '}
+                ASIGNADOS
+
+              </div>
+
+            </div>
+
+
+
+            {/* OPCIONES */}
+
+            <div className="consumo-opciones">
+
+
+              {
+                opcionesConsumo.map(
+                  (opcion) => (
+
+                    <div
+                      className="consumo-opcion"
+                      key={opcion.id}
+                    >
+
+
+                      {/* TEXTO */}
+
+                      <div className="consumo-opcion-info">
+
+                        <strong>
+                          {opcion.nombre}
+                        </strong>
+
+                        <span>
+                          {opcion.detalle}
+                        </span>
+
+                        <small>
+                          S/{' '}
+                          {
+                            opcion.precio
+                              .toLocaleString(
+                                'es-PE'
+                              )
+                          }
+                          {' '}
+                          por persona
+                        </small>
+
+                      </div>
+
+
+
+                      {/* SELECTOR */}
+
+                      <div className="consumo-cantidad">
+
+                        <button
+                          type="button"
+
+                          onClick={() =>
+                            cambiarCantidadConsumo(
+                              opcion.id,
+                              -1
+                            )
+                          }
+
+                          disabled={
+                            cantidadesConsumo[
+                              opcion.id
+                            ] === 0
+                          }
+                        >
+                          −
+                        </button>
+
+
+                        <strong>
+                          {
+                            cantidadesConsumo[
+                              opcion.id
+                            ]
+                          }
+                        </strong>
+
+
+                        <button
+                          type="button"
+
+                          onClick={() =>
+                            cambiarCantidadConsumo(
+                              opcion.id,
+                              1
+                            )
+                          }
+
+                          disabled={
+                            totalAsignados >=
+                            personas
+                          }
+                        >
+                          +
+                        </button>
+
+                      </div>
+
+
+                    </div>
+
+                  )
+                )
+              }
+
+
+            </div>
+
+
+
+            {/* ==================================================
+                RESUMEN ECONÓMICO
+            ================================================== */}
+
+            <div className="consumo-total">
+
+
+              <div>
+
+                <span>
+                  TOTAL ESTIMADO
+                </span>
+
+                <p>
+                  El detalle completo volverá
+                  a mostrarse antes del pago.
+                </p>
+
+              </div>
+
+
+              <strong>
+                S/{' '}
+                {
+                  totalConsumos
+                    .toLocaleString(
+                      'es-PE'
+                    )
+                }
+              </strong>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          {/* ==================================================
               AMBIENTE
           ================================================== */}
 
@@ -424,27 +956,30 @@ export const Reserva = () => {
 
 
             <p className="reserva-ayuda">
-              Puedes dejar que MAYTA asigne tu ubicación
-              o seleccionar uno de nuestros ambientes.
+              Puedes dejar que MAYTA asigne
+              tu ubicación o seleccionar
+              uno de nuestros ambientes.
             </p>
 
 
 
-            {/* =========================
-                SIN PREFERENCIA
-            ========================= */}
+            {/* SIN PREFERENCIA */}
 
             <button
               type="button"
 
               className={
                 zona === 'Sin preferencia'
+
                   ? 'zona-sin-preferencia seleccionada'
+
                   : 'zona-sin-preferencia'
               }
 
               onClick={() =>
-                seleccionarZona('Sin preferencia')
+                seleccionarZona(
+                  'Sin preferencia'
+                )
               }
             >
 
@@ -476,78 +1011,85 @@ export const Reserva = () => {
 
 
 
-            {/* =========================
-                AMBIENTES
-            ========================= */}
+            {/* AMBIENTES */}
 
             <div className="zonas-reserva-grid">
 
-              {zonas.map((opcion) => (
+              {
+                zonas.map(
+                  (opcion) => (
 
-                <button
-                  type="button"
+                    <button
+                      type="button"
 
-                  key={opcion.nombre}
+                      key={opcion.nombre}
 
-                  className={
-                    zona === opcion.nombre
-                      ? 'zona-reserva-card seleccionada'
-                      : 'zona-reserva-card'
-                  }
-
-                  onClick={() =>
-                    seleccionarZona(opcion.nombre)
-                  }
-                >
-
-
-                  <div className="zona-reserva-imagen">
-
-                    <img
-                      src={opcion.imagen}
-                      alt={opcion.nombre}
-                    />
-
-
-                    {
-                      zona === opcion.nombre && (
-
-                        <span className="zona-check">
-                          ✓
-                        </span>
-
-                      )
-                    }
-
-                  </div>
-
-
-
-                  <div className="zona-reserva-info">
-
-                    <strong>
-                      {opcion.nombre}
-                    </strong>
-
-                    <p>
-                      {opcion.descripcion}
-                    </p>
-
-                    <span>
-
-                      {
+                      className={
                         zona === opcion.nombre
-                          ? 'SELECCIONADO'
-                          : 'SELECCIONAR'
+
+                          ? 'zona-reserva-card seleccionada'
+
+                          : 'zona-reserva-card'
                       }
 
-                    </span>
+                      onClick={() =>
+                        seleccionarZona(
+                          opcion.nombre
+                        )
+                      }
+                    >
 
-                  </div>
 
-                </button>
+                      <div className="zona-reserva-imagen">
 
-              ))}
+                        <img
+                          src={opcion.imagen}
+                          alt={opcion.nombre}
+                        />
+
+
+                        {
+                          zona === opcion.nombre && (
+
+                            <span className="zona-check">
+                              ✓
+                            </span>
+
+                          )
+                        }
+
+                      </div>
+
+
+
+                      <div className="zona-reserva-info">
+
+                        <strong>
+                          {opcion.nombre}
+                        </strong>
+
+                        <p>
+                          {opcion.descripcion}
+                        </p>
+
+                        <span>
+
+                          {
+                            zona === opcion.nombre
+                              ? 'SELECCIONADO'
+                              : 'SELECCIONAR'
+                          }
+
+                        </span>
+
+                      </div>
+
+
+                    </button>
+
+                  )
+                )
+              }
 
             </div>
 
@@ -558,8 +1100,7 @@ export const Reserva = () => {
           {/* ==================================================
               MESAS
 
-              Solamente aparecen cuando el usuario
-              selecciona un ambiente específico.
+              Solo si eligió ambiente específico.
           ================================================== */}
 
           {
@@ -568,8 +1109,6 @@ export const Reserva = () => {
 
               <div className="reserva-grupo mesas-cliente-seccion">
 
-
-                {/* ENCABEZADO */}
 
                 <div className="mesas-cliente-header">
 
@@ -582,140 +1121,181 @@ export const Reserva = () => {
                   </h2>
 
                   <p>
-                    Selecciona la mesa que prefieras.
+                    Selecciona la mesa
+                    que prefieras.
                   </p>
 
                 </div>
 
 
 
-                {/* =========================
-                    LISTA DE MESAS
-                ========================= */}
-
                 <div className="mesas-cliente-lista">
 
-                  {mesas.map((mesa) => {
+
+                  {
+                    mesas.map(
+                      (mesa) => {
 
 
-                    const capacidadInsuficiente =
-                      personas > mesa.capacidad;
-                    
-                    const noDisponible =
-                    !mesa.disponible || capacidadInsuficiente;
-
-                    const seleccionada =
-                      mesaSeleccionada?.id === mesa.id;
+                        const capacidadInsuficiente =
+                          personas >
+                          mesa.capacidad;
 
 
-                    return (
-
-                      <button
-                        type="button"
-
-                        key={mesa.id}
-
-                        disabled={noDisponible}
-
-                        onClick={() =>
-                          setMesaSeleccionada(mesa)
-                        }
-
-                        className={`
-                          mesa-cliente-card
-                          ${seleccionada ? 'seleccionada' : ''}
-                          ${noDisponible ? 'bloqueada' : ''}
-                        `}
-                      >
+                        const noDisponible =
+                          !mesa.disponible ||
+                          capacidadInsuficiente;
 
 
-                        {/* IMAGEN */}
-
-                        <div className="mesa-cliente-imagen">
-
-                          <img
-                            src={zonaSeleccionada.imagen}
-                            alt={`${mesa.nombre} - ${zona}`}
-                          />
-
-                        </div>
+                        const seleccionada =
+                          mesaSeleccionada?.id ===
+                          mesa.id;
 
 
+                        return (
 
-                        {/* INFORMACIÓN */}
+                          <button
+                            type="button"
 
-                        <div className="mesa-cliente-info">
+                            key={mesa.id}
 
-                          <span>
-                            MESA
-                          </span>
+                            disabled={
+                              noDisponible
+                            }
 
-                          <h3>
-                            {mesa.nombre}
-                          </h3>
+                            onClick={() =>
+                              setMesaSeleccionada(
+                                mesa
+                              )
+                            }
 
-                          <p>
-                            {mesa.descripcion}
-                          </p>
+                            className={`
+                              mesa-cliente-card
 
-                          <small>
-                            Capacidad máxima:
-                            {' '}
-                            {mesa.capacidad} personas
-                          </small>
+                              ${
+                                seleccionada
+                                  ? 'seleccionada'
+                                  : ''
+                              }
 
-                        </div>
+                              ${
+                                noDisponible
+                                  ? 'bloqueada'
+                                  : ''
+                              }
+                            `}
+                          >
+
+
+                            {/* FOTO */}
+
+                            <div className="mesa-cliente-imagen">
+
+                              <img
+                                src={
+                                  zonaSeleccionada.imagen
+                                }
+
+                                alt={
+                                  `${mesa.nombre} - ${zona}`
+                                }
+                              />
+
+                            </div>
 
 
 
-                        {/* ACCIÓN */}
+                            {/* INFORMACIÓN */}
 
-                        <div className="mesa-cliente-accion">
+                            <div className="mesa-cliente-info">
 
-                          {
-                            capacidadInsuficiente ? (
-
-                              <span className="mesa-capacidad-error">
-                                NO DISPONIBLE
+                              <span>
+                                MESA
                               </span>
 
-                            ) : seleccionada ? (
+                              <h3>
+                                {mesa.nombre}
+                              </h3>
 
-                              <>
-                                <span className="mesa-check-simple">
-                                  ✓
-                                </span>
+                              <p>
+                                {mesa.descripcion}
+                              </p>
 
-                                <strong>
-                                  SELECCIONADA
-                                </strong>
-                              </>
+                              <small>
+                                Capacidad máxima:
+                                {' '}
+                                {mesa.capacidad}
+                                {' '}
+                                personas
+                              </small>
 
-                            ) : (
-
-                              <strong>
-                                SELECCIONAR
-                              </strong>
-
-                            )
-                          }
-
-                        </div>
+                            </div>
 
 
-                      </button>
 
-                    );
+                            {/* ESTADO */}
 
-                  })}
+                            <div className="mesa-cliente-accion">
+
+
+                              {
+                                !mesa.disponible ? (
+
+                                  <span className="mesa-capacidad-error">
+                                    OCUPADA
+                                  </span>
+
+                                )
+
+                                : capacidadInsuficiente ? (
+
+                                  <span className="mesa-capacidad-error">
+                                    CAPACIDAD INSUFICIENTE
+                                  </span>
+
+                                )
+
+                                : seleccionada ? (
+
+                                  <>
+                                    <span className="mesa-check-simple">
+                                      ✓
+                                    </span>
+
+                                    <strong>
+                                      SELECCIONADA
+                                    </strong>
+                                  </>
+
+                                )
+
+                                : (
+
+                                  <strong>
+                                    SELECCIONAR
+                                  </strong>
+
+                                )
+                              }
+
+
+                            </div>
+
+
+                          </button>
+
+                        );
+
+                      }
+                    )
+                  }
+
 
                 </div>
 
 
 
-                {/* =========================
-                    RESUMEN SELECCIONADO
-                ========================= */}
+                {/* MESA ELEGIDA */}
 
                 {
                   mesaSeleccionada && (
@@ -726,16 +1306,22 @@ export const Reserva = () => {
                         ✓
                       </span>
 
-
                       <div>
 
                         <strong>
-                          {mesaSeleccionada.nombre} seleccionada
+                          {
+                            mesaSeleccionada.nombre
+                          }
+                          {' '}
+                          seleccionada
                         </strong>
 
                         <p>
-                          {zona} · Para tu reserva de{' '}
-                          {personas} personas.
+                          {zona}
+                          {' · '}
+                          {personas}
+                          {' '}
+                          personas
                         </p>
 
                       </div>
@@ -754,7 +1340,7 @@ export const Reserva = () => {
 
 
           {/* ==================================================
-              NECESIDADES ADICIONALES
+              REQUERIMIENTOS
           ================================================== */}
 
           <div className="reserva-opciones">
@@ -763,9 +1349,13 @@ export const Reserva = () => {
 
               <input
                 type="checkbox"
+
                 checked={accesible}
+
                 onChange={(e) =>
-                  setAccesible(e.target.checked)
+                  setAccesible(
+                    e.target.checked
+                  )
                 }
               />
 
@@ -778,9 +1368,13 @@ export const Reserva = () => {
 
               <input
                 type="checkbox"
+
                 checked={sillaNino}
+
                 onChange={(e) =>
-                  setSillaNino(e.target.checked)
+                  setSillaNino(
+                    e.target.checked
+                  )
                 }
               />
 
@@ -798,8 +1392,17 @@ export const Reserva = () => {
 
           <button
             type="button"
+
             className="btn buscar-disponibilidad"
-            onClick={buscarDisponibilidad}
+
+            onClick={
+              buscarDisponibilidad
+            }
+
+            disabled={
+              totalAsignados !==
+              personas
+            }
           >
             BUSCAR DISPONIBILIDAD
           </button>

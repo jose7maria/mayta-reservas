@@ -29,6 +29,7 @@ import { Contacto } from './pages/Contacto';
 import { Calendario } from './pages/Calendario';
 import { Reservas } from './pages/Reservas';
 import { Platos } from './pages/Platos';
+import { PagoReserva } from './pages/PagoReserva';
 
 
 /* =========================================
@@ -118,6 +119,11 @@ const Contenido = () => {
           element={<Chef />}
         />
 
+
+          <Route
+          path="/pago-reserva"
+          element={<PagoReserva />}
+        />
 
         <Route
           path="/contacto"

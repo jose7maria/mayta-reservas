@@ -31,7 +31,13 @@ export const Disponibilidad = () => {
     mesa = 'Asignación automática',
     capacidadMesa = null,
     accesible = false,
-    sillaNino = false
+    sillaNino = false,
+
+    /* NUEVOS DATOS */
+
+    consumos = [],
+    totalConsumos = 0
+
   } = datosReserva;
 
 
@@ -40,8 +46,10 @@ export const Disponibilidad = () => {
      HORARIO SELECCIONADO
   ========================= */
 
-  const [horaSeleccionada, setHoraSeleccionada] =
-    useState(null);
+  const [
+    horaSeleccionada,
+    setHoraSeleccionada
+  ] = useState(null);
 
 
 
@@ -49,15 +57,15 @@ export const Disponibilidad = () => {
      HORARIOS SIMULADOS
   ========================= */
 
-  const [horarios, setHorarios] = useState([]);
+  const [
+    horarios,
+    setHorarios
+  ] = useState([]);
 
 
 
   /* ==================================================
      CARGAR HORARIOS
-
-     Simulamos disponibilidad.
-     Más adelante esto vendría del backend.
   ================================================== */
 
   useEffect(() => {
@@ -106,7 +114,8 @@ export const Disponibilidad = () => {
 
   const cantidadDisponibles =
     horarios.filter(
-      horario => horario.disponible
+      horario =>
+        horario.disponible
     ).length;
 
 
@@ -115,25 +124,32 @@ export const Disponibilidad = () => {
      FORMATEAR FECHA
   ================================================== */
 
-  const formatearFecha = (fechaOriginal) => {
+  const formatearFecha = (
+    fechaOriginal
+  ) => {
 
     if (!fechaOriginal) {
+
       return 'No seleccionada';
+
     }
 
 
     const fechaObjeto =
-      new Date(`${fechaOriginal}T00:00:00`);
+      new Date(
+        `${fechaOriginal}T00:00:00`
+      );
 
 
-    return fechaObjeto.toLocaleDateString(
-      'es-PE',
-      {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }
-    );
+    return fechaObjeto
+      .toLocaleDateString(
+        'es-PE',
+        {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }
+      );
 
   };
 
@@ -147,36 +163,53 @@ export const Disponibilidad = () => {
 
     if (!horaSeleccionada) {
 
-      alert('Selecciona un horario');
+      alert(
+        'Selecciona un horario'
+      );
 
       return;
 
     }
 
 
-    navigate('/datos-cliente', {
+    navigate(
+      '/datos-cliente',
+      {
 
-      state: {
+        state: {
 
-        fecha: fecha,
+          ...datosReserva,
 
-        personas: personas,
+          fecha: fecha,
 
-        zona: zona,
+          personas: personas,
 
-        mesa: mesa,
+          zona: zona,
 
-        capacidadMesa: capacidadMesa,
+          mesa: mesa,
 
-        hora: horaSeleccionada,
+          capacidadMesa:
+            capacidadMesa,
 
-        accesible: accesible,
+          hora:
+            horaSeleccionada,
 
-        sillaNino: sillaNino
+          accesible:
+            accesible,
+
+          sillaNino:
+            sillaNino,
+
+          consumos:
+            consumos,
+
+          totalConsumos:
+            totalConsumos
+
+        }
 
       }
-
-    });
+    );
 
   };
 
@@ -216,6 +249,7 @@ export const Disponibilidad = () => {
 
           {/* ==================================================
               PROGRESO
+              2 DE 5
           ================================================== */}
 
           <div className="reserva-pasos">
@@ -242,12 +276,18 @@ export const Disponibilidad = () => {
               4
             </span>
 
+            <span className="linea"></span>
+
+            <span className="paso">
+              5
+            </span>
+
           </div>
 
 
 
           {/* ==================================================
-              MODIFICAR RESERVA
+              MODIFICAR
           ================================================== */}
 
           <div className="disponibilidad-modificar">
@@ -255,7 +295,16 @@ export const Disponibilidad = () => {
             <button
               type="button"
               className="btn-modificar-reserva"
-              onClick={() => navigate('/reserva')}
+
+              onClick={() =>
+                navigate(
+                  '/reserva',
+                  {
+                    state:
+                      datosReserva
+                  }
+                )
+              }
             >
               MODIFICAR
             </button>
@@ -265,13 +314,11 @@ export const Disponibilidad = () => {
 
 
           {/* ==================================================
-              RESUMEN DE LA RESERVA
+              RESUMEN PRINCIPAL
           ================================================== */}
 
           <div className="disponibilidad-resumen disponibilidad-resumen-cuatro">
 
-
-            {/* FECHA */}
 
             <div>
 
@@ -287,8 +334,6 @@ export const Disponibilidad = () => {
 
 
 
-            {/* PERSONAS */}
-
             <div>
 
               <span>
@@ -296,14 +341,18 @@ export const Disponibilidad = () => {
               </span>
 
               <strong>
-                {personas} personas
+                {personas}
+                {' '}
+                {
+                  personas === 1
+                    ? 'persona'
+                    : 'personas'
+                }
               </strong>
 
             </div>
 
 
-
-            {/* UBICACIÓN */}
 
             <div>
 
@@ -318,8 +367,6 @@ export const Disponibilidad = () => {
             </div>
 
 
-
-            {/* MESA */}
 
             <div>
 
@@ -339,7 +386,104 @@ export const Disponibilidad = () => {
 
 
           {/* ==================================================
-              DISPONIBILIDAD
+              RESUMEN DEL CONSUMO
+          ================================================== */}
+
+          <div className="disponibilidad-consumo">
+
+
+            <div className="disponibilidad-consumo-header">
+
+              <div>
+
+                <span>
+                  DETALLE DE CONSUMO
+                </span>
+
+                <h2>
+                  EXPERIENCIA SELECCIONADA
+                </h2>
+
+              </div>
+
+
+              <strong>
+                S/{' '}
+                {
+                  totalConsumos
+                    .toLocaleString(
+                      'es-PE'
+                    )
+                }
+              </strong>
+
+            </div>
+
+
+
+            <div className="disponibilidad-consumo-lista">
+
+
+              {
+                consumos.map(
+                  (consumo) => (
+
+                    <div
+                      className="disponibilidad-consumo-item"
+                      key={consumo.id}
+                    >
+
+
+                      <div>
+
+                        <strong>
+                          {consumo.nombre}
+                        </strong>
+
+                        <span>
+
+                          {consumo.cantidad}
+                          {' × '}
+                          S/{' '}
+                          {
+                            consumo.precioUnitario
+                              .toLocaleString(
+                                'es-PE'
+                              )
+                          }
+
+                        </span>
+
+                      </div>
+
+
+                      <strong>
+                        S/{' '}
+                        {
+                          consumo.subtotal
+                            .toLocaleString(
+                              'es-PE'
+                            )
+                        }
+                      </strong>
+
+
+                    </div>
+
+                  )
+                )
+              }
+
+
+            </div>
+
+
+          </div>
+
+
+
+          {/* ==================================================
+              ESTADO DISPONIBILIDAD
           ================================================== */}
 
           <div className="estado-disponibilidad">
@@ -357,9 +501,12 @@ export const Disponibilidad = () => {
               </h2>
 
               <p>
-                Tenemos {cantidadDisponibles}{' '}
-                horarios disponibles para
-                la fecha seleccionada.
+                Tenemos
+                {' '}
+                {cantidadDisponibles}
+                {' '}
+                horarios disponibles
+                para la fecha seleccionada.
               </p>
 
             </div>
@@ -383,67 +530,80 @@ export const Disponibilidad = () => {
 
             <div className="horarios-grid">
 
-              {horarios.map((horario) => {
-
-                const seleccionado =
-                  horaSeleccionada === horario.hora;
-
-
-                return (
-
-                  <button
-                    type="button"
-
-                    key={horario.hora}
-
-                    disabled={!horario.disponible}
-
-                    className={`
-                      horario-btn
-
-                      ${
-                        horario.disponible
-                          ? 'disponible'
-                          : 'no-disponible'
-                      }
-
-                      ${
-                        seleccionado
-                          ? 'seleccionado'
-                          : ''
-                      }
-                    `}
-
-                    onClick={() =>
-                      setHoraSeleccionada(
-                        horario.hora
-                      )
-                    }
-                  >
-
-                    <strong>
-                      {horario.hora}
-                    </strong>
+              {
+                horarios.map(
+                  (horario) => {
 
 
-                    <span>
-
-                      {
-                        horario.disponible
-                          ? seleccionado
-                            ? 'Seleccionado'
-                            : 'Disponible'
-                          : 'No disponible'
-                      }
-
-                    </span>
+                    const seleccionado =
+                      horaSeleccionada ===
+                      horario.hora;
 
 
-                  </button>
+                    return (
 
-                );
+                      <button
+                        type="button"
 
-              })}
+                        key={horario.hora}
+
+                        disabled={
+                          !horario.disponible
+                        }
+
+                        className={`
+                          horario-btn
+
+                          ${
+                            horario.disponible
+                              ? 'disponible'
+                              : 'no-disponible'
+                          }
+
+                          ${
+                            seleccionado
+                              ? 'seleccionado'
+                              : ''
+                          }
+                        `}
+
+                        onClick={() =>
+                          setHoraSeleccionada(
+                            horario.hora
+                          )
+                        }
+                      >
+
+
+                        <strong>
+                          {horario.hora}
+                        </strong>
+
+
+                        <span>
+
+                          {
+                            horario.disponible
+
+                              ? seleccionado
+
+                                ? 'Seleccionado'
+
+                                : 'Disponible'
+
+                              : 'No disponible'
+                          }
+
+                        </span>
+
+
+                      </button>
+
+                    );
+
+                  }
+                )
+              }
 
             </div>
 
@@ -458,14 +618,20 @@ export const Disponibilidad = () => {
           <div className="leyenda-horarios">
 
             <span>
+
               <i className="leyenda-punto disponible"></i>
+
               Disponible
+
             </span>
 
 
             <span>
+
               <i className="leyenda-punto no-disponible"></i>
+
               No disponible
+
             </span>
 
           </div>
@@ -481,9 +647,17 @@ export const Disponibilidad = () => {
 
             <button
               type="button"
+
               className="btn btn-volver"
+
               onClick={() =>
-                navigate('/reserva')
+                navigate(
+                  '/reserva',
+                  {
+                    state:
+                      datosReserva
+                  }
+                )
               }
             >
               VOLVER
@@ -496,9 +670,13 @@ export const Disponibilidad = () => {
 
               className="btn btn-continuar"
 
-              disabled={!horaSeleccionada}
+              disabled={
+                !horaSeleccionada
+              }
 
-              onClick={continuar}
+              onClick={
+                continuar
+              }
             >
               CONTINUAR
             </button>
