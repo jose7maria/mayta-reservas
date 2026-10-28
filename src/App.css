@@ -5961,3 +5961,1457 @@
     align-items: flex-start;
   }
 }
+
+/* ==================================================
+   PRE-RESERVA / CONTADOR
+================================================== */
+
+.pre-reserva-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  margin: 25px 0;
+
+  padding: 18px 20px;
+
+  background-color: #edf3ef;
+  border: 1px solid #a9c0b3;
+  border-radius: 6px;
+}
+
+.pre-reserva-box span {
+  display: block;
+  color: #b58a57;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.pre-reserva-box strong {
+  color: #19382b;
+}
+
+.pre-reserva-box p {
+  margin: 4px 0 0;
+  color: #667168;
+  font-size: 9px;
+}
+
+.pre-reserva-tiempo {
+  text-align: right;
+}
+
+.pre-reserva-tiempo strong {
+  display: block;
+  margin-top: 3px;
+
+  font-size: 27px;
+  letter-spacing: 2px;
+}
+
+
+/* ==================================================
+   LIBRO MAYTA
+================================================== */
+
+.pago-adicional {
+  margin: 18px 0;
+}
+
+.pago-adicional label {
+  display: grid;
+  grid-template-columns: 25px 1fr auto;
+  align-items: center;
+  gap: 12px;
+
+  padding: 16px 18px;
+
+  border: 1px solid #ddd5c8;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.pago-adicional label:hover {
+  border-color: #b58a57;
+}
+
+.pago-adicional div strong {
+  display: block;
+  color: #19382b;
+  font-size: 11px;
+}
+
+.pago-adicional div span {
+  color: #777;
+  font-size: 9px;
+}
+
+.pago-adicional > label > strong {
+  color: #19382b;
+}
+
+
+/* ==================================================
+   TOTAL FINAL
+================================================== */
+
+.pago-total-final {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+
+  padding: 20px;
+
+  background-color: #0b1510;
+  border-radius: 5px;
+}
+
+.pago-total-final span {
+  color: #b58a57;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.pago-total-final p {
+  color: #aaa;
+  font-size: 9px;
+  margin: 4px 0 0;
+}
+
+.pago-total-final > strong {
+  color: white;
+  font-size: 25px;
+}
+
+
+/* ==================================================
+   COMPROBANTE
+================================================== */
+
+.comprobante-opciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.comprobante-opcion {
+  padding: 12px;
+
+  background: white;
+  border: 1px solid #d7d0c3;
+  border-radius: 4px;
+
+  color: #555;
+  cursor: pointer;
+}
+
+.comprobante-opcion.activa {
+  background-color: #19382b;
+  border-color: #19382b;
+  color: white;
+}
+
+.comprobante-datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+
+  margin-top: 18px;
+}
+
+.comprobante-datos label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #19382b;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.comprobante-correo {
+  grid-column: 1 / -1;
+}
+
+.comprobante-nota {
+  margin-top: 12px !important;
+
+  color: #777 !important;
+  font-size: 9px !important;
+}
+
+
+/* ==================================================
+   RESERVA EXPIRADA
+================================================== */
+
+.pago-expirado {
+  text-align: center;
+
+  padding: 40px 10px;
+}
+
+.pago-expirado-icono {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background-color: #9b4e47;
+  color: white;
+
+  font-size: 28px;
+}
+
+.pago-expirado > span {
+  color: #b58a57;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.pago-expirado h1 {
+  margin: 8px 0 12px;
+  color: #19382b;
+}
+
+.pago-expirado p {
+  color: #777;
+}
+
+.pago-expirado-detalle {
+  margin: 25px auto;
+
+  padding: 18px;
+
+  max-width: 400px;
+
+  background-color: #f3efe6;
+  border-radius: 5px;
+}
+
+.pago-expirado-detalle strong,
+.pago-expirado-detalle span {
+  display: block;
+}
+
+.pago-expirado-detalle strong {
+  color: #19382b;
+}
+
+.pago-expirado-detalle span {
+  color: #777;
+  margin-top: 4px;
+}
+
+
+/* ==================================================
+   RESPONSIVE PAGO NUEVO
+================================================== */
+
+@media (max-width: 768px) {
+
+  .pre-reserva-box,
+  .pago-total-final {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pre-reserva-tiempo {
+    text-align: left;
+  }
+
+  .comprobante-opciones,
+  .comprobante-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .comprobante-correo {
+    grid-column: auto;
+  }
+
+}
+
+/* ==================================================
+   CONFIRMACIÓN - 5 COLUMNAS
+================================================== */
+
+.confirmacion-datos-grid.confirmacion-cinco {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+
+/* ==================================================
+   CONSUMO
+================================================== */
+
+.confirmacion-consumo {
+  border: 1px solid #ddd5c8;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.confirmacion-consumo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 14px 18px;
+
+  border-bottom: 1px solid #eee8df;
+}
+
+.confirmacion-consumo-item:last-child {
+  border-bottom: none;
+}
+
+.confirmacion-consumo-item div > strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 11px;
+
+  margin-bottom: 3px;
+}
+
+.confirmacion-consumo-item div > span {
+  color: #777;
+
+  font-size: 9px;
+}
+
+.confirmacion-consumo-item > strong {
+  color: #b58a57;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+}
+
+
+/* TOTAL */
+
+.confirmacion-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 17px 20px;
+
+  margin-top: 12px;
+
+  background-color: #0b1510;
+
+  border-radius: 5px;
+}
+
+.confirmacion-total span {
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+.confirmacion-total strong {
+  color: #ffffff;
+
+  font-size: 23px;
+}
+
+
+/* ==================================================
+   PAGO
+================================================== */
+
+.confirmacion-pago {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 1px;
+
+  background-color: #ddd5c8;
+
+  border: 1px solid #ddd5c8;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+.confirmacion-pago > div {
+  background-color: #ffffff;
+
+  padding: 16px;
+
+  text-align: center;
+}
+
+.confirmacion-pago span {
+  display: block;
+
+  color: #777;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 5px;
+}
+
+.confirmacion-pago strong {
+  color: #19382b;
+
+  font-size: 11px;
+}
+
+.confirmacion-pago .estado-pagado {
+  color: #397052;
+}
+
+
+/* ==================================================
+   COMPROBANTE
+================================================== */
+
+.confirmacion-comprobante {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.confirmacion-comprobante > div {
+  padding: 15px;
+
+  background-color: #f3efe6;
+
+  border-radius: 5px;
+}
+
+.confirmacion-comprobante span {
+  display: block;
+
+  color: #777;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 4px;
+}
+
+.confirmacion-comprobante strong {
+  color: #19382b;
+
+  font-size: 11px;
+}
+
+
+/* ==================================================
+   NOTIFICACIONES
+================================================== */
+
+.confirmacion-notificaciones {
+  text-align: left;
+
+  margin: 20px 0;
+
+  padding: 17px;
+
+  background-color: #edf4ef;
+
+  border: 1px solid #a9c0b3;
+
+  border-radius: 5px;
+}
+
+.confirmacion-notificaciones > span {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 10px;
+}
+
+.confirmacion-notificaciones p {
+  color: #45604f;
+
+  font-size: 10px;
+
+  margin: 5px 0;
+}
+
+.confirmacion-demo-nota {
+  color: #999 !important;
+
+  font-size: 9px !important;
+}
+
+
+/* ==================================================
+   RESPONSIVE CONFIRMACIÓN
+================================================== */
+
+@media (max-width: 768px) {
+
+  .confirmacion-datos-grid.confirmacion-cinco {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .confirmacion-pago {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .confirmacion-comprobante {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .confirmacion-datos-grid.confirmacion-cinco,
+  .confirmacion-pago {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ==================================================
+   TICKET FINAL DE RESERVA
+================================================== */
+
+.modal-reserva {
+  width: 100%;
+  max-width: 520px;
+
+  background-color: #ffffff;
+
+  padding: 42px 45px;
+
+  border-radius: 8px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+/* CHECK */
+
+.modal-check {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 16px;
+
+  border-radius: 50%;
+
+  background-color: #19382b;
+  color: #ffffff;
+
+  font-size: 26px;
+}
+
+
+/* SUBTÍTULO */
+
+.modal-subtitulo {
+  display: block;
+
+  color: #b58a57;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 7px;
+}
+
+
+/* TÍTULO */
+
+.modal-reserva h2 {
+  color: #19382b;
+
+  font-size: 26px;
+
+  margin: 0 0 10px;
+}
+
+
+.modal-reserva > p {
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin-bottom: 25px;
+}
+
+
+/* ==================================================
+   CÓDIGO
+================================================== */
+
+.codigo-reserva {
+  background-color: #f3efe6;
+
+  padding: 18px 20px;
+
+  border-radius: 6px;
+
+  margin-bottom: 22px;
+}
+
+
+.codigo-reserva span {
+  display: block;
+
+  color: #777;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 7px;
+}
+
+
+.codigo-reserva strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 25px;
+
+  letter-spacing: 2px;
+}
+
+
+/* ==================================================
+   DATOS DEL TICKET
+================================================== */
+
+.modal-resumen {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  text-align: left;
+}
+
+
+.modal-resumen span {
+  display: block;
+
+  padding: 11px 13px;
+
+  background-color: #faf8f4;
+
+  border: 1px solid #eee8df;
+
+  border-radius: 5px;
+
+  color: #666;
+
+  font-size: 10px;
+}
+
+
+.modal-resumen span strong {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 4px;
+}
+
+
+/* TOTAL OCUPA TODO EL ANCHO */
+
+.modal-resumen span:last-child {
+  grid-column: 1 / -1;
+
+  background-color: #19382b;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 16px;
+}
+
+
+.modal-resumen span:last-child strong {
+  color: #b58a57;
+
+  margin-bottom: 5px;
+}
+
+
+/* ==================================================
+   NOTIFICACIONES
+================================================== */
+
+.confirmacion-notificaciones {
+  text-align: left;
+
+  padding: 16px 18px;
+
+  margin: 20px 0;
+
+  background-color: #edf4ef;
+
+  border: 1px solid #a9c0b3;
+
+  border-radius: 6px;
+}
+
+
+.confirmacion-notificaciones > span {
+  display: block;
+
+  color: #19382b;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  font-weight: 600;
+
+  margin-bottom: 10px;
+}
+
+
+.confirmacion-notificaciones p {
+  color: #45604f;
+
+  font-size: 9px;
+
+  margin: 6px 0;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+
+.confirmacion-demo-nota {
+  margin: 12px 0 20px !important;
+
+  color: #999 !important;
+
+  font-size: 8px !important;
+}
+
+
+/* BOTÓN */
+
+.btn-finalizar {
+  width: 100%;
+
+  background-color: #19382b !important;
+
+  border-color: #19382b !important;
+
+  color: #ffffff !important;
+
+  padding: 13px !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .modal-reserva {
+    max-width: 92%;
+
+    padding: 32px 22px;
+  }
+
+
+  .modal-resumen {
+    grid-template-columns: 1fr;
+  }
+
+
+  .modal-resumen span:last-child {
+    grid-column: auto;
+  }
+
+}
+
+/* ==================================================
+   ADMIN - RESERVAS
+================================================== */
+
+.admin-reservas-page {
+  width: 100%;
+}
+
+
+/* CABECERA */
+
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+.admin-page-header > div > span {
+  color: #b58a57;
+
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.admin-page-header h1 {
+  color: #19382b;
+
+  margin: 5px 0;
+
+  font-size: 28px;
+}
+
+.admin-page-header p {
+  color: #777;
+
+  margin: 0;
+
+  font-size: 12px;
+}
+
+.admin-btn-recargar {
+  padding: 9px 15px;
+
+  background-color: #19382b;
+
+  border: none;
+  border-radius: 4px;
+
+  color: #ffffff;
+
+  font-size: 9px;
+
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   INDICADORES
+================================================== */
+
+.admin-reservas-kpis {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.admin-reserva-kpi {
+  padding: 20px;
+
+  background-color: #ffffff;
+
+  border-radius: 6px;
+
+  border-top:
+    3px solid #b58a57;
+}
+
+.admin-reserva-kpi span {
+  display: block;
+
+  color: #777;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 8px;
+}
+
+.admin-reserva-kpi strong {
+  color: #19382b;
+
+  font-size: 23px;
+}
+
+
+/* ==================================================
+   TARJETA / TABLA
+================================================== */
+
+.admin-reservas-card {
+  background-color: #ffffff;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+}
+
+.admin-reservas-card-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 20px 22px;
+
+  border-bottom:
+    1px solid #eee8df;
+}
+
+.admin-reservas-card-header span {
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.admin-reservas-card-header h2 {
+  color: #19382b;
+
+  font-size: 16px;
+
+  margin: 4px 0 0;
+}
+
+.admin-reservas-card-header > strong {
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+.admin-tabla-scroll {
+  overflow-x: auto;
+}
+
+
+.admin-reservas-tabla {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 1000px;
+}
+
+.admin-reservas-tabla th {
+  padding: 12px 14px;
+
+  background-color: #f3efe6;
+
+  color: #777;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  text-align: left;
+}
+
+.admin-reservas-tabla td {
+  padding: 14px;
+
+  border-bottom:
+    1px solid #eee8df;
+
+  color: #555;
+
+  font-size: 10px;
+
+  vertical-align: middle;
+}
+
+.admin-reservas-tabla tbody tr:hover {
+  background-color: #faf8f4;
+}
+
+.admin-codigo-reserva {
+  color: #19382b;
+}
+
+.admin-tabla-secundario {
+  display: block;
+
+  color: #999;
+
+  font-size: 8px;
+
+  margin-top: 3px;
+}
+
+
+/* ==================================================
+   BADGES
+================================================== */
+
+.admin-badge {
+  display: inline-block;
+
+  padding: 5px 8px;
+
+  border-radius: 12px;
+
+  font-size: 8px;
+
+  font-weight: 600;
+}
+
+.admin-badge.pago,
+.admin-badge.estado-confirmada {
+  background-color: #e5f0e9;
+
+  color: #397052;
+}
+
+.admin-badge.pendiente,
+.admin-badge.estado-pendiente-de-pago {
+  background-color: #f4ebd8;
+
+  color: #9a702e;
+}
+
+.admin-badge.estado-cancelada {
+  background-color: #f3e4e2;
+
+  color: #994a43;
+}
+
+.admin-badge.estado-expirada {
+  background-color: #ececec;
+
+  color: #777;
+}
+
+
+/* VER */
+
+.admin-btn-ver {
+  padding: 7px 12px;
+
+  background-color: transparent;
+
+  border:
+    1px solid #19382b;
+
+  border-radius: 4px;
+
+  color: #19382b;
+
+  font-size: 8px;
+
+  cursor: pointer;
+}
+
+.admin-btn-ver:hover {
+  background-color: #19382b;
+
+  color: white;
+}
+
+
+/* VACÍO */
+
+.admin-reservas-vacio {
+  padding: 60px 20px;
+
+  text-align: center;
+}
+
+.admin-reservas-vacio strong {
+  color: #19382b;
+}
+
+.admin-reservas-vacio p {
+  color: #999;
+
+  font-size: 11px;
+
+  margin-top: 5px;
+}
+
+
+/* ==================================================
+   MODAL ADMIN
+================================================== */
+
+.admin-modal-fondo {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background-color:
+    rgba(5, 12, 8, 0.75);
+}
+
+.admin-modal-reserva {
+  width: 100%;
+  max-width: 850px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  background-color: #ffffff;
+
+  border-radius: 7px;
+}
+
+
+/* CABECERA MODAL */
+
+.admin-modal-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+
+  margin-bottom: 25px;
+
+  border-bottom:
+    1px solid #eee8df;
+}
+
+.admin-modal-header span {
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.admin-modal-header h2 {
+  margin: 4px 0 0;
+
+  color: #19382b;
+}
+
+.admin-modal-header button {
+  width: 35px;
+  height: 35px;
+
+  border: none;
+
+  background: none;
+
+  color: #777;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   DETALLE
+================================================== */
+
+.admin-detalle-seccion {
+  margin-bottom: 28px;
+}
+
+.admin-detalle-seccion h3 {
+  padding-bottom: 8px;
+
+  margin-bottom: 12px;
+
+  border-bottom:
+    1px solid #eee8df;
+
+  color: #19382b;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+}
+
+.admin-detalle-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.admin-detalle-grid > div {
+  padding: 12px;
+
+  background-color: #f7f4ee;
+
+  border-radius: 4px;
+}
+
+.admin-detalle-grid span {
+  display: block;
+
+  color: #999;
+
+  font-size: 7px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 4px;
+}
+
+.admin-detalle-grid strong {
+  color: #19382b;
+
+  font-size: 10px;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* CONSUMOS */
+
+.admin-detalle-consumos {
+  border:
+    1px solid #eee8df;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+.admin-detalle-consumos > div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 11px 14px;
+
+  border-bottom:
+    1px solid #eee8df;
+
+  font-size: 9px;
+}
+
+.admin-detalle-consumos > div:last-child {
+  border-bottom: none;
+}
+
+.admin-detalle-consumos strong {
+  color: #b58a57;
+
+  white-space: nowrap;
+}
+
+
+/* TOTAL */
+
+.admin-detalle-total {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+
+  padding: 15px;
+
+  background-color: #0b1510;
+
+  border-radius: 4px;
+}
+
+.admin-detalle-total span {
+  color: #b58a57;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.admin-detalle-total strong {
+  color: white;
+
+  font-size: 18px;
+}
+
+
+/* COMENSALES */
+
+.admin-comensales-lista {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 10px;
+}
+
+.admin-comensales-lista > div {
+  padding: 13px;
+
+  border:
+    1px solid #eee8df;
+
+  border-radius: 4px;
+}
+
+.admin-comensales-lista strong {
+  color: #19382b;
+
+  font-size: 10px;
+}
+
+.admin-comensales-lista span {
+  margin-left: 8px;
+
+  color: #b58a57;
+
+  font-size: 8px;
+}
+
+.admin-comensales-lista p {
+  color: #777;
+
+  font-size: 9px;
+
+  margin: 7px 0 0;
+}
+
+
+.admin-observaciones {
+  padding: 13px;
+
+  background-color: #f3efe6;
+
+  border-radius: 4px;
+
+  color: #666;
+
+  font-size: 10px;
+}
+
+
+/* CERRAR */
+
+.admin-btn-cerrar-modal {
+  width: 100%;
+
+  padding: 11px;
+
+  background-color: #19382b;
+
+  border: none;
+
+  border-radius: 4px;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 900px) {
+
+  .admin-reservas-kpis {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .admin-detalle-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .admin-page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .admin-reservas-kpis,
+  .admin-detalle-grid,
+  .admin-comensales-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-modal-reserva {
+    padding: 20px;
+  }
+
+}

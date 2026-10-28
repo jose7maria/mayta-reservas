@@ -1,634 +1,1258 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AdminLayout } from '../components/AdminLayout';
 
 
 export const Reservas = () => {
 
-  const [filtro, setFiltro] = useState('Todas');
+  /* ==================================================
+     RESERVAS
+  ================================================== */
 
-  const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
+  const [reservas, setReservas] =
+    useState([]);
 
-
-  const [reservas, setReservas] = useState([
-
-    {
-      id: 1,
-      codigo: 'MAY-0245',
-      fecha: '30/10/2026',
-      hora: '8:00 PM',
-
-      cliente: 'José Barzola',
-      celular: '999 111 222',
-      correo: 'jose@email.com',
-
-      personas: 4,
-      mesa: 'M10',
-      zona: 'Salón principal',
-
-      estado: 'Confirmada',
-
-      comensales: [
-        {
-          id: 1,
-          tipo: 'Adulto',
-          acompanamiento: 'Maridaje',
-          restricciones: []
-        },
-        {
-          id: 2,
-          tipo: 'Adulto',
-          acompanamiento: 'Sin maridaje',
-          restricciones: ['Sin gluten']
-        },
-        {
-          id: 3,
-          tipo: 'Menor',
-          acompanamiento: 'Sin alcohol',
-          restricciones: []
-        },
-        {
-          id: 4,
-          tipo: 'Menor',
-          acompanamiento: 'Sin alcohol',
-          restricciones: ['Alergia a mariscos']
-        }
-      ],
-
-      observaciones: 'Celebración de cumpleaños.'
-    },
+  const [
+    reservaSeleccionada,
+    setReservaSeleccionada
+  ] = useState(null);
 
 
-    {
-      id: 2,
-      codigo: 'MAY-0246',
-      fecha: '30/10/2026',
-      hora: '8:30 PM',
 
-      cliente: 'Andrea Chavez',
-      celular: '988 222 333',
-      correo: 'andrea@email.com',
+  /* ==================================================
+     CARGAR LOCALSTORAGE
+  ================================================== */
 
-      personas: 2,
-      mesa: 'M3',
-      zona: 'Salón principal',
+  useEffect(() => {
 
-      estado: 'Pendiente',
+    cargarReservas();
 
-      comensales: [
-        {
-          id: 1,
-          tipo: 'Adulto',
-          acompanamiento: 'Maridaje',
-          restricciones: []
-        },
-        {
-          id: 2,
-          tipo: 'Adulto',
-          acompanamiento: 'Sin maridaje',
-          restricciones: ['Lactosa']
-        }
-      ],
-
-      observaciones: ''
-    },
+  }, []);
 
 
-    {
-      id: 3,
-      codigo: 'MAY-0247',
-      fecha: '31/10/2026',
-      hora: '7:00 PM',
 
-      cliente: 'Carlos Torres',
-      celular: '977 333 444',
-      correo: 'carlos@email.com',
+  const cargarReservas = () => {
 
-      personas: 6,
-      mesa: 'M6',
-      zona: 'Terraza / exterior',
-
-      estado: 'Confirmada',
-
-      comensales: [
-        {
-          id: 1,
-          tipo: 'Adulto',
-          acompanamiento: 'Maridaje',
-          restricciones: []
-        },
-        {
-          id: 2,
-          tipo: 'Adulto',
-          acompanamiento: 'Maridaje',
-          restricciones: []
-        },
-        {
-          id: 3,
-          tipo: 'Adulto',
-          acompanamiento: 'Sin maridaje',
-          restricciones: []
-        },
-        {
-          id: 4,
-          tipo: 'Adulto',
-          acompanamiento: 'Sin alcohol',
-          restricciones: ['Vegetariano']
-        },
-        {
-          id: 5,
-          tipo: 'Menor',
-          acompanamiento: 'Sin alcohol',
-          restricciones: []
-        },
-        {
-          id: 6,
-          tipo: 'Menor',
-          acompanamiento: 'Sin alcohol',
-          restricciones: []
-        }
-      ],
-
-      observaciones: 'Mesa cercana a una zona tranquila.'
-    }
-
-  ]);
+    const guardadas =
+      JSON.parse(
+        localStorage.getItem(
+          'reservasMayta'
+        )
+      ) || [];
 
 
-  /* =========================
-     FILTRAR
-  ========================= */
+    setReservas(
+      guardadas
+    );
 
-  const reservasFiltradas =
-    filtro === 'Todas'
-      ? reservas
-      : reservas.filter(
-          reserva => reserva.estado === filtro
-        );
-
-
-  /* =========================
-     CANCELAR RESERVA
-  ========================= */
-
-  const cancelarReserva = (id) => {
-
-    const nuevasReservas = reservas.map((reserva) => {
-
-      if (reserva.id === id) {
-
-        return {
-          ...reserva,
-          estado: 'Cancelada'
-        };
-
-      }
-
-      return reserva;
-
-    });
-
-
-    setReservas(nuevasReservas);
-
-    setReservaSeleccionada(null);
   };
 
 
+
+  /* ==================================================
+     FORMATEAR FECHA
+  ================================================== */
+
+  const formatearFecha = (
+    fecha
+  ) => {
+
+    if (!fecha) {
+      return '-';
+    }
+
+
+    const objetoFecha =
+      new Date(
+        `${fecha}T00:00:00`
+      );
+
+
+    return objetoFecha
+      .toLocaleDateString(
+        'es-PE',
+        {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }
+      );
+
+  };
+
+
+
+  /* ==================================================
+     TOTAL DE RESERVAS
+  ================================================== */
+
+  const totalReservas =
+    reservas.length;
+
+
+  const confirmadas =
+    reservas.filter(
+      reserva =>
+        reserva.estado ===
+        'Confirmada'
+    ).length;
+
+
+  const pagadas =
+    reservas.filter(
+      reserva =>
+        reserva.pago?.estado ===
+        'Pagado'
+    ).length;
+
+
+  const totalVentas =
+    reservas.reduce(
+      (total, reserva) =>
+        total +
+        Number(
+          reserva.total || 0
+        ),
+      0
+    );
+
+
+
   return (
+
     <AdminLayout>
 
 
-      {/* =========================
-          ENCABEZADO
-      ========================= */}
-
-      <div className="admin-pagina-header">
-
-        <span>
-          PANEL ADMINISTRATIVO
-        </span>
-
-        <h1>
-          Reservas
-        </h1>
-
-        <p>
-          Consulta las reservas y revisa
-          la información de cada cliente.
-        </p>
-
-      </div>
+      <div className="admin-reservas-page">
 
 
+        {/* ==================================================
+            CABECERA
+        ================================================== */}
 
-      {/* =========================
-          LISTADO
-      ========================= */}
-
-      <div className="admin-modulo">
-
-
-        {/* FILTRO */}
-
-        <div className="reservas-toolbar">
+        <div className="admin-page-header">
 
           <div>
 
-            <label>
-              Estado
-            </label>
+            <span>
+              GESTIÓN DE RESERVAS
+            </span>
 
-            <select
-              className="form-select form-select-sm"
-              value={filtro}
-              onChange={(e) =>
-                setFiltro(e.target.value)
-              }
-            >
+            <h1>
+              Reservas
+            </h1>
 
-              <option>Todas</option>
-
-              <option>Confirmada</option>
-
-              <option>Pendiente</option>
-
-              <option>Cancelada</option>
-
-            </select>
+            <p>
+              Consulta las reservas realizadas
+              por los clientes.
+            </p>
 
           </div>
 
 
-          <span>
-            {reservasFiltradas.length} reservas
-          </span>
+          <button
+            type="button"
+
+            className="admin-btn-recargar"
+
+            onClick={
+              cargarReservas
+            }
+          >
+            ACTUALIZAR
+          </button>
 
         </div>
 
 
 
-        {/* TABLA */}
+        {/* ==================================================
+            INDICADORES
+        ================================================== */}
 
-        <div className="table-responsive">
-
-          <table className="table admin-tabla">
-
-            <thead>
-
-              <tr>
-
-                <th>Código</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Cliente</th>
-                <th>Pers.</th>
-                <th>Mesa</th>
-                <th>Estado</th>
-                <th>Acción</th>
-
-              </tr>
-
-            </thead>
+        <div className="admin-reservas-kpis">
 
 
-            <tbody>
+          <div className="admin-reserva-kpi">
 
-              {reservasFiltradas.map((reserva) => (
+            <span>
+              TOTAL RESERVAS
+            </span>
 
-                <tr key={reserva.id}>
+            <strong>
+              {totalReservas}
+            </strong>
 
-                  <td>
-                    <strong>
-                      {reserva.codigo}
-                    </strong>
-                  </td>
-
-                  <td>
-                    {reserva.fecha}
-                  </td>
-
-                  <td>
-                    {reserva.hora}
-                  </td>
-
-                  <td>
-                    {reserva.cliente}
-                  </td>
-
-                  <td>
-                    {reserva.personas}
-                  </td>
-
-                  <td>
-                    {reserva.mesa}
-                  </td>
+          </div>
 
 
-                  <td>
 
-                    <span
-                      className={`
-                        admin-estado
-                        ${reserva.estado.toLowerCase()}
-                      `}
-                    >
-                      {reserva.estado}
-                    </span>
+          <div className="admin-reserva-kpi">
 
-                  </td>
+            <span>
+              CONFIRMADAS
+            </span>
+
+            <strong>
+              {confirmadas}
+            </strong>
+
+          </div>
 
 
-                  <td>
 
-                    <button
-                      type="button"
-                      className="btn btn-sm admin-btn-ver"
-                      onClick={() =>
-                        setReservaSeleccionada(reserva)
-                      }
-                    >
-                      Ver
-                    </button>
+          <div className="admin-reserva-kpi">
 
-                  </td>
+            <span>
+              PAGADAS
+            </span>
 
-                </tr>
+            <strong>
+              {pagadas}
+            </strong>
 
-              ))}
+          </div>
 
-            </tbody>
 
-          </table>
+
+          <div className="admin-reserva-kpi">
+
+            <span>
+              INGRESOS
+            </span>
+
+            <strong>
+              S/{' '}
+              {
+                totalVentas
+                  .toLocaleString(
+                    'es-PE'
+                  )
+              }
+            </strong>
+
+          </div>
+
 
         </div>
+
+
+
+        {/* ==================================================
+            TABLA
+        ================================================== */}
+
+        <div className="admin-reservas-card">
+
+
+          <div className="admin-reservas-card-header">
+
+            <div>
+
+              <span>
+                REGISTRO
+              </span>
+
+              <h2>
+                Reservas registradas
+              </h2>
+
+            </div>
+
+
+            <strong>
+              {totalReservas}
+              {' '}
+              {
+                totalReservas === 1
+                  ? 'reserva'
+                  : 'reservas'
+              }
+            </strong>
+
+          </div>
+
+
+
+          {
+            reservas.length === 0 ? (
+
+              <div className="admin-reservas-vacio">
+
+                <strong>
+                  No hay reservas registradas
+                </strong>
+
+                <p>
+                  Las reservas confirmadas
+                  desde la web aparecerán aquí.
+                </p>
+
+              </div>
+
+            ) : (
+
+              <div className="admin-tabla-scroll">
+
+
+                <table className="admin-reservas-tabla">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>
+                        CÓDIGO
+                      </th>
+
+                      <th>
+                        CLIENTE
+                      </th>
+
+                      <th>
+                        FECHA
+                      </th>
+
+                      <th>
+                        HORA
+                      </th>
+
+                      <th>
+                        PERS.
+                      </th>
+
+                      <th>
+                        MESA
+                      </th>
+
+                      <th>
+                        TOTAL
+                      </th>
+
+                      <th>
+                        PAGO
+                      </th>
+
+                      <th>
+                        ESTADO
+                      </th>
+
+                      <th>
+                        ACCIÓN
+                      </th>
+
+                    </tr>
+
+                  </thead>
+
+
+
+                  <tbody>
+
+                    {
+                      reservas.map(
+                        reserva => (
+
+                          <tr
+                            key={
+                              reserva.codigo
+                            }
+                          >
+
+
+                            <td>
+
+                              <strong className="admin-codigo-reserva">
+
+                                {
+                                  reserva.codigo
+                                }
+
+                              </strong>
+
+                            </td>
+
+
+
+                            <td>
+
+                              <strong>
+
+                                {
+                                  reserva
+                                    .cliente
+                                    ?.nombre ||
+                                  'Sin nombre'
+                                }
+
+                              </strong>
+
+
+                              <span className="admin-tabla-secundario">
+
+                                {
+                                  reserva
+                                    .cliente
+                                    ?.correo ||
+                                  ''
+                                }
+
+                              </span>
+
+                            </td>
+
+
+
+                            <td>
+
+                              {
+                                formatearFecha(
+                                  reserva.fecha
+                                )
+                              }
+
+                            </td>
+
+
+
+                            <td>
+
+                              {
+                                reserva.hora
+                              }
+
+                            </td>
+
+
+
+                            <td>
+
+                              {
+                                reserva.personas
+                              }
+
+                            </td>
+
+
+
+                            <td>
+
+                              {
+                                reserva.mesa
+                              }
+
+                            </td>
+
+
+
+                            <td>
+
+                              <strong>
+
+                                S/{' '}
+
+                                {
+                                  Number(
+                                    reserva.total || 0
+                                  )
+                                    .toLocaleString(
+                                      'es-PE'
+                                    )
+                                }
+
+                              </strong>
+
+                            </td>
+
+
+
+                            <td>
+
+                              <span
+                                className={
+                                  reserva.pago
+                                    ?.estado ===
+                                  'Pagado'
+
+                                    ? 'admin-badge pago'
+
+                                    : 'admin-badge pendiente'
+                                }
+                              >
+
+                                {
+                                  reserva
+                                    .pago
+                                    ?.estado ||
+                                  'Pendiente'
+                                }
+
+                              </span>
+
+                            </td>
+
+
+
+                            <td>
+
+                              <span
+                                className={`admin-badge estado-${String(
+                                  reserva.estado || ''
+                                )
+                                  .toLowerCase()
+                                  .replaceAll(' ', '-')}`}
+                              >
+
+                                {
+                                  reserva.estado
+                                }
+
+                              </span>
+
+                            </td>
+
+
+
+                            <td>
+
+                              <button
+                                type="button"
+
+                                className="admin-btn-ver"
+
+                                onClick={() =>
+                                  setReservaSeleccionada(
+                                    reserva
+                                  )
+                                }
+                              >
+                                VER
+                              </button>
+
+                            </td>
+
+
+                          </tr>
+
+                        )
+                      )
+                    }
+
+                  </tbody>
+
+                </table>
+
+
+              </div>
+
+            )
+          }
+
+
+        </div>
+
 
       </div>
 
 
 
-      {/* =========================
+      {/* ==================================================
           MODAL DETALLE
-      ========================= */}
+      ================================================== */}
 
-      {reservaSeleccionada && (
+      {
+        reservaSeleccionada && (
 
-        <div className="reserva-admin-modal-fondo">
+          <div
+            className="admin-modal-fondo"
 
-          <div className="reserva-admin-modal">
+            onClick={() =>
+              setReservaSeleccionada(
+                null
+              )
+            }
+          >
 
 
-            {/* CABECERA */}
+            <div
+              className="admin-modal-reserva"
 
-            <div className="reserva-admin-modal-header">
+              onClick={(e) =>
+                e.stopPropagation()
+              }
+            >
 
-              <div>
 
-                <span>
-                  DETALLE DE RESERVA
-                </span>
+              {/* CABECERA */}
 
-                <h2>
-                  {reservaSeleccionada.codigo}
-                </h2>
+              <div className="admin-modal-header">
+
+
+                <div>
+
+                  <span>
+                    DETALLE DE RESERVA
+                  </span>
+
+                  <h2>
+                    {
+                      reservaSeleccionada
+                        .codigo
+                    }
+                  </h2>
+
+                </div>
+
+
+
+                <button
+                  type="button"
+
+                  onClick={() =>
+                    setReservaSeleccionada(
+                      null
+                    )
+                  }
+                >
+                  ×
+                </button>
+
 
               </div>
 
 
-              <button
-                type="button"
-                onClick={() =>
-                  setReservaSeleccionada(null)
-                }
-              >
-                ×
-              </button>
 
-            </div>
+              {/* CLIENTE */}
 
+              <div className="admin-detalle-seccion">
 
-
-            {/* CLIENTE */}
-
-            <div className="reserva-admin-cliente">
-
-              <div>
-
-                <span>
+                <h3>
                   CLIENTE
-                </span>
+                </h3>
 
-                <strong>
-                  {reservaSeleccionada.cliente}
-                </strong>
 
-                <p>
-                  {reservaSeleccionada.correo}
-                </p>
+                <div className="admin-detalle-grid">
 
-                <p>
-                  {reservaSeleccionada.celular}
-                </p>
+
+                  <div>
+
+                    <span>
+                      NOMBRE
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .cliente
+                          ?.nombre
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      CELULAR
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .cliente
+                          ?.celular
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      CORREO
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .cliente
+                          ?.correo
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+                </div>
 
               </div>
 
 
-              <span
-                className={`
-                  admin-estado
-                  ${reservaSeleccionada.estado.toLowerCase()}
-                `}
-              >
-                {reservaSeleccionada.estado}
-              </span>
 
-            </div>
+              {/* RESERVA */}
+
+              <div className="admin-detalle-seccion">
+
+                <h3>
+                  RESERVA
+                </h3>
 
 
+                <div className="admin-detalle-grid">
 
-            {/* DATOS */}
 
-            <div className="reserva-admin-resumen">
+                  <div>
 
-              <div>
-                <span>FECHA</span>
-                <strong>
-                  {reservaSeleccionada.fecha}
-                </strong>
+                    <span>
+                      FECHA
+                    </span>
+
+                    <strong>
+
+                      {
+                        formatearFecha(
+                          reservaSeleccionada
+                            .fecha
+                        )
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      HORA
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .hora
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      PERSONAS
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .personas
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      AMBIENTE
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .zona
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      MESA
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .mesa
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      ESTADO
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .estado
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+                </div>
+
               </div>
 
 
-              <div>
-                <span>HORA</span>
-                <strong>
-                  {reservaSeleccionada.hora}
-                </strong>
+
+              {/* CONSUMO */}
+
+              <div className="admin-detalle-seccion">
+
+                <h3>
+                  CONSUMO
+                </h3>
+
+
+                <div className="admin-detalle-consumos">
+
+
+                  {
+                    reservaSeleccionada
+                      .consumos
+                      ?.map(
+                        consumo => (
+
+                          <div
+                            key={
+                              consumo.id
+                            }
+                          >
+
+                            <span>
+
+                              {
+                                consumo.cantidad
+                              }
+                              {' × '}
+                              {
+                                consumo.nombre
+                              }
+
+                            </span>
+
+
+                            <strong>
+
+                              S/{' '}
+
+                              {
+                                Number(
+                                  consumo.subtotal
+                                )
+                                  .toLocaleString(
+                                    'es-PE'
+                                  )
+                              }
+
+                            </strong>
+
+                          </div>
+
+                        )
+                      )
+                  }
+
+
+
+                  {
+                    reservaSeleccionada
+                      .adicionales
+                      ?.libroMayta && (
+
+                        <div>
+
+                          <span>
+                            1 × Libro de Mayta
+                          </span>
+
+                          <strong>
+
+                            S/{' '}
+
+                            {
+                              Number(
+                                reservaSeleccionada
+                                  .adicionales
+                                  .precioLibro
+                              )
+                                .toLocaleString(
+                                  'es-PE'
+                                )
+                            }
+
+                          </strong>
+
+                        </div>
+
+                      )
+                  }
+
+
+                </div>
+
+
+                <div className="admin-detalle-total">
+
+                  <span>
+                    TOTAL PAGADO
+                  </span>
+
+                  <strong>
+
+                    S/{' '}
+
+                    {
+                      Number(
+                        reservaSeleccionada
+                          .total || 0
+                      )
+                        .toLocaleString(
+                          'es-PE'
+                        )
+                    }
+
+                  </strong>
+
+                </div>
+
               </div>
 
 
-              <div>
-                <span>PERSONAS</span>
-                <strong>
-                  {reservaSeleccionada.personas}
-                </strong>
+
+              {/* PAGO */}
+
+              <div className="admin-detalle-seccion">
+
+                <h3>
+                  PAGO
+                </h3>
+
+
+                <div className="admin-detalle-grid">
+
+
+                  <div>
+
+                    <span>
+                      ESTADO
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .pago
+                          ?.estado
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      MÉTODO
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .pago
+                          ?.metodo
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+
+                  <div>
+
+                    <span>
+                      TARJETA
+                    </span>
+
+                    <strong>
+
+                      ••••{' '}
+
+                      {
+                        reservaSeleccionada
+                          .pago
+                          ?.ultimos4
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+                </div>
+
               </div>
 
 
-              <div>
-                <span>MESA</span>
-                <strong>
-                  {reservaSeleccionada.mesa}
-                </strong>
+
+              {/* COMPROBANTE */}
+
+              <div className="admin-detalle-seccion">
+
+                <h3>
+                  COMPROBANTE
+                </h3>
+
+
+                <div className="admin-detalle-grid">
+
+
+                  <div>
+
+                    <span>
+                      TIPO
+                    </span>
+
+                    <strong>
+
+                      {
+                        reservaSeleccionada
+                          .comprobante
+                          ?.tipo ||
+                        'No solicitado'
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+                  {
+                    reservaSeleccionada
+                      .comprobante
+                      ?.documento && (
+
+                        <div>
+
+                          <span>
+                            DOCUMENTO
+                          </span>
+
+                          <strong>
+
+                            {
+                              reservaSeleccionada
+                                .comprobante
+                                .documento
+                            }
+
+                          </strong>
+
+                        </div>
+
+                      )
+                  }
+
+
+                  {
+                    reservaSeleccionada
+                      .comprobante
+                      ?.razonSocial && (
+
+                        <div>
+
+                          <span>
+                            RAZÓN SOCIAL
+                          </span>
+
+                          <strong>
+
+                            {
+                              reservaSeleccionada
+                                .comprobante
+                                .razonSocial
+                            }
+
+                          </strong>
+
+                        </div>
+
+                      )
+                  }
+
+
+                </div>
+
               </div>
 
 
-              <div>
-                <span>UBICACIÓN</span>
-                <strong>
-                  {reservaSeleccionada.zona}
-                </strong>
-              </div>
 
-            </div>
+              {/* PREFERENCIAS */}
 
+              {
+                reservaSeleccionada
+                  .preferenciasRegistradas &&
+                reservaSeleccionada
+                  .comensales
+                  ?.length > 0 && (
 
+                  <div className="admin-detalle-seccion">
 
-            {/* COMENSALES */}
-
-            <div className="reserva-admin-seccion">
-
-              <h3>
-                COMENSALES
-              </h3>
+                    <h3>
+                      COMENSALES
+                    </h3>
 
 
-              <div className="reserva-admin-comensales">
-
-                {reservaSeleccionada.comensales.map(
-                  (comensal) => (
-
-                    <div
-                      className="reserva-admin-comensal"
-                      key={comensal.id}
-                    >
-
-                      <div>
-
-                        <strong>
-                          Comensal {comensal.id}
-                        </strong>
-
-                        <span>
-                          {comensal.tipo}
-                        </span>
-
-                      </div>
+                    <div className="admin-comensales-lista">
 
 
-                      <p>
-                        <strong>
-                          Menú:
-                        </strong>{' '}
+                      {
+                        reservaSeleccionada
+                          .comensales
+                          .map(
+                            comensal => (
 
-                        Bitácora Amazónica
-                      </p>
+                              <div
+                                key={
+                                  comensal.id
+                                }
+                              >
+
+                                <strong>
+                                  Comensal{' '}
+                                  {
+                                    comensal.id
+                                  }
+                                </strong>
 
 
-                      <p>
-                        <strong>
-                          Acompañamiento:
-                        </strong>{' '}
-
-                        {comensal.acompanamiento}
-                      </p>
+                                <span>
+                                  {
+                                    comensal.tipo
+                                  }
+                                </span>
 
 
-                      <p>
-                        <strong>
-                          Restricciones:
-                        </strong>{' '}
+                                <p>
 
-                        {
-                          comensal.restricciones.length > 0
-                            ? comensal.restricciones.join(', ')
-                            : 'Ninguna'
-                        }
-                      </p>
+                                  {
+                                    comensal
+                                      .restricciones
+                                      ?.length > 0
+
+                                      ? comensal
+                                          .restricciones
+                                          .join(', ')
+
+                                      : 'Sin restricciones'
+                                  }
+
+                                </p>
+
+                              </div>
+
+                            )
+                          )
+                      }
+
 
                     </div>
 
-                  )
-                )}
+                  </div>
 
-              </div>
-
-            </div>
+                )
+              }
 
 
 
-            {/* OBSERVACIONES */}
+              {/* OBSERVACIONES */}
 
-            {reservaSeleccionada.observaciones && (
+              <div className="admin-detalle-seccion">
 
-              <div className="reserva-admin-observaciones">
-
-                <span>
+                <h3>
                   OBSERVACIONES
-                </span>
+                </h3>
 
-                <p>
-                  {reservaSeleccionada.observaciones}
+
+                <p className="admin-observaciones">
+
+                  {
+                    reservaSeleccionada
+                      .observaciones ||
+                    'Sin observaciones.'
+                  }
+
                 </p>
 
               </div>
 
-            )}
 
-
-
-            {/* ACCIONES */}
-
-            <div className="reserva-admin-acciones">
 
               <button
                 type="button"
-                className="btn btn-outline-secondary btn-sm"
+
+                className="admin-btn-cerrar-modal"
+
                 onClick={() =>
-                  setReservaSeleccionada(null)
+                  setReservaSeleccionada(
+                    null
+                  )
                 }
               >
                 CERRAR
               </button>
 
 
-              {
-                reservaSeleccionada.estado !== 'Cancelada' && (
-
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-cancelar-reserva"
-                    onClick={() =>
-                      cancelarReserva(
-                        reservaSeleccionada.id
-                      )
-                    }
-                  >
-                    CANCELAR RESERVA
-                  </button>
-
-                )
-              }
-
             </div>
-
 
           </div>
 
-        </div>
-
-      )}
+        )
+      }
 
 
     </AdminLayout>
+
   );
 
 };
