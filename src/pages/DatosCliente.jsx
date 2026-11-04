@@ -22,6 +22,9 @@ export const DatosCliente = () => {
 
   const datosReserva = location.state || {};
 
+  // Modalidad recibida desde Reserva y Disponibilidad.
+  const esCarta = datosReserva.tipoReserva === 'carta';
+
 
   const {
     fecha = '',
@@ -533,7 +536,7 @@ export const DatosCliente = () => {
             <div>
 
               <span>
-                CONSUMO SELECCIONADO
+                {esCarta ? 'GARANTÍA DE RESERVA' : 'CONSUMO SELECCIONADO'}
               </span>
 
               <p>
@@ -541,8 +544,8 @@ export const DatosCliente = () => {
                 {' '}
                 {
                   personas === 1
-                    ? 'experiencia asignada'
-                    : 'experiencias asignadas'
+                    ? (esCarta ? 'persona · Carta al llegar' : 'experiencia asignada')
+                  : (esCarta ? 'personas · Carta al llegar' : 'experiencias asignadas')
                 }
               </p>
 
@@ -552,7 +555,7 @@ export const DatosCliente = () => {
             <div>
 
               <span>
-                TOTAL ESTIMADO
+                {esCarta ? 'GARANTÍA A PAGAR' : 'TOTAL ESTIMADO'}
               </span>
 
               <strong>

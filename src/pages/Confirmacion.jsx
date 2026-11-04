@@ -25,6 +25,9 @@ export const Confirmacion = () => {
     celular = '',
     correo = '',
 
+    // Modalidad de reserva elegida en la primera pantalla.
+    tipoReserva = 'experiencia',
+    garantiaReserva = 0,
     consumos = [],
     totalConsumos = 0,
 
@@ -55,7 +58,20 @@ export const Confirmacion = () => {
 
   } = datosReserva;
 
+  const esCarta = tipoReserva === 'carta';
+  const montoGarantia = esCarta
+    ? Number(garantiaReserva) || personas * 25
+    : 0;
 
+  // La garantía fue transmitida provisionalmente como un renglón de
+  // consumos por compatibilidad con el flujo actual de React.
+  // Al guardar la reserva la separamos de los consumos gastronómicos.
+  const consumosGastronomicos = esCarta
+    ? []
+    : consumos.filter((item) => item.id !== 'garantia-carta');
+
+  const formatoSoles = (monto) =>
+    Number(monto || 0).toLocaleString('es-PE');
 
   /* ==================================================
      CÓDIGO FINAL
@@ -85,6 +101,9 @@ export const Confirmacion = () => {
   ================================================== */
 
   const confirmarReserva = () => {
+
+    // Evita que un doble clic intente confirmar la misma reserva otra vez.
+    if (reservaConfirmada) return;
 
     const nuevaReserva = {
 
@@ -119,11 +138,18 @@ export const Confirmacion = () => {
       mesa:
         mesa,
 
+      // El panel y los reportes podrán distinguir las modalidades.
+      tipoReserva:
+        tipoReserva,
+
+      garantiaReserva:
+        montoGarantia,
+
       consumos:
-        consumos,
+        consumosGastronomicos,
 
       totalConsumos:
-        totalConsumos,
+        esCarta ? 0 : totalConsumos,
 
       adicionales:
         adicionales,
@@ -254,8 +280,9 @@ export const Confirmacion = () => {
 
 
             <p>
-              Tu pago fue procesado correctamente.
-              Revisa la información antes de finalizar.
+              {esCarta
+                ? 'Tu garantía fue procesada correctamente. Revisa tu reserva antes de finalizar.'
+                : 'Tu pago fue procesado correctamente. Revisa la información antes de finalizar.'}
             </p>
 
           </div>
@@ -402,131 +429,76 @@ export const Confirmacion = () => {
 
 
           {/* ==================================================
-              DETALLE DE CONSUMO
+              CONSUMO / GARANTÍA SEGÚN MODALIDAD
           ================================================== */}
 
           <div className="confirmacion-seccion">
 
             <h3>
-              DETALLE DE CONSUMO
+              {esCarta
+                ? 'GARANTÍA DE RESERVA - CARTA AL LLEGAR'
+                : 'DETALLE DE EXPERIENCIAS'}
             </h3>
-
 
             <div className="confirmacion-consumo">
 
-
-              {
-                consumos.map(
-                  consumo => (
-
-                    <div
-                      className="confirmacion-consumo-item"
-                      key={consumo.id}
-                    >
-
-                      <div>
-
-                        <strong>
-                          {consumo.nombre}
-                        </strong>
-
-
-                        <span>
-
-                          {consumo.cantidad}
-                          {' × '}
-                          S/{' '}
-                          {
-                            consumo
-                              .precioUnitario
-                              .toLocaleString(
-                                'es-PE'
-                              )
-                          }
-
-                        </span>
-
-                      </div>
-
-
-                      <strong>
-
-                        S/{' '}
-
-                        {
-                          consumo
-                            .subtotal
-                            .toLocaleString(
-                              'es-PE'
-                            )
-                        }
-
-                      </strong>
-
-                    </div>
-
-                  )
-                )
-              }
-
-
-
-              {
-                adicionales.libroMayta && (
-
-                  <div className="confirmacion-consumo-item">
-
-                    <div>
-
-                      <strong>
-                        Libro de Mayta
-                      </strong>
-
-                      <span>
-                        1 unidad
-                      </span>
-
-                    </div>
-
-
-                    <strong>
-                      S/{' '}
-                      {
-                        adicionales
-                          .precioLibro
-                          .toLocaleString(
-                            'es-PE'
-                          )
-                      }
-                    </strong>
-
+              {esCarta ? (
+                <div className="confirmacion-consumo-item">
+                  <div>
+                    <strong>Garantía de reserva - Carta al llegar</strong>
+                    <span>
+                      {personas} × S/ 25 por persona
+                    </span>
                   </div>
+                  <strong>S/ {formatoSoles(montoGarantia)}</strong>
+                </div>
+              ) : (
+                consumosGastronomicos.map((consumo) => (
+                  <div
+                    className="confirmacion-consumo-item"
+                    key={consumo.id}
+                  >
+                    <div>
+                      <strong>{consumo.nombre}</strong>
+                      <span>
+                        {consumo.cantidad} × S/{' '}
+                        {formatoSoles(consumo.precioUnitario)}
+                      </span>
+                    </div>
+                    <strong>
+                      S/ {formatoSoles(consumo.subtotal)}
+                    </strong>
+                  </div>
+                ))
+              )}
 
-                )
-              }
-
+              {adicionales.libroMayta && (
+                <div className="confirmacion-consumo-item">
+                  <div>
+                    <strong>Libro de Mayta</strong>
+                    <span>1 unidad</span>
+                  </div>
+                  <strong>
+                    S/ {formatoSoles(adicionales.precioLibro)}
+                  </strong>
+                </div>
+              )}
 
             </div>
 
-
+            {esCarta && (
+              <p className="confirmacion-demo-nota">
+                La garantía de S/25 por persona será descontada
+                del consumo final en el restaurante. Los platos
+                y bebidas se elegirán al llegar.
+              </p>
+            )}
 
             <div className="confirmacion-total">
-
               <span>
-                TOTAL PAGADO
+                {esCarta ? 'TOTAL PAGADO (GARANTÍA Y ADICIONALES)' : 'TOTAL PAGADO'}
               </span>
-
-
-              <strong>
-                S/{' '}
-                {
-                  totalFinal
-                    .toLocaleString(
-                      'es-PE'
-                    )
-                }
-              </strong>
-
+              <strong>S/ {formatoSoles(totalFinal)}</strong>
             </div>
 
           </div>
@@ -826,9 +798,9 @@ export const Confirmacion = () => {
 
 
             <p>
-              Tu pago está aprobado.
-              Al confirmar, la reserva quedará
-              registrada definitivamente.
+              {esCarta
+                ? 'Tu garantía está pagada. Al confirmar, la reserva de tu mesa quedará registrada. Podrás elegir la carta al llegar.'
+                : 'Tu pago está aprobado. Al confirmar, la reserva quedará registrada definitivamente.'}
             </p>
 
           </div>
@@ -912,8 +884,9 @@ export const Confirmacion = () => {
 
 
               <p>
-                Tu experiencia MAYTA
-                ha sido registrada correctamente.
+                {esCarta
+                  ? 'Tu mesa está reservada. Podrás solicitar la carta al llegar.'
+                  : 'Tu experiencia MAYTA ha sido registrada correctamente.'}
               </p>
 
 
@@ -938,6 +911,11 @@ export const Confirmacion = () => {
               {/* RESUMEN */}
 
               <div className="modal-resumen">
+
+                <span>
+                  <strong>Modalidad:</strong>{' '}
+                  {esCarta ? 'Carta al llegar' : 'Experiencia gastronómica'}
+                </span>
 
                 <span>
                   <strong>Fecha:</strong>
@@ -966,6 +944,13 @@ export const Confirmacion = () => {
                   {mesa}
                 </span>
 
+
+                {esCarta && (
+                  <span>
+                    <strong>Garantía descontable:</strong>{' '}
+                    S/ {formatoSoles(montoGarantia)}
+                  </span>
+                )}
 
                 <span>
                   <strong>Total pagado:</strong>

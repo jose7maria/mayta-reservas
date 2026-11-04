@@ -21,6 +21,9 @@ export const PagoReserva = () => {
   const datosReserva =
     location.state || {};
 
+  // Diferenciamos el anticipo de Carta al llegar del consumo de experiencias.
+  const esCarta = datosReserva.tipoReserva === 'carta';
+
 
   const {
     fecha = '',
@@ -785,9 +788,9 @@ export const PagoReserva = () => {
 
 
             <p>
-              Revisa el detalle y completa
-              el pago para confirmar
-              tu experiencia.
+              {esCarta
+                ? 'Revisa y paga la garantía para confirmar tu mesa.'
+                : 'Revisa el detalle y completa el pago para confirmar tu experiencia.'}
             </p>
 
           </div>
@@ -955,7 +958,7 @@ export const PagoReserva = () => {
                 </span>
 
                 <h2>
-                  EXPERIENCIAS SELECCIONADAS
+                  {esCarta ? 'GARANTÍA DE RESERVA' : 'EXPERIENCIAS SELECCIONADAS'}
                 </h2>
 
               </div>
@@ -964,7 +967,7 @@ export const PagoReserva = () => {
               <div className="pago-total-principal">
 
                 <span>
-                  CONSUMO
+                  {esCarta ? 'GARANTÍA' : 'CONSUMO'}
                 </span>
 
                 <strong>
@@ -1695,78 +1698,110 @@ export const PagoReserva = () => {
 
 
 
-              <div className="terminos-contenido">
+              
+<div className="terminos-contenido">
+
+  <h3>1. Confirmación de reserva</h3>
+  <p>
+    La reserva quedará confirmada una vez completado
+    el proceso de pago correspondiente a la modalidad
+    seleccionada por el cliente.
+  </p>
+
+  <h3>2. Experiencia gastronómica</h3>
+  <p>
+    Los clientes que seleccionen una experiencia
+    gastronómica deberán abonar el importe total
+    de las experiencias y maridajes elegidos
+    para confirmar su reserva.
+  </p>
+
+  <h3>3. Modalidad Carta al llegar</h3>
+  <p>
+    Los clientes que seleccionen la modalidad
+    "Carta al llegar" deberán realizar un pago
+    anticipado de S/25.00 por persona como
+    garantía de reserva.
+  </p>
+  <p>
+    Este importe será descontado del consumo final
+    realizado durante la visita. Los platos y bebidas
+    podrán seleccionarse al llegar al restaurante.
+    Si el consumo supera la garantía abonada,
+    el cliente deberá cancelar la diferencia.
+  </p>
+  <p>
+    La garantía no representa el precio de los platos
+    ni incluye una experiencia gastronómica.
+  </p>
+
+  <h3>4. Cancelaciones</h3>
+  <p>
+    Las cancelaciones solicitadas con al menos
+    48 horas de anticipación podrán acceder
+    a la devolución del importe abonado,
+    previa validación de la solicitud.
+  </p>
+
+  <h3>5. Reembolsos</h3>
+  <p>
+    Los reembolsos aprobados serán procesados
+    en un plazo referencial de hasta
+    72 horas hábiles, según el medio de pago.
+  </p>
+
+  <h3>6. Cancelaciones tardías</h3>
+  <p>
+    Las cancelaciones realizadas con menos
+    de 48 horas de anticipación podrán estar
+    sujetas a la pérdida total o parcial
+    del importe abonado, de acuerdo con
+    las condiciones de la reserva.
+  </p>
+
+  <h3>7. Tolerancia de llegada</h3>
+  <p>
+    El cliente contará con 15 minutos de tolerancia
+    desde la hora programada. Superado este plazo,
+    sin comunicación previa, la reserva podrá
+    considerarse como no presentada.
+  </p>
+  <p>
+    En caso de inasistencia, la garantía o el
+    importe abonado podrá quedar sujeto
+    a las condiciones de cancelación.
+  </p>
+
+  <h3>8. Cambios y disponibilidad</h3>
+  <p>
+    Cualquier solicitud de cambio de fecha,
+    horario, número de personas o ambiente
+    estará sujeta a disponibilidad y
+    confirmación del restaurante.
+  </p>
+
+  <h3>9. Información de los comensales</h3>
+  <p>
+    El cliente es responsable de proporcionar
+    información correcta sobre la reserva
+    e informar oportunamente cualquier
+    alergia, restricción alimentaria
+    o necesidad especial.
+  </p>
+
+  <h3>10. Condiciones generales</h3>
+  <p>
+    La reserva corresponde a la fecha, horario,
+    cantidad de personas y modalidad seleccionada.
+    La disponibilidad de mesas y ambientes
+    podrá variar por razones operativas
+    o de mantenimiento.
+  </p>
 
 
-                <h3>
-                  Confirmación
-                </h3>
 
-                <p>
-                  La reserva queda confirmada
-                  una vez completado
-                  el proceso de pago.
-                </p>
+</div>
 
-
-
-                <h3>
-                  Cancelaciones
-                </h3>
-
-                <p>
-                  Las cancelaciones realizadas
-                  con al menos 48 horas
-                  de anticipación podrán
-                  solicitar el reembolso.
-                </p>
-
-
-
-                <h3>
-                  Reembolsos
-                </h3>
-
-                <p>
-                  El reembolso será procesado
-                  dentro de un plazo
-                  de hasta 72 horas hábiles,
-                  sujeto al medio de pago.
-                </p>
-
-
-
-                <h3>
-                  Cancelaciones tardías
-                </h3>
-
-                <p>
-                  Las cancelaciones realizadas
-                  dentro de las 48 horas previas
-                  podrían no ser reembolsables.
-                </p>
-
-
-
-                <h3>
-                  Tolerancia
-                </h3>
-
-                <p>
-                  La reserva cuenta
-                  con 15 minutos de tolerancia.
-                </p>
-
-
-
-                <p className="terminos-nota">
-                  Política demostrativa
-                  utilizada únicamente
-                  para este prototipo académico.
-                </p>
-
-
-              </div>
 
 
 

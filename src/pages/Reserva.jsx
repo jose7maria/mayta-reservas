@@ -59,51 +59,27 @@ const ZONAS = [
   },
 ];
 
-// Mesas de demostración originales. La futura API las reemplazará por datos de MySQL.
-const MESAS_DEMO = [
-  {
-    id: 1,
-    nombre: 'M1',
-    capacidad: 2,
-    disponible: true,
-    descripcion: 'Mesa íntima para una experiencia en pareja.',
-  },
-  {
-    id: 2,
-    nombre: 'M2',
-    capacidad: 2,
-    disponible: false,
-    descripcion: 'Mesa tranquila ubicada en un sector lateral.',
-  },
-  {
-    id: 3,
-    nombre: 'M3',
-    capacidad: 4,
-    disponible: true,
-    descripcion: 'Mesa cómoda para grupos pequeños.',
-  },
-  {
-    id: 4,
-    nombre: 'M4',
-    capacidad: 4,
-    disponible: false,
-    descripcion: 'Ubicación central con fácil acceso al servicio.',
-  },
-  {
-    id: 5,
-    nombre: 'M5',
-    capacidad: 6,
-    disponible: true,
-    descripcion: 'Mesa amplia para familias o grupos.',
-  },
-  {
-    id: 6,
-    nombre: 'M6',
-    capacidad: 10,
-    disponible: true,
-    descripcion: 'Mesa amplia para grupos y celebraciones.',
-  },
-];
+// Mesas demostrativas: 12 por cada ambiente (48 en total).
+// Cuando esté lista la API, estas mesas vendrán desde MySQL.
+const CAPACIDADES_DEMO = [2, 2, 2, 4, 4, 4, 4, 4, 6, 6, 8, 10];
+const PREFIJOS_AMBIENTE = ['SP', 'TE', 'BA', 'PR'];
+
+const MESAS_DEMO = ZONAS.flatMap((ambiente, indiceAmbiente) =>
+  CAPACIDADES_DEMO.map((capacidad, indiceMesa) => {
+    const codigo = `${PREFIJOS_AMBIENTE[indiceAmbiente]}${String(
+      indiceMesa + 1
+    ).padStart(2, '0')}`;
+
+    return {
+      id: codigo,
+      nombre: codigo,
+      zona: ambiente.nombre,
+      capacidad,
+      // Estados ficticios: no representan ocupación real por fecha y hora.
+      disponible: ![1, 6, 9].includes(indiceMesa),
+    };
+  })
+);
 
 const CANTIDADES_INICIALES = {
   'sin-maridaje': 0,
@@ -471,62 +447,89 @@ export const Reserva = () => {
             </div>
           </div>
 
-          {/* MESAS: APARECEN AL SELECCIONAR UN AMBIENTE CONCRETO */}
+          {/* MESAS: 12 POR AMBIENTE, EN CUADRÍCULA RESPONSIVE */}
           {zona !== 'Sin preferencia' && zonaSeleccionada && (
             <div className="reserva-grupo mesas-cliente-seccion">
               <div className="mesas-cliente-header">
-                <span>MESAS DISPONIBLES</span>
+                <span>SELECCIÓN DE MESA · DEMOSTRACIÓN</span>
                 <h2>{zona}</h2>
-                <p>Selecciona la mesa que prefieras.</p>
+                <p>
+                  12 mesas en este ambiente. Selecciona una según el tamaño de
+                  tu grupo. La disponibilidad real se conectará con MySQL.
+                </p>
               </div>
 
-              <div className="mesas-cliente-lista">
-                {MESAS_DEMO.map((mesa) => {
+              {/* Bootstrap: 1 columna móvil, 2 en tablet, 3 en escritorio. */}
+              <div className="row g-3">
+                {MESAS_DEMO.filter((mesa) => mesa.zona === zona).map((mesa) => {
                   const capacidadInsuficiente = personas > mesa.capacidad;
                   const noDisponible = !mesa.disponible || capacidadInsuficiente;
                   const seleccionada = mesaSeleccionada?.id === mesa.id;
 
                   return (
-                    <button
-                      type="button"
-                      key={mesa.id}
-                      disabled={noDisponible}
-                      onClick={() => setMesaSeleccionada(mesa)}
-                      className={`mesa-cliente-card ${
-                        seleccionada ? 'seleccionada' : ''
-                      } ${noDisponible ? 'bloqueada' : ''}`}
-                    >
-                      <div className="mesa-cliente-imagen">
-                        <img
-                          src={zonaSeleccionada.imagen}
-                          alt={`${mesa.nombre} - ${zona}`}
-                        />
-                      </div>
-                      <div className="mesa-cliente-info">
-                        <span>MESA</span>
-                        <h3>{mesa.nombre}</h3>
-                        <p>{mesa.descripcion}</p>
-                        <small>
-                          Capacidad máxima: {mesa.capacidad} personas
-                        </small>
-                      </div>
-                      <div className="mesa-cliente-accion">
-                        {!mesa.disponible ? (
-                          <span className="mesa-capacidad-error">OCUPADA</span>
-                        ) : capacidadInsuficiente ? (
-                          <span className="mesa-capacidad-error">
-                            CAPACIDAD INSUFICIENTE
-                          </span>
-                        ) : seleccionada ? (
-                          <>
-                            <span className="mesa-check-simple">✓</span>
-                            <strong>SELECCIONADA</strong>
-                          </>
-                        ) : (
-                          <strong>SELECCIONAR</strong>
-                        )}
-                      </div>
-                    </button>
+                    <div className="col-12 col-sm-6 col-md-4 d-flex" key={mesa.id}>
+                      <button
+                        type="button"
+                        disabled={noDisponible}
+                        aria-pressed={seleccionada}
+                        aria-label={`${mesa.nombre}, capacidad ${mesa.capacidad} personas, ${
+                          !mesa.disponible
+                            ? 'ocupada en la demostración'
+                            : capacidadInsuficiente
+                            ? 'capacidad insuficiente'
+                            : seleccionada
+                            ? 'seleccionada'
+                            : 'seleccionar'
+                        }`}
+                        onClick={() => setMesaSeleccionada(mesa)}
+                        className={`mesa-cliente-card d-flex flex-column h-100 ${
+                          seleccionada ? 'seleccionada' : ''
+                        } ${noDisponible ? 'bloqueada' : ''}`}
+                      >
+                        {/* FOTO DEL AMBIENTE */}
+                        <div
+                          className="mesa-cliente-imagen w-100"
+                          style={{ height: 105, minHeight: 105 }}
+                        >
+                          <img
+                            src={zonaSeleccionada.imagen}
+                            alt={`Ambiente ${zona}`}
+                          />
+                        </div>
+
+                        {/* INFORMACIÓN COMPACTA */}
+                        <div className="mesa-cliente-info w-100 flex-grow-1">
+                          <span>MESA</span>
+                          <h3>{mesa.nombre}</h3>
+                          <small>👥 Hasta {mesa.capacidad} personas</small>
+                        </div>
+
+                        {/* ESTADO DE SELECCIÓN */}
+                        <div
+                          className="mesa-cliente-accion flex-row mt-auto w-100"
+                          style={{
+                            borderLeft: 'none',
+                            borderTop: '1px solid #e3ddd4',
+                            minHeight: 40,
+                          }}
+                        >
+                          {!mesa.disponible ? (
+                            <span className="mesa-capacidad-error">OCUPADA (DEMO)</span>
+                          ) : capacidadInsuficiente ? (
+                            <span className="mesa-capacidad-error">
+                              CAPACIDAD INSUFICIENTE
+                            </span>
+                          ) : seleccionada ? (
+                            <>
+                              <span className="mesa-check-simple">✓</span>
+                              <strong>SELECCIONADA</strong>
+                            </>
+                          ) : (
+                            <strong>SELECCIONAR</strong>
+                          )}
+                        </div>
+                      </button>
+                    </div>
                   );
                 })}
               </div>
