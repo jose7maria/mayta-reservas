@@ -33,7 +33,7 @@ export const PagoReserva = () => {
     mesa = 'Asignación automática',
 
     nombre = '',
-    celular = '',
+    
     correo = '',
 
     consumos = [],
